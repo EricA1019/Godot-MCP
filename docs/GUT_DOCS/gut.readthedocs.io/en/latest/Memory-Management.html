@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Memory Management &mdash; GUT 9.4.0 documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/gut_custom.css" type="text/css" />
+      <link rel="stylesheet" href="_static/dark_mode_css/general.css" type="text/css" />
+      <link rel="stylesheet" href="_static/dark_mode_css/dark.css" type="text/css" />
+    <link rel="shortcut icon" href="_static/favicon.ico"/>
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="_static/jquery.js%3Fv=5d32c60e"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js%3Fv=2cd50e6c"></script>
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js%3Fv=354d2d61"></script>
+        <script src="_static/doctools.js%3Fv=888ff710"></script>
+        <script src="_static/sphinx_highlight.js%3Fv=4825356b"></script>
+        <script src="_static/dark_mode_js/default_dark.js%3Fv=fd565c74"></script>
+        <script src="_static/dark_mode_js/theme_switcher.js%3Fv=358d3910"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Mocking Input" href="Mocking-Input.html" />
+    <link rel="prev" title="Hooks" href="Hooks.html" /> 
+<script async type="text/javascript" src="../../_/static/javascript/readthedocs-addons.js"></script><meta name="readthedocs-project-slug" content="gut" /><meta name="readthedocs-version-slug" content="latest" /><meta name="readthedocs-resolver-filename" content="/Memory-Management.html" /><meta name="readthedocs-http-status" content="200" /></head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            GUT
+              <img src="_static/GutDocsLogo.png" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                9.4.0 for Godot-4
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Getting Started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="Install.html">Install</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Quick-Start.html">Quick Start</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Command-Line.html">Command Line</a></li>
+<li class="toctree-l1"><a class="reference internal" href="New-For-Godot-4.html">Godot 4 Changes</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Test Scripts</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="class_ref/class_guttest.html">GutTest</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Creating-Tests.html">Creating Tests</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Awaiting.html">Awaiting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Inner-Test-Classes.html">Inner Test Classes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Parameterized-Tests.html">Parameterized Tests</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Simulate.html">Simulate</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Comparing-Things.html">Comparing Things</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Doubling</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="Doubles.html">Doubles</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Partial-Doubles.html">Partial Doubles</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Double-Strategy.html">Doubling Strategy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Stubbing.html">Stubbing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Spies.html">Spies</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Other</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="Contributing.html">Contributing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="GDScript-Warnings.html">GDScript Warnings</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Export-Test-Results.html">Export Test Results</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Hooks.html">Hooks</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="Memory-Management.html#">Memory Management</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="Memory-Management.html#gut-orphan-count">GUT Orphan Count</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Memory-Management.html#freeing-test-objects">Freeing Test Objects</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Memory-Management.html#using-add-child-in-tests">Using <code class="docutils literal notranslate"><span class="pre">add_child</span></code> in Tests</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Memory-Management.html#freeing-globals">Freeing Globals</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Memory-Management.html#automatically-freed-objects">Automatically Freed Objects</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Memory-Management.html#testing-for-leaks">Testing for Leaks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Memory-Management.html#godot-memory-management">Godot Memory Management</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="Memory-Management.html#reference">Reference</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Memory-Management.html#weakref">Weakref</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Memory-Management.html#object-except-reference">Object (except Reference)</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="Mocking-Input.html">Mocking Input</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Orphans.html">Orphans</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Running-On-Devices.html">Running on Devices</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Tutorials.html">Tutorials</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Class Reference</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="Class-Ref.html">About Class Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="class_ref/class_addons_gut_cli_optparse.html">addons/gut/cli/optparse.gd</a></li>
+<li class="toctree-l1"><a class="reference internal" href="class_ref/class_addons_gut_junit_xml_export.html">addons/gut/junit_xml_export.gd</a></li>
+<li class="toctree-l1"><a class="reference internal" href="class_ref/class_addons_gut_parameter_factory.html">addons/gut/parameter_factory.gd</a></li>
+<li class="toctree-l1"><a class="reference internal" href="class_ref/class_guthookscript.html">GutHookScript</a></li>
+<li class="toctree-l1"><a class="reference internal" href="class_ref/class_gutinputfactory.html">GutInputFactory</a></li>
+<li class="toctree-l1"><a class="reference internal" href="class_ref/class_gutinputsender.html">GutInputSender</a></li>
+<li class="toctree-l1"><a class="reference internal" href="class_ref/class_gutmain.html">GutMain</a></li>
+<li class="toctree-l1"><a class="reference internal" href="class_ref/class_guttest.html">GutTest</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">GUT</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Memory Management</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/Memory-Management.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="memory-management">
+<h1>Memory Management<a class="headerlink" href="Memory-Management.html#memory-management" title="Permalink to this heading"></a></h1>
+<p>You may have noticed errors similar to this at the end of your run:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>ERROR:<span class="w"> </span>~List:<span class="w"> </span>Condition<span class="w"> </span><span class="s2">&quot;_first != __null&quot;</span><span class="w"> </span>is<span class="w"> </span>true.
+<span class="w">   </span>At:<span class="w"> </span>./core/self_list.h:112.
+WARNING:<span class="w"> </span>cleanup:<span class="w"> </span>ObjectDB<span class="w"> </span>Instances<span class="w"> </span>still<span class="w"> </span>exist!
+<span class="w">   </span>At:<span class="w"> </span>core/object.cpp:2071.
+ERROR:<span class="w"> </span>clear:<span class="w"> </span>Resources<span class="w"> </span>Still<span class="w"> </span><span class="k">in</span><span class="w"> </span>use<span class="w"> </span>at<span class="w"> </span>Exit!
+<span class="w">   </span>At:<span class="w"> </span>core/resource.cpp:476.
+</pre></div>
+</div>
+<p>These indicate that when the tests finished running there were existing objects that had not been freed.</p>
+<p>GUT will try to detect when an orphan is created and will log how many orphans it finds after each test/script.  To make life a little easier, <code class="docutils literal notranslate"><span class="pre">GutTest</span></code> provides the following methods that makes freeing Nodes.  Each of these methods return what is passed in, so you can save a line or two of code.</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">autofree</span></code> - calls <code class="docutils literal notranslate"><span class="pre">free</span></code> after test finishes</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">autoqfree</span></code> - calls <code class="docutils literal notranslate"><span class="pre">queue_free</span></code> after test finishes</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">add_child_autofree</span></code> - calls <code class="docutils literal notranslate"><span class="pre">add_child</span></code> right away, and <code class="docutils literal notranslate"><span class="pre">free</span></code> after test finishes.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">add_child_autoqfree</span></code> - calls <code class="docutils literal notranslate"><span class="pre">add_child</span></code> right away, and <code class="docutils literal notranslate"><span class="pre">queue_free</span></code> after teest finishes.</p></li>
+</ul>
+<p>More info can be found in “Freeing Test Objects” below.</p>
+<p>Quick Example:</p>
+<div class="highlight-gdscript notranslate"><div class="highlight"><pre><span></span><span class="k">func</span><span class="w"> </span><span class="n">test_something</span><span class="p">():</span>
+<span class="w">  </span><span class="c1"># add_child_autofree will add the result of SuperNeatNode.new to the tree,</span>
+<span class="w">  </span><span class="c1"># mark it to be freed after the test, and return the instance created by</span>
+<span class="w">  </span><span class="c1"># SuperNeatNode.new().</span>
+<span class="w">  </span><span class="k">var</span><span class="w"> </span><span class="n">my_node</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">add_child_autofree</span><span class="p">(</span><span class="n">SuperNeatNode</span><span class="o">.</span><span class="n">new</span><span class="p">())</span>
+<span class="w">  </span><span class="n">assert_not_null</span><span class="p">(</span><span class="n">my_node</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>At the bottom of the page I attempt to describe how Godot does memory management.  If any of these sections seem confusing, read that part first.  The <a class="reference external" href="https://docs.godotengine.org/en/stable/getting_started/scripting/gdscript/gdscript_basics.html#memory-management">Godot docs</a> has some information.  Also, here’s a <a class="reference external" href="https://www.youtube.com/watch?v=cl2PxGkpJdo">tutorial</a> on memory management I found.</p>
+<section id="gut-orphan-count">
+<h2>GUT Orphan Count<a class="headerlink" href="Memory-Management.html#gut-orphan-count" title="Permalink to this heading"></a></h2>
+<p>GUT, by default, will print a count of any orphans that are created by a test.  Depending on the log level these counts will appear after each test or may just appear after each script.  GUT counts the orphans before each test and warns when the value changes when a test is done.  These counts are summed up for each script as well and a grand total is printed at the end of the run.  You can disable this feature if you want to.</p>
+<p>Godot considers an object to be orphaned if it extends <code class="docutils literal notranslate"><span class="pre">Object</span></code> (but not <code class="docutils literal notranslate"><span class="pre">Reference</span></code>) and has not been added to the tree.  Godot provides the <code class="docutils literal notranslate"><span class="pre">print_stray_nodes</span></code> which will print a list of all nodes (and their children) that are not in the tree.  This information is a bit cryptic and can only be printed to the console and command line.  You can also use the <code class="docutils literal notranslate"><span class="pre">Performance</span></code> object to get a count of orphans at any particular time.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">var</span> <span class="n">count</span> <span class="o">=</span> <span class="n">Performance</span><span class="o">.</span><span class="n">get_monitor</span><span class="p">(</span><span class="n">Performance</span><span class="o">.</span><span class="n">OBJECT_ORPHAN_NODE_COUNT</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="freeing-test-objects">
+<h2>Freeing Test Objects<a class="headerlink" href="Memory-Management.html#freeing-test-objects" title="Permalink to this heading"></a></h2>
+<p>Freeing up objects in your tests is tedious.  It adds additional lines of code that don’t add anything to the test.  To aid in this GUT provides the <code class="docutils literal notranslate"><span class="pre">autofree</span></code> and <code class="docutils literal notranslate"><span class="pre">autoqfree</span></code> functions.  Anything passed to these methods will be freed up after the test runs.  These methods also <code class="docutils literal notranslate"><span class="pre">return</span></code> whatever is passed into them so you can chain them together to cut down on space.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">var</span> <span class="n">Foo</span> <span class="o">=</span> <span class="n">load</span><span class="p">(</span><span class="s1">&#39;res://foo.gd&#39;</span><span class="p">)</span>
+<span class="n">var</span> <span class="n">node</span> <span class="o">=</span> <span class="n">autofree</span><span class="p">(</span><span class="n">Node</span><span class="o">.</span><span class="n">new</span><span class="p">())</span>
+<span class="n">var</span> <span class="n">bar_scene</span> <span class="o">=</span> <span class="n">autofree</span><span class="p">(</span><span class="n">load</span><span class="p">(</span><span class="s1">&#39;res://bar.tscn&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">instance</span><span class="p">())</span>
+<span class="n">assert_null</span><span class="p">(</span><span class="n">autofree</span><span class="p">(</span><span class="n">Foo</span><span class="o">.</span><span class="n">new</span><span class="p">())</span><span class="o">.</span><span class="n">get_value</span><span class="p">(),</span> <span class="s1">&#39;default value is null&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">autofree</span></code> will call <code class="docutils literal notranslate"><span class="pre">free</span></code> on the object (if it is valid to) at the end of the test.  <code class="docutils literal notranslate"><span class="pre">autoqfree</span></code> will call <code class="docutils literal notranslate"><span class="pre">queue_free</span></code> on the object at the end of the test.  These objects are freed before the orphans are counted and will now show up in the count.  If <code class="docutils literal notranslate"><span class="pre">autoqfree</span></code> is called at anytime during a test GUT will pause briefly to give the <code class="docutils literal notranslate"><span class="pre">queue_free</span></code> time to execute, then it will count orphans.</p>
+<p>These functions can be used in a test or the <code class="docutils literal notranslate"><span class="pre">before_each</span></code> but should NOT be used in <code class="docutils literal notranslate"><span class="pre">before_all</span></code>.  If you create an object in <code class="docutils literal notranslate"><span class="pre">before_all</span></code> you must free it yourself in <code class="docutils literal notranslate"><span class="pre">after_all</span></code>.  Using either flavor of <code class="docutils literal notranslate"><span class="pre">autofree</span></code> in <code class="docutils literal notranslate"><span class="pre">before_all</span></code> will cause the object to be freed after the first test is run.</p>
+</section>
+<section id="using-add-child-in-tests">
+<h2>Using <code class="docutils literal notranslate"><span class="pre">add_child</span></code> in Tests<a class="headerlink" href="Memory-Management.html#using-add-child-in-tests" title="Permalink to this heading"></a></h2>
+<p>When you call <code class="docutils literal notranslate"><span class="pre">add_child</span></code> from within a test the object is added as a child of the test script.  The test script is a child of the GUT GUI.  Any child you add to a test will not be freed until the end of the test run.  GUT holds onto the test scripts until the end for summary information.  GUT will output a warning if a test script has children when it finishes running.</p>
+<p>It is best to free any children you add in a test in that same test.  GUT has two helper functions that will add the child and free the child after the test.  These are <code class="docutils literal notranslate"><span class="pre">add_child_autofree</span></code> and <code class="docutils literal notranslate"><span class="pre">add_child_autoqfree</span></code>.  These work the same way as <code class="docutils literal notranslate"><span class="pre">autofree</span></code> and <code class="docutils literal notranslate"><span class="pre">autoqfree</span></code> but take the additional step of calling <code class="docutils literal notranslate"><span class="pre">add_child</span></code>.  These methods also return whatever is passed to them so you can cut down on lines of code.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">func</span> <span class="n">test_foo</span><span class="p">():</span>
+  <span class="n">var</span> <span class="n">node</span> <span class="o">=</span> <span class="n">add_child_autofree</span><span class="p">(</span><span class="n">Node</span><span class="o">.</span><span class="n">new</span><span class="p">())</span>
+  <span class="n">var</span> <span class="n">node2</span> <span class="o">=</span> <span class="n">add_child_autoqfree</span><span class="p">(</span><span class="n">Node</span><span class="o">.</span><span class="n">new</span><span class="p">())</span>
+</pre></div>
+</div>
+<p>These functions can be used in a test or the <code class="docutils literal notranslate"><span class="pre">before_each</span></code> but should NOT be used in <code class="docutils literal notranslate"><span class="pre">before_all</span></code>.  If you have an object you want to add as a child in <code class="docutils literal notranslate"><span class="pre">before_all</span></code> you must free it yourself in <code class="docutils literal notranslate"><span class="pre">after_all</span></code>.  Using either flavor of <code class="docutils literal notranslate"><span class="pre">add_child_autofree</span></code> in <code class="docutils literal notranslate"><span class="pre">before_all</span></code> will cause the object to be freed after the first test is run.</p>
+</section>
+<section id="freeing-globals">
+<h2>Freeing Globals<a class="headerlink" href="Memory-Management.html#freeing-globals" title="Permalink to this heading"></a></h2>
+<p>You can use a <a class="reference internal" href="Hooks.html"><span class="doc std std-doc">post-run hook</span></a> to clean up any global objects you have created.  If you are running your tests through a scene then you may have to recreate these objects if you want to be able to perform multiple test runs through the GUI.  You could use a <a class="reference internal" href="Hooks.html"><span class="doc std std-doc">pre-run hook</span></a> to do this, but it all starts getting messy at that point.</p>
+</section>
+<section id="automatically-freed-objects">
+<h2>Automatically Freed Objects<a class="headerlink" href="Memory-Management.html#automatically-freed-objects" title="Permalink to this heading"></a></h2>
+<p>To help with freeing up objects GUT will automatically free the following objects at the end of the test.</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="Doubles.html"><span class="doc std std-doc">Doubles</span></a></p></li>
+<li><p><a class="reference internal" href="Partial-Doubles.html"><span class="doc std std-doc">Partial Doubles</span></a></p></li>
+</ul>
+<p>Calling <code class="docutils literal notranslate"><span class="pre">autofree</span></code> with one of these objects, or manually freeing them yourself will not have any adverse effects.</p>
+</section>
+<section id="testing-for-leaks">
+<h2>Testing for Leaks<a class="headerlink" href="Memory-Management.html#testing-for-leaks" title="Permalink to this heading"></a></h2>
+<p>GUT provides the <code class="docutils literal notranslate"><span class="pre">assert_no_new_orphans</span></code> method that will assert that the test has not created any new orphans.  Using this can be a little tricky in complicated test scripts.</p>
+<p><code class="docutils literal notranslate"><span class="pre">assert_no_new_orphans</span></code> strictly validates that at the time it executes the count of of orphans found is the same as before the test was run.  The “before” count is taken prior to executing <code class="docutils literal notranslate"><span class="pre">before_each</span></code>.  It is recommended that these types of tests are done in an <a class="reference internal" href="Inner-Test-Classes.html"><span class="doc std std-doc">Inner Test Class</span></a> or standalone script where it is less likely that a <code class="docutils literal notranslate"><span class="pre">before_each</span></code> or <code class="docutils literal notranslate"><span class="pre">before_all</span></code> would introduce orphans causing false positives.</p>
+<p><code class="docutils literal notranslate"><span class="pre">assert_no_new_orphans</span></code> cannot take into account anything you have called <code class="docutils literal notranslate"><span class="pre">autofree</span></code> on.  For one, it’s impossible, and it wouldn’t tell you much since freeing that object could cause leaks.</p>
+<p>A standard memory leak test will create an object, free it, and then verify that you have not created any new orphans.  Based on some bad practices I’ve done myself I would advise creating tests with and without using <code class="docutils literal notranslate"><span class="pre">add_child</span></code>.</p>
+<div class="highlight-gdscript notranslate"><div class="highlight"><pre><span></span><span class="c1"># res://test/unit/test_foo.gd</span>
+<span class="k">extends</span><span class="w"> </span><span class="n">GutTest</span>
+<span class="o">...</span>
+
+<span class="k">class</span><span class="w"> </span><span class="n">TestLeaks</span><span class="p">:</span>
+<span class="w">    </span><span class="k">extends</span><span class="w"> </span><span class="n">GutTest</span>
+<span class="w">    </span><span class="k">var</span><span class="w"> </span><span class="n">Foo</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">load</span><span class="p">(</span><span class="s1">&#39;res://foo.gd&#39;</span><span class="p">)</span>
+
+<span class="w">    </span><span class="k">func</span><span class="w"> </span><span class="n">test_no_leaks</span><span class="p">():</span>
+<span class="w">        </span><span class="k">var</span><span class="w"> </span><span class="n">to_free</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Foo</span><span class="o">.</span><span class="n">new</span><span class="p">()</span>
+<span class="w">        </span><span class="n">to_free</span><span class="o">.</span><span class="n">free</span><span class="p">()</span>
+<span class="w">        </span><span class="n">assert_not_new_orphans</span><span class="p">()</span>
+
+<span class="w">    </span><span class="k">func</span><span class="w"> </span><span class="n">test_no_leaks_with_add_child</span><span class="p">():</span>
+<span class="w">        </span><span class="k">var</span><span class="w"> </span><span class="n">to_free</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Foo</span><span class="o">.</span><span class="n">new</span><span class="p">()</span>
+<span class="w">        </span><span class="n">add_child</span><span class="p">(</span><span class="n">to_free</span><span class="p">)</span>
+<span class="w">        </span><span class="n">to_free</span><span class="o">.</span><span class="n">free</span><span class="p">()</span>
+<span class="w">        </span><span class="n">assert_no_new_orphans</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>If you must use <code class="docutils literal notranslate"><span class="pre">queue_free</span></code> instead of <code class="docutils literal notranslate"><span class="pre">free</span></code> in your test then you will have to pause before asserting that no orphans have been created.  You can do this with <code class="docutils literal notranslate"><span class="pre">await</span></code></p>
+<div class="highlight-gdscript notranslate"><div class="highlight"><pre><span></span><span class="k">func</span><span class="w"> </span><span class="n">test_no_orphans_queue_free</span><span class="p">();</span>
+<span class="w">  </span><span class="k">var</span><span class="w"> </span><span class="n">node</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Node</span><span class="o">.</span><span class="n">new</span><span class="p">()</span>
+<span class="w">  </span><span class="n">node</span><span class="o">.</span><span class="n">queue_free</span><span class="p">()</span>
+<span class="w">  </span><span class="n">assert_no_new_orphans</span><span class="p">(</span><span class="s1">&#39;this will fail&#39;</span><span class="p">)</span>
+<span class="w">  </span><span class="n">await</span><span class="w"> </span><span class="n">wait_seconds</span><span class="p">(</span><span class="o">.</span><span class="mi">2</span><span class="p">)</span>
+<span class="w">  </span><span class="n">assert_no_new_orphans</span><span class="p">(</span><span class="s1">&#39;this one passes&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="godot-memory-management">
+<h2>Godot Memory Management<a class="headerlink" href="Memory-Management.html#godot-memory-management" title="Permalink to this heading"></a></h2>
+<p>Godot treats <code class="docutils literal notranslate"><span class="pre">Object</span></code> and <code class="docutils literal notranslate"><span class="pre">Reference</span></code> instances differently for memory management.  The confusing part is that <code class="docutils literal notranslate"><span class="pre">Reference</span></code> extends <code class="docutils literal notranslate"><span class="pre">Object</span></code>.  Most of the time you don’t have to worry about anything that extends <code class="docutils literal notranslate"><span class="pre">Reference</span></code>.  But if it extends <code class="docutils literal notranslate"><span class="pre">Object</span></code> (and not <code class="docutils literal notranslate"><span class="pre">Reference</span></code>) you must free it yourself or it, and all its parts, will stay around until you exit the game.</p>
+<section id="reference">
+<h3>Reference<a class="headerlink" href="Memory-Management.html#reference" title="Permalink to this heading"></a></h3>
+<p>Any class/script that extends Reference is managed via reference counts.  As you add variables that “point” to an object, the reference count increases.  As these variables go out of scope or are changed the reference count is decreased.  When the count hits 0, the object is freed automatically.</p>
+<p>For the most part you don’t have to worry about this.  It just works.  These reference counts can become an indirect leak if you do not free an <code class="docutils literal notranslate"><span class="pre">Object</span></code> that has variables pointing to <code class="docutils literal notranslate"><span class="pre">Reference</span></code> instances.  References can become leaks if there are cyclical references of objects that prevent each other from being freed.  <code class="docutils literal notranslate"><span class="pre">weakref</span></code> is useful in these cases.  Currently there is no way to get any additional information about instances of Reference from the engine.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># makes a new Reference object and returns a reference to it.  The reference</span>
+<span class="c1"># count is now 1</span>
+<span class="n">var</span> <span class="n">ref1</span> <span class="o">=</span> <span class="n">Reference</span><span class="o">.</span><span class="n">new</span><span class="p">()</span> <span class="c1"># lets call this [Reference:1]</span>
+<span class="c1"># Make another variable that &quot;points&quot; to the object above.</span>
+<span class="n">var</span> <span class="n">ref1_1</span> <span class="o">=</span> <span class="n">ref1</span> <span class="c1"># [Reference:1] now has a reference count of 2</span>
+
+<span class="k">if</span><span class="p">(</span><span class="n">true</span><span class="p">):</span>
+  <span class="n">var</span> <span class="n">ref_in_if</span> <span class="o">=</span> <span class="n">ref1</span> <span class="c1"># now the count is 3</span>
+
+<span class="c1"># now we are back to 2 since ref_in_if went out of scope</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;out of if&#39;</span><span class="p">)</span>
+
+<span class="n">ref1_1</span> <span class="o">=</span> <span class="n">null</span> <span class="c1"># the count is now 1</span>
+<span class="n">ref1</span> <span class="o">=</span> <span class="n">null</span> <span class="c1"># [Reference:1] will now be freed</span>
+</pre></div>
+</div>
+</section>
+<section id="weakref">
+<h3>Weakref<a class="headerlink" href="Memory-Management.html#weakref" title="Permalink to this heading"></a></h3>
+<p>There can be situations where cyclical references will prevent a <code class="docutils literal notranslate"><span class="pre">Reference</span></code> from being freed.  To help in these situations Godot has the <a class="reference external" href="https://docs.godotengine.org/en/stable/classes/class_weakref.html"><code class="docutils literal notranslate"><span class="pre">weakref</span></code></a> function.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">weakref</span></code> function will return you an object that points to a reference but does not increase the reference count.  This allows you to point at an object without preventing it from being freed automatically.  You must take this into account though and verify that the object still exists when you want to get the reference back out of the <code class="docutils literal notranslate"><span class="pre">weakref</span></code>.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">var</span> <span class="n">foo</span> <span class="o">=</span> <span class="n">Foo</span><span class="o">.</span><span class="n">new</span><span class="p">()</span> <span class="c1"># where Foo extends Reference</span>
+<span class="n">foo</span><span class="o">.</span><span class="n">set_bar</span><span class="p">(</span><span class="s1">&#39;hello world&#39;</span><span class="p">)</span>
+<span class="n">var</span> <span class="n">wref</span> <span class="o">=</span> <span class="n">weakref</span><span class="p">(</span><span class="n">foo</span><span class="p">)</span>
+
+<span class="o">...</span>
+
+<span class="c1"># this line increases the reference count until ref_of_wref goes out of scope</span>
+<span class="n">var</span> <span class="n">ref_of_wref</span> <span class="o">=</span> <span class="n">wref</span><span class="o">.</span><span class="n">get_ref</span><span class="p">()</span>
+<span class="k">if</span><span class="p">(</span><span class="n">is_instance_valid</span><span class="p">(</span><span class="n">ref_of_wref</span><span class="p">)):</span>
+  <span class="nb">print</span><span class="p">(</span><span class="n">ref_of_wref</span><span class="o">.</span><span class="n">get_bar</span><span class="p">())</span> <span class="c1"># prints &#39;hello world&#39; if ref hasn&#39;t been freed already.</span>
+</pre></div>
+</div>
+</section>
+<section id="object-except-reference">
+<h3>Object (except Reference)<a class="headerlink" href="Memory-Management.html#object-except-reference" title="Permalink to this heading"></a></h3>
+<p>Anything that extends <code class="docutils literal notranslate"><span class="pre">Object</span></code> (directly or indirectly) but DOES NOT extend <code class="docutils literal notranslate"><span class="pre">Reference</span></code> must be freed manually.  Any of these objects that are not in the main tree are considered orphaned.  Any children of these objects are also considered orphans.  You can free these objects by calling <code class="docutils literal notranslate"><span class="pre">free</span></code> or <code class="docutils literal notranslate"><span class="pre">queue_free</span></code>.  You can see a list of orphans by using <code class="docutils literal notranslate"><span class="pre">print_stray_nodes</span></code>.</p>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="Hooks.html" class="btn btn-neutral float-left" title="Hooks" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="Mocking-Input.html" class="btn btn-neutral float-right" title="Mocking Input" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, Butch Wesley.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Doubles &mdash; GUT 9.4.0 documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/gut_custom.css" type="text/css" />
+      <link rel="stylesheet" href="_static/dark_mode_css/general.css" type="text/css" />
+      <link rel="stylesheet" href="_static/dark_mode_css/dark.css" type="text/css" />
+    <link rel="shortcut icon" href="_static/favicon.ico"/>
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="_static/jquery.js%3Fv=5d32c60e"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js%3Fv=2cd50e6c"></script>
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js%3Fv=354d2d61"></script>
+        <script src="_static/doctools.js%3Fv=888ff710"></script>
+        <script src="_static/sphinx_highlight.js%3Fv=4825356b"></script>
+        <script src="_static/dark_mode_js/default_dark.js%3Fv=fd565c74"></script>
+        <script src="_static/dark_mode_js/theme_switcher.js%3Fv=358d3910"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Partial Doubles" href="Partial-Doubles.html" />
+    <link rel="prev" title="Comparing Things" href="Comparing-Things.html" /> 
+<script async type="text/javascript" src="../../_/static/javascript/readthedocs-addons.js"></script><meta name="readthedocs-project-slug" content="gut" /><meta name="readthedocs-version-slug" content="latest" /><meta name="readthedocs-resolver-filename" content="/Doubles.html" /><meta name="readthedocs-http-status" content="200" /></head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            GUT
+              <img src="_static/GutDocsLogo.png" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                9.4.0 for Godot-4
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Getting Started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="Install.html">Install</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Quick-Start.html">Quick Start</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Command-Line.html">Command Line</a></li>
+<li class="toctree-l1"><a class="reference internal" href="New-For-Godot-4.html">Godot 4 Changes</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Test Scripts</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="class_ref/class_guttest.html">GutTest</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Creating-Tests.html">Creating Tests</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Awaiting.html">Awaiting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Inner-Test-Classes.html">Inner Test Classes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Parameterized-Tests.html">Parameterized Tests</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Simulate.html">Simulate</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Comparing-Things.html">Comparing Things</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Doubling</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="Doubles.html#">Doubles</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="Doubles.html#characteristics-of-a-double">Characteristics of a Double</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Doubles.html#doubling-a-script">Doubling a Script</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Doubles.html#doubling-inner-classes">Doubling Inner Classes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Doubles.html#doubling-a-scene">Doubling a Scene</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Doubles.html#doubling-scripts-with-static-methods">Doubling Scripts with Static Methods</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Doubles.html#doubled-method-default-parameters">Doubled method default parameters</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Doubles.html#methods-with-varargs-and-nativescript-parameter-mismatches">Methods with varargs and NativeScript parameter mismatches</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Doubles.html#doubling-built-in-base-objects">Doubling Built-In/Base Objects</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Doubles.html#where-to-next">Where to next?</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="Partial-Doubles.html">Partial Doubles</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Double-Strategy.html">Doubling Strategy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Stubbing.html">Stubbing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Spies.html">Spies</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Other</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="Contributing.html">Contributing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="GDScript-Warnings.html">GDScript Warnings</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Export-Test-Results.html">Export Test Results</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Hooks.html">Hooks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Memory-Management.html">Memory Management</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Mocking-Input.html">Mocking Input</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Orphans.html">Orphans</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Running-On-Devices.html">Running on Devices</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Tutorials.html">Tutorials</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Class Reference</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="Class-Ref.html">About Class Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="class_ref/class_addons_gut_cli_optparse.html">addons/gut/cli/optparse.gd</a></li>
+<li class="toctree-l1"><a class="reference internal" href="class_ref/class_addons_gut_junit_xml_export.html">addons/gut/junit_xml_export.gd</a></li>
+<li class="toctree-l1"><a class="reference internal" href="class_ref/class_addons_gut_parameter_factory.html">addons/gut/parameter_factory.gd</a></li>
+<li class="toctree-l1"><a class="reference internal" href="class_ref/class_guthookscript.html">GutHookScript</a></li>
+<li class="toctree-l1"><a class="reference internal" href="class_ref/class_gutinputfactory.html">GutInputFactory</a></li>
+<li class="toctree-l1"><a class="reference internal" href="class_ref/class_gutinputsender.html">GutInputSender</a></li>
+<li class="toctree-l1"><a class="reference internal" href="class_ref/class_gutmain.html">GutMain</a></li>
+<li class="toctree-l1"><a class="reference internal" href="class_ref/class_guttest.html">GutTest</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">GUT</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Doubles</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/Doubles.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="doubles">
+<h1>Doubles<a class="headerlink" href="Doubles.html#doubles" title="Permalink to this heading"></a></h1>
+<p>If you aren’t sure what a Double is, check out <a class="reference external" href="https://en.wikipedia.org/wiki/Test_double">Test Double on Wikipedia</a>.</p>
+<p>You create a Double by calling the <code class="docutils literal notranslate"><span class="pre">double</span></code> method which in your <code class="docutils literal notranslate"><span class="pre">GutTest</span></code> script.  The <code class="docutils literal notranslate"><span class="pre">double</span></code> method accepts a loaded script or scene and returns a class based on the loaded script or scene passed to it.  The returned class/scene wraps the source and the methods defined will not execute the code defined in them.  These doubles can then be <a class="reference internal" href="Stubbing.html"><span class="doc std std-doc">stubbed</span></a> and <a class="reference internal" href="Spies.html"><span class="doc std std-doc">spied on</span></a> in tests.  You can also create <a class="reference internal" href="Partial-Doubles.html"><span class="doc std std-doc">Partial Doubles</span></a> which retain their functionality by default.</p>
+<p>Using your double, you can:</p>
+<ul class="simple">
+<li><p>Stub methods to return different values.</p></li>
+<li><p>Stub them to call the super method.</p></li>
+<li><p>Assert how many times a method was called.</p></li>
+<li><p>Assert a method was called with specific parameters.</p></li>
+<li><p>And much much more.  See <a class="reference internal" href="Stubbing.html"><span class="doc std std-doc">Stubbing</span></a> and <a class="reference internal" href="Spies.html"><span class="doc std std-doc">Spies</span></a> for more information.</p></li>
+</ul>
+<hr>
+<p><strong>Warning:</strong>   Native Godot methods are not included in doubles by default.  Native methods are all the non-overridable methods in objects such as <code class="docutils literal notranslate"><span class="pre">Node</span></code>.  This means <code class="docutils literal notranslate"><span class="pre">_ready</span></code> will exist in the double, but <code class="docutils literal notranslate"><span class="pre">set_position</span></code> will not.  A good rule of thumb is that if you didn’t write the function, it probably will not be included in your double.  You can include them by changing the <a class="reference internal" href="Double-Strategy.html"><span class="doc std std-doc">Double-Strategy</span></a>, but there are some complications and gotchas.</p>
+<hr>
+<section id="characteristics-of-a-double">
+<h2>Characteristics of a Double<a class="headerlink" href="Doubles.html#characteristics-of-a-double" title="Permalink to this heading"></a></h2>
+<ul class="simple">
+<li><p>The double inherits (<code class="docutils literal notranslate"><span class="pre">extends</span></code>) the source.</p></li>
+<li><p>Contains all class level variables defined in the source.</p></li>
+<li><p>Contains all signals defined in the source.</p></li>
+<li><p>Methods defined in the source (and any user defined super class):</p>
+<ul>
+<li><p>Do nothing (unless stubbed).</p></li>
+<li><p>Will return <code class="docutils literal notranslate"><span class="pre">null</span></code> (unless stubbed).</p></li>
+<li><p><strong>All</strong> parameters are defaulted to <code class="docutils literal notranslate"><span class="pre">null</span></code>, even if they did not have a default value originally.  You can stub parameter defaults (see <a class="reference internal" href="Stubbing.html"><span class="doc std std-doc">Stubbing</span></a>).</p></li>
+</ul>
+</li>
+<li><p>Inner Classes of the source are not doubled and will retain their functionality.</p></li>
+<li><p>You can double Inner Classes, but it requires an extra step.  See the Inner Class section below.</p></li>
+<li><p>If your <code class="docutils literal notranslate"><span class="pre">_init</span></code> method has required parameters you must <a class="reference internal" href="Stubbing.html"><span class="doc std std-doc">stub</span></a> default values before trying to <code class="docutils literal notranslate"><span class="pre">double</span></code> the object.</p></li>
+<li><p>Any static methods you add to your scripts must be ignored before doubling using <code class="docutils literal notranslate"><span class="pre">ignore_method_when_doubling</span></code>.  More information about this below.</p></li>
+<li><p>You can double Scripts, Inner Classes, and Packed Scenes.  Once you have a double, you can then call <code class="docutils literal notranslate"><span class="pre">new</span></code> or <code class="docutils literal notranslate"><span class="pre">instantiate</span></code> on it to create instances of a doubled object.</p></li>
+<li><p>All instances of Doubles and Partial Doubles are freed when a test finishes.  This means you do not have to free them manually and you should not be created in <code class="docutils literal notranslate"><span class="pre">before_all</span></code> or referenced in <code class="docutils literal notranslate"><span class="pre">after_all</span></code>.</p></li>
+</ul>
+</section>
+<section id="doubling-a-script">
+<h2>Doubling a Script<a class="headerlink" href="Doubles.html#doubling-a-script" title="Permalink to this heading"></a></h2>
+<p>To double a script just give it a path or an already loaded script.</p>
+<div class="highlight-gdscript notranslate"><div class="highlight"><pre><span></span><span class="k">var</span><span class="w"> </span><span class="n">MyScript</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">load</span><span class="p">(</span><span class="s1">&#39;res://my_script.gd&#39;</span><span class="p">)</span>
+
+<span class="c1"># Load the doubled object.</span>
+<span class="k">var</span><span class="w"> </span><span class="n">DoubledMyScript</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">double</span><span class="p">(</span><span class="n">MyScript</span><span class="p">)</span>
+
+<span class="c1"># Create an instance of a doubled object</span>
+<span class="k">var</span><span class="w"> </span><span class="n">doubled_script</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">DoubledMyScript</span><span class="o">.</span><span class="n">new</span><span class="p">()</span>
+<span class="c1"># or</span>
+<span class="k">var</span><span class="w"> </span><span class="n">doubled_script</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">double</span><span class="p">(</span><span class="n">MyScript</span><span class="p">)</span><span class="o">.</span><span class="n">new</span><span class="p">()</span>
+</pre></div>
+</div>
+</section>
+<section id="doubling-inner-classes">
+<h2>Doubling Inner Classes<a class="headerlink" href="Doubles.html#doubling-inner-classes" title="Permalink to this heading"></a></h2>
+<p>Inner Classes cannot be automatically detected and therefore must be registered with GUT before they can be doubled.  You do this by calling <code class="docutils literal notranslate"><span class="pre">register_inner_classes(Foo)</span></code>.  You only have to do this once per script/scene that contains Inner Classes, so it is best to call it in <code class="docutils literal notranslate"><span class="pre">before_all</span></code> or a pre-hook script.  Registering multiple times does nothing.  Failing to call <code class="docutils literal notranslate"><span class="pre">register_inner_classes</span></code> will result in a GUT error and a runtime error.</p>
+<div class="highlight-gdscript notranslate"><div class="highlight"><pre><span></span><span class="c1"># Given that SomeScript contains the class InnerClass that</span>
+<span class="c1"># you wish to double:</span>
+<span class="k">var</span><span class="w"> </span><span class="n">SomeScript</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">load</span><span class="p">(</span><span class="s1">&#39;res://some_script.gd&#39;</span><span class="p">)</span>
+
+<span class="k">func</span><span class="w"> </span><span class="n">before_all</span><span class="p">():</span>
+<span class="w">    </span><span class="n">register_inner_classes</span><span class="p">(</span><span class="n">SomeScript</span><span class="p">)</span>
+
+<span class="k">func</span><span class="w"> </span><span class="n">test_foo</span><span class="p">():</span>
+<span class="w">    </span><span class="k">var</span><span class="w"> </span><span class="n">dbl</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">double</span><span class="p">(</span><span class="n">SomeScript</span><span class="o">.</span><span class="n">InnerClass</span><span class="p">)</span><span class="o">.</span><span class="n">new</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>This approach was used to make tests cleaner and less susceptible to typos.  If Godot adds meta data to inner classes that point back to the source script, then <code class="docutils literal notranslate"><span class="pre">register_inner_classes</span></code> can be removed later and no other changes will need to be made.</p>
+</section>
+<section id="doubling-a-scene">
+<h2>Doubling a Scene<a class="headerlink" href="Doubles.html#doubling-a-scene" title="Permalink to this heading"></a></h2>
+<p>A doubled version of your scene is created along with a double of its script.  The doubled scene is altered to load the doubled script instead of the original.  A reference to the newly doubled scene is returned.  You can call <code class="docutils literal notranslate"><span class="pre">instantiate</span></code> on the returned reference.</p>
+<div class="highlight-gdscript notranslate"><div class="highlight"><pre><span></span><span class="k">var</span><span class="w"> </span><span class="n">MyScene</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">load</span><span class="p">(</span><span class="s1">&#39;res://my_scene.tscn&#39;</span><span class="p">)</span>
+
+<span class="k">var</span><span class="w"> </span><span class="n">DoubledScene</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">double</span><span class="p">(</span><span class="n">MyScene</span><span class="p">)</span>
+
+<span class="c1"># Create an instance</span>
+<span class="k">var</span><span class="w"> </span><span class="n">doubled_scene</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">DoubledScene</span><span class="o">.</span><span class="n">instantiate</span><span class="p">()</span>
+<span class="c1"># or</span>
+<span class="k">var</span><span class="w"> </span><span class="n">doubled_scene</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">double</span><span class="p">(</span><span class="n">MyScene</span><span class="p">)</span><span class="o">.</span><span class="n">instantiate</span><span class="p">()</span>
+</pre></div>
+</div>
+</section>
+<section id="doubling-scripts-with-static-methods">
+<h2>Doubling Scripts with Static Methods<a class="headerlink" href="Doubles.html#doubling-scripts-with-static-methods" title="Permalink to this heading"></a></h2>
+<p>Currently you cannot double static methods.  In fact if you try to double a class with a static method then you will get an error that looks similar to:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Parser</span> <span class="n">Error</span><span class="p">:</span> <span class="n">Function</span> <span class="n">signature</span> <span class="n">doesn</span><span class="s1">&#39;t match the parent. Parent signature is: &#39;</span><span class="n">Variant</span> <span class="n">foo</span><span class="p">()</span><span class="s1">&#39;.</span>
+</pre></div>
+</div>
+<p>As of now, GUT does not have the ability to detect static methods in the code.  As a workaround there is the <code class="docutils literal notranslate"><span class="pre">ignore_method_when_doubling</span></code> method.  This method takes in a variant as the first parameter and a method name as the second.  The first parameter can be a path to a script, a path to a scene, a loaded script, or a loaded scene.</p>
+<p>Calling this method will prevent GUT from trying to make a stubbed out version of the method in the generated double allowing you to successfully double your classes that contain static methods.</p>
+<p>These ignored methods are cleared after each test is ran to avoid any unexpected results in your tests, so you may want to add this call to your <code class="docutils literal notranslate"><span class="pre">before_each</span></code>.</p>
+<p>There’s more info and examples on this method on the [[Methods|Asserts-and-Methods]] page.</p>
+</section>
+<section id="doubled-method-default-parameters">
+<h2>Doubled method default parameters<a class="headerlink" href="Doubles.html#doubled-method-default-parameters" title="Permalink to this heading"></a></h2>
+<p>GUT stubs all parameters in doubled user methods to be <code class="docutils literal notranslate"><span class="pre">null</span></code>.  This is because Godot only provides defaults for built-in methods.  When using Partial Doubles or stubbing a method <code class="docutils literal notranslate"><span class="pre">to_call_super</span></code>, <code class="docutils literal notranslate"><span class="pre">null</span></code> can get passed around when you wouldn’t expect it causing errors such as <code class="docutils literal notranslate"><span class="pre">Invalid</span> <span class="pre">operands</span> <span class="pre">'int'</span> <span class="pre">and</span> <span class="pre">'Nil'</span></code>.  See the “Stubbing Method Parameter Defaults” in <a class="reference internal" href="Stubbing.html"><span class="doc std std-doc">Stubbing</span></a> for a way to stub method default values.</p>
+</section>
+<section id="methods-with-varargs-and-nativescript-parameter-mismatches">
+<h2>Methods with varargs and NativeScript parameter mismatches<a class="headerlink" href="Doubles.html#methods-with-varargs-and-nativescript-parameter-mismatches" title="Permalink to this heading"></a></h2>
+<p>Some methods provided by Godot can contain and endless list of parameters (varargs).  Trying to call one of these methods on a double can result in runtime errors due to a parameter mismatch.  See the sections in <a class="reference internal" href="Stubbing.html"><span class="doc std std-doc">Stubbing</span></a> that address parameters.</p>
+<p>GUT can detect these vararg parameters and will stub the doubled method to accept 10 values which are all defaulted to <code class="docutils literal notranslate"><span class="pre">null</span></code>.</p>
+<p>For example, the signature for Node’s <code class="docutils literal notranslate"><span class="pre">rpc_id</span></code> function is:</p>
+<div class="highlight-gdscript notranslate"><div class="highlight"><pre><span></span><span class="n">Error</span><span class="w"> </span><span class="n">rpc_id</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="nb nb-Type">int</span><span class="w"> </span><span class="n">peer_id</span><span class="p">,</span><span class="w"> </span><span class="n">StringName</span><span class="w"> </span><span class="n">method</span><span class="p">,</span><span class="w"> </span><span class="o">...</span><span class="w"> </span><span class="p">)</span><span class="w"> </span><span class="n">vararg</span>
+</pre></div>
+</div>
+<p>Here the <code class="docutils literal notranslate"><span class="pre">...</span></code> is the placeholder for the vararg parameter.  When GUT encounters this kind of signature it will generate the following:</p>
+<div class="highlight-gdscript notranslate"><div class="highlight"><pre><span></span><span class="k">func</span><span class="w"> </span><span class="n">rpc_id</span><span class="w"> </span><span class="p">(</span><span class="n">peer_id</span><span class="p">,</span><span class="w"> </span><span class="n">method</span><span class="p">,</span><span class="w"> </span><span class="n">arg1</span><span class="o">=</span><span class="nb nb-Type">null</span><span class="p">,</span><span class="w"> </span><span class="n">arg2</span><span class="o">=</span><span class="nb nb-Type">null</span><span class="p">,</span><span class="w"> </span><span class="n">arg3</span><span class="o">=</span><span class="nb nb-Type">null</span><span class="p">,</span><span class="w"> </span><span class="n">arg4</span><span class="o">=</span><span class="nb nb-Type">null</span><span class="p">,</span><span class="w"> </span><span class="n">arg5</span><span class="o">=</span><span class="nb nb-Type">null</span><span class="p">,</span><span class="w"> </span><span class="n">arg6</span><span class="o">=</span><span class="nb nb-Type">null</span><span class="p">,</span><span class="w"> </span><span class="n">arg7</span><span class="o">=</span><span class="nb nb-Type">null</span><span class="p">,</span><span class="w"> </span><span class="n">arg8</span><span class="o">=</span><span class="nb nb-Type">null</span><span class="p">,</span><span class="w"> </span><span class="n">arg9</span><span class="o">=</span><span class="nb nb-Type">null</span><span class="p">,</span><span class="w"> </span><span class="n">arg10</span><span class="o">=</span><span class="nb nb-Type">null</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>You can change the number of arguments passed and their default by <a class="reference internal" href="Stubbing.html"><span class="doc std std-doc">stubbing</span></a> parameters.</p>
+</section>
+<section id="doubling-built-in-base-objects">
+<h2>Doubling Built-In/Base Objects<a class="headerlink" href="Doubles.html#doubling-built-in-base-objects" title="Permalink to this heading"></a></h2>
+<p>You can <code class="docutils literal notranslate"><span class="pre">double</span></code> built-in objects that are not inherited by a script such as a <code class="docutils literal notranslate"><span class="pre">Node2D</span></code> or a <code class="docutils literal notranslate"><span class="pre">Raycast2D</span></code>.  These doubles are always created using the Doubling Strategy of <code class="docutils literal notranslate"><span class="pre">INCLUDE_NATIVE</span></code> (see <a class="reference internal" href="Double-Strategy.html"><span class="doc std std-doc">Double-Strategy</span></a>).  Be sure to read the <a class="reference internal" href="Double-Strategy.html"><span class="doc std std-doc">Double-Strategy</span></a>, there are some gotchas and issues with this.</p>
+<p>For example you can <code class="docutils literal notranslate"><span class="pre">double</span></code> or <code class="docutils literal notranslate"><span class="pre">partial_double</span></code> like this:</p>
+<div class="highlight-gdscript notranslate"><div class="highlight"><pre><span></span><span class="k">var</span><span class="w"> </span><span class="n">doubled_node2d</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">double</span><span class="p">(</span><span class="n">Node2D</span><span class="p">)</span><span class="o">.</span><span class="n">new</span><span class="p">()</span>
+<span class="n">stub</span><span class="p">(</span><span class="n">doubled_node2d</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;get_position&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">to_return</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="k">var</span><span class="w"> </span><span class="n">partial_doubled_raycast</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">partial_double</span><span class="p">(</span><span class="n">Raycast2D</span><span class="p">)</span><span class="o">.</span><span class="n">new</span><span class="p">()</span>
+</pre></div>
+</div>
+</section>
+<section id="where-to-next">
+<h2>Where to next?<a class="headerlink" href="Doubles.html#where-to-next" title="Permalink to this heading"></a></h2>
+<ul class="simple">
+<li><p><a class="reference internal" href="Stubbing.html"><span class="doc std std-doc">Stubbing</span></a></p></li>
+<li><p><a class="reference internal" href="Spies.html"><span class="doc std std-doc">Spies</span></a></p></li>
+<li><p><a class="reference internal" href="Partial-Doubles.html"><span class="doc std std-doc">Partial-Doubles</span></a></p></li>
+<li><p><a class="reference internal" href="Double-Strategy.html"><span class="doc std std-doc">Double-Strategy</span></a></p></li>
+</ul>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="Comparing-Things.html" class="btn btn-neutral float-left" title="Comparing Things" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="Partial-Doubles.html" class="btn btn-neutral float-right" title="Partial Doubles" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, Butch Wesley.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

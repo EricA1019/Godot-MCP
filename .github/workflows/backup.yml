@@ -1,0 +1,26 @@
+name: nightly-backup
+
+on:
+  schedule:
+    - cron: '0 6 * * *'
+  workflow_dispatch:
+
+jobs:
+  archive:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Pack archive
+        run: |
+          mkdir -p .backups
+          STAMP=$(date +%Y%m%d-%H%M%S)
+          tar --exclude-vcs --exclude=".backups" -czf .backups/godot-mcp-$STAMP.tgz .
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: nightly-backup
+          path: .backups/*.tgz
+
+#EOF

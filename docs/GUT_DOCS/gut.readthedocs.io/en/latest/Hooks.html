@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Hooks &mdash; GUT 9.4.0 documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/gut_custom.css" type="text/css" />
+      <link rel="stylesheet" href="_static/dark_mode_css/general.css" type="text/css" />
+      <link rel="stylesheet" href="_static/dark_mode_css/dark.css" type="text/css" />
+    <link rel="shortcut icon" href="_static/favicon.ico"/>
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="_static/jquery.js%3Fv=5d32c60e"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js%3Fv=2cd50e6c"></script>
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js%3Fv=354d2d61"></script>
+        <script src="_static/doctools.js%3Fv=888ff710"></script>
+        <script src="_static/sphinx_highlight.js%3Fv=4825356b"></script>
+        <script src="_static/dark_mode_js/default_dark.js%3Fv=fd565c74"></script>
+        <script src="_static/dark_mode_js/theme_switcher.js%3Fv=358d3910"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Memory Management" href="Memory-Management.html" />
+    <link rel="prev" title="Export Test Results" href="Export-Test-Results.html" /> 
+<script async type="text/javascript" src="../../_/static/javascript/readthedocs-addons.js"></script><meta name="readthedocs-project-slug" content="gut" /><meta name="readthedocs-version-slug" content="latest" /><meta name="readthedocs-resolver-filename" content="/Hooks.html" /><meta name="readthedocs-http-status" content="200" /></head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            GUT
+              <img src="_static/GutDocsLogo.png" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                9.4.0 for Godot-4
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Getting Started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="Install.html">Install</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Quick-Start.html">Quick Start</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Command-Line.html">Command Line</a></li>
+<li class="toctree-l1"><a class="reference internal" href="New-For-Godot-4.html">Godot 4 Changes</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Test Scripts</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="class_ref/class_guttest.html">GutTest</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Creating-Tests.html">Creating Tests</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Awaiting.html">Awaiting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Inner-Test-Classes.html">Inner Test Classes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Parameterized-Tests.html">Parameterized Tests</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Simulate.html">Simulate</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Comparing-Things.html">Comparing Things</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Doubling</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="Doubles.html">Doubles</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Partial-Doubles.html">Partial Doubles</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Double-Strategy.html">Doubling Strategy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Stubbing.html">Stubbing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Spies.html">Spies</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Other</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="Contributing.html">Contributing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="GDScript-Warnings.html">GDScript Warnings</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Export-Test-Results.html">Export Test Results</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="Hooks.html#">Hooks</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="Hooks.html#setup">Setup</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Hooks.html#features">Features</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="Hooks.html#access-gut-instance">Access GUT instance</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Hooks.html#abort-pre-run-only">Abort (pre-run only)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Hooks.html#exit-code-post-run-only">Exit Code (post-run only)</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="Hooks.html#pre-run-hook">Pre-Run Hook</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Hooks.html#post-run-hook">Post-Run Hook</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Hooks.html#summary-info">Summary Info</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="Hooks.html#full-summary">Full Summary</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Hooks.html#counts">Counts</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Hooks.html#all-scripts">All Scripts</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="Memory-Management.html">Memory Management</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Mocking-Input.html">Mocking Input</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Orphans.html">Orphans</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Running-On-Devices.html">Running on Devices</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Tutorials.html">Tutorials</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Class Reference</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="Class-Ref.html">About Class Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="class_ref/class_addons_gut_cli_optparse.html">addons/gut/cli/optparse.gd</a></li>
+<li class="toctree-l1"><a class="reference internal" href="class_ref/class_addons_gut_junit_xml_export.html">addons/gut/junit_xml_export.gd</a></li>
+<li class="toctree-l1"><a class="reference internal" href="class_ref/class_addons_gut_parameter_factory.html">addons/gut/parameter_factory.gd</a></li>
+<li class="toctree-l1"><a class="reference internal" href="class_ref/class_guthookscript.html">GutHookScript</a></li>
+<li class="toctree-l1"><a class="reference internal" href="class_ref/class_gutinputfactory.html">GutInputFactory</a></li>
+<li class="toctree-l1"><a class="reference internal" href="class_ref/class_gutinputsender.html">GutInputSender</a></li>
+<li class="toctree-l1"><a class="reference internal" href="class_ref/class_gutmain.html">GutMain</a></li>
+<li class="toctree-l1"><a class="reference internal" href="class_ref/class_guttest.html">GutTest</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">GUT</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Hooks</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/Hooks.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="hooks">
+<h1>Hooks<a class="headerlink" href="Hooks.html#hooks" title="Permalink to this heading"></a></h1>
+<p>GUT has a pre-run and post-run hook that allows you to take any initialization steps or verify the results of the run.</p>
+<p>Hook scripts can be set through the editor, through a command line option or in the <code class="docutils literal notranslate"><span class="pre">.gutconfig.json</span></code> file.</p>
+<p>All Hook scripts must inherit from <a class="reference internal" href="class_ref/class_guthookscript.html#class-guthookscript"><span class="std std-ref">GutHookScript</span></a>.  If the pre-run or post-run scripts specified do not exist or do not extend <a class="reference internal" href="class_ref/class_guthookscript.html#class-guthookscript"><span class="std std-ref">GutHookScript</span></a> then the run will be aborted before any tests are run.</p>
+<p>All Hook scripts have access to the GUT instance that is running the tests via the <code class="docutils literal notranslate"><span class="pre">gut</span></code> property defined in <code class="docutils literal notranslate"><span class="pre">hook_script.gd</span></code>.  This is set after initializing the script.</p>
+<p>GUT executes the virtual method <code class="docutils literal notranslate"><span class="pre">run()</span></code> when the hook should be executed.  Place your custom code in there.</p>
+<p><strong>Note:</strong> All Hook scripts are instantiated at the start of the run and later <code class="docutils literal notranslate"><span class="pre">run()</span></code> is called on each instance at the appropriate time.  The <code class="docutils literal notranslate"><span class="pre">_init()</span></code> method of your Hook Script will not have access to the GUT instance since it is set  later.</p>
+<section id="setup">
+<h2>Setup<a class="headerlink" href="Hooks.html#setup" title="Permalink to this heading"></a></h2>
+<p>Create scripts that inherit from <a class="reference internal" href="class_ref/class_guthookscript.html#class-guthookscript"><span class="std std-ref">GutHookScript</span></a>, implement the <code class="docutils literal notranslate"><span class="pre">run()</span></code> method.  Set the path to your scripts through the panel or  <code class="docutils literal notranslate"><span class="pre">.gutconfig.json</span></code>, depending on how you are running your tests.</p>
+<p>You can specify <code class="docutils literal notranslate"><span class="pre">pre_run_script</span></code> and <code class="docutils literal notranslate"><span class="pre">post_run_script</span></code> in the <code class="docutils literal notranslate"><span class="pre">.gutconfig.json</span></code> file.  You can also specify these options directly at the command line using the <code class="docutils literal notranslate"><span class="pre">-gpre_run_script</span></code> and <code class="docutils literal notranslate"><span class="pre">-gpost_run_script</span></code> options.</p>
+</section>
+<section id="features">
+<h2>Features<a class="headerlink" href="Hooks.html#features" title="Permalink to this heading"></a></h2>
+<p>The following features are available to scripts that inherit from <a class="reference internal" href="class_ref/class_guthookscript.html#class-guthookscript"><span class="std std-ref">GutHookScript</span></a>.  Not all features are usable by all hooks.  Details below.</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">gut</span></code> - the GUT instance running tests.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">abort()</span></code> - abort the test run.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">set_exit_code(code)</span></code> - Set the code to be returned when the command line finishes.</p></li>
+<li><p>The <code class="docutils literal notranslate"><span class="pre">JunitXmlExport</span></code> class can be used to create an export object to export results.  See <a class="reference internal" href="Export-Test-Results.html"><span class="doc std std-doc">Export-Test-Results</span></a></p></li>
+</ul>
+<section id="access-gut-instance">
+<h3>Access GUT instance<a class="headerlink" href="Hooks.html#access-gut-instance" title="Permalink to this heading"></a></h3>
+<p>Each Hook script can access the GUT instance via the <code class="docutils literal notranslate"><span class="pre">gut</span></code> variable.  Useful for getting to summary info or manipulating the GUT instance for reasons I can’t think of (which is probably a bad idea but who am I to judge).</p>
+</section>
+<section id="abort-pre-run-only">
+<h3>Abort (pre-run only)<a class="headerlink" href="Hooks.html#abort-pre-run-only" title="Permalink to this heading"></a></h3>
+<p>The built in <code class="docutils literal notranslate"><span class="pre">abort()</span></code> method will cause the run to end immediately after the <code class="docutils literal notranslate"><span class="pre">run()</span></code> method of the pre-run script finishes.  The post-run script will NOT be executed.  Calling this in the post-run script will have no effect.</p>
+</section>
+<section id="exit-code-post-run-only">
+<h3>Exit Code (post-run only)<a class="headerlink" href="Hooks.html#exit-code-post-run-only" title="Permalink to this heading"></a></h3>
+<p>The <code class="docutils literal notranslate"><span class="pre">set_exit_code(code)</span></code> method will set an exit code that will be used when running from the command line.  The default behavior is to return <code class="docutils literal notranslate"><span class="pre">0</span></code> when all tests pass and <code class="docutils literal notranslate"><span class="pre">1</span></code> if any  tests fail (pending tests do not affect the exit code).  If you call <code class="docutils literal notranslate"><span class="pre">set_exit_code</span></code> then the value passed will be used.</p>
+<p><strong>Note</strong> Calling <code class="docutils literal notranslate"><span class="pre">set_exit_code</span></code> in the pre-run script will not affect the actual exit code.  You could use <code class="docutils literal notranslate"><span class="pre">gut.get_pre_run_script_instance().get_exit_code()</span></code> in your post-run script to get you any value you’ve set via <code class="docutils literal notranslate"><span class="pre">set_exit_code</span></code> in your pre-run script.</p>
+</section>
+</section>
+<section id="pre-run-hook">
+<h2>Pre-Run Hook<a class="headerlink" href="Hooks.html#pre-run-hook" title="Permalink to this heading"></a></h2>
+<p>The pre-run hook is run just before any tests are executed.  This can be useful in setting global variables or performing any setup required for all your tests.</p>
+<p>The post-run hook can access the pre-run hook instance via <code class="docutils literal notranslate"><span class="pre">gut.get_pre_run_script_instance()</span></code>.</p>
+<p><strong>Things to do in your pre-run script</strong>:</p>
+<ul class="simple">
+<li><p>mute all sounds <code class="docutils literal notranslate"><span class="pre">AudioServer.set_bus_volume_db(0,</span> <span class="pre">-INF)</span></code></p></li>
+<li><p>set flags you’ve implemented to prevent actions from occurring during tests</p>
+<ul>
+<li><p>flags to prevent files from being saved like user stats (my personal catalyst for all these features)</p></li>
+<li><p>logging levels for your application</p></li>
+</ul>
+</li>
+<li><p>other things I haven’t thought of.</p></li>
+</ul>
+</section>
+<section id="post-run-hook">
+<h2>Post-Run Hook<a class="headerlink" href="Hooks.html#post-run-hook" title="Permalink to this heading"></a></h2>
+<p>The post-run hook is run after all tests are run and all output has been generated.  The post-run hook can access the pre-run script instance (if one was specified) via <code class="docutils literal notranslate"><span class="pre">gut.get_pre_run_script_instance()</span></code>.</p>
+<p>The post-run hook could be useful in writing files used by CICD pipelines to verify the status of the run.</p>
+</section>
+<section id="summary-info">
+<h2>Summary Info<a class="headerlink" href="Hooks.html#summary-info" title="Permalink to this heading"></a></h2>
+<p>GUT tracks the results of all the scripts and tests that are run.  There is a Summary object that you can access via the <code class="docutils literal notranslate"><span class="pre">gut</span></code> variable.  Using this information you can take actions in the post-run hook.</p>
+<p>Reading the documentation/code in <a class="reference external" href="https://github.com/bitwes/Gut/blob/master/addons/gut/summary.gd">summary.gd</a> will get you the full details, but here are a few examples of how to get the summary data.</p>
+<section id="full-summary">
+<h3>Full Summary<a class="headerlink" href="Hooks.html#full-summary" title="Permalink to this heading"></a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Returns GUT&#39;s summary.gd instance holding all the data about the run.</span>
+<span class="n">gut</span><span class="o">.</span><span class="n">get_summary</span><span class="p">()</span>
+</pre></div>
+</div>
+</section>
+<section id="counts">
+<h3>Counts<a class="headerlink" href="Hooks.html#counts" title="Permalink to this heading"></a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># This will return a dictionary containing the following counts:</span>
+<span class="c1">#   passing = 0,</span>
+<span class="c1">#   pending = 0,</span>
+<span class="c1">#   failing = 0,</span>
+<span class="c1">#   tests = 0,</span>
+<span class="c1">#   scripts = 0</span>
+<span class="n">gut</span><span class="o">.</span><span class="n">get_summary</span><span class="p">()</span><span class="o">.</span><span class="n">get_totals</span><span class="p">()</span>
+</pre></div>
+</div>
+</section>
+<section id="all-scripts">
+<h3>All Scripts<a class="headerlink" href="Hooks.html#all-scripts" title="Permalink to this heading"></a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Returns and array of Summary.gd.TestScript objects that have detailed information</span>
+<span class="c1"># about each script/inner class that was ran.  See summary.gd for more details.</span>
+<span class="n">gut</span><span class="o">.</span><span class="n">get_summary</span><span class="p">()</span><span class="o">.</span><span class="n">get_scripts</span><span class="p">()</span>
+</pre></div>
+</div>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="Export-Test-Results.html" class="btn btn-neutral float-left" title="Export Test Results" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="Memory-Management.html" class="btn btn-neutral float-right" title="Memory Management" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, Butch Wesley.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

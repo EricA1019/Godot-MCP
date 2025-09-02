@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Running on Devices &mdash; GUT 9.4.0 documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/gut_custom.css" type="text/css" />
+      <link rel="stylesheet" href="_static/dark_mode_css/general.css" type="text/css" />
+      <link rel="stylesheet" href="_static/dark_mode_css/dark.css" type="text/css" />
+    <link rel="shortcut icon" href="_static/favicon.ico"/>
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="_static/jquery.js%3Fv=5d32c60e"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js%3Fv=2cd50e6c"></script>
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js%3Fv=354d2d61"></script>
+        <script src="_static/doctools.js%3Fv=888ff710"></script>
+        <script src="_static/sphinx_highlight.js%3Fv=4825356b"></script>
+        <script src="_static/dark_mode_js/default_dark.js%3Fv=fd565c74"></script>
+        <script src="_static/dark_mode_js/theme_switcher.js%3Fv=358d3910"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Tutorials" href="Tutorials.html" />
+    <link rel="prev" title="Orphans" href="Orphans.html" /> 
+<script async type="text/javascript" src="../../_/static/javascript/readthedocs-addons.js"></script><meta name="readthedocs-project-slug" content="gut" /><meta name="readthedocs-version-slug" content="latest" /><meta name="readthedocs-resolver-filename" content="/Running-On-Devices.html" /><meta name="readthedocs-http-status" content="200" /></head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            GUT
+              <img src="_static/GutDocsLogo.png" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                9.4.0 for Godot-4
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Getting Started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="Install.html">Install</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Quick-Start.html">Quick Start</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Command-Line.html">Command Line</a></li>
+<li class="toctree-l1"><a class="reference internal" href="New-For-Godot-4.html">Godot 4 Changes</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Test Scripts</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="class_ref/class_guttest.html">GutTest</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Creating-Tests.html">Creating Tests</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Awaiting.html">Awaiting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Inner-Test-Classes.html">Inner Test Classes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Parameterized-Tests.html">Parameterized Tests</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Simulate.html">Simulate</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Comparing-Things.html">Comparing Things</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Doubling</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="Doubles.html">Doubles</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Partial-Doubles.html">Partial Doubles</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Double-Strategy.html">Doubling Strategy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Stubbing.html">Stubbing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Spies.html">Spies</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Other</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="Contributing.html">Contributing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="GDScript-Warnings.html">GDScript Warnings</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Export-Test-Results.html">Export Test Results</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Hooks.html">Hooks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Memory-Management.html">Memory Management</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Mocking-Input.html">Mocking Input</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Orphans.html">Orphans</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="Running-On-Devices.html#">Running on Devices</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Tutorials.html">Tutorials</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Class Reference</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="Class-Ref.html">About Class Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="class_ref/class_addons_gut_cli_optparse.html">addons/gut/cli/optparse.gd</a></li>
+<li class="toctree-l1"><a class="reference internal" href="class_ref/class_addons_gut_junit_xml_export.html">addons/gut/junit_xml_export.gd</a></li>
+<li class="toctree-l1"><a class="reference internal" href="class_ref/class_addons_gut_parameter_factory.html">addons/gut/parameter_factory.gd</a></li>
+<li class="toctree-l1"><a class="reference internal" href="class_ref/class_guthookscript.html">GutHookScript</a></li>
+<li class="toctree-l1"><a class="reference internal" href="class_ref/class_gutinputfactory.html">GutInputFactory</a></li>
+<li class="toctree-l1"><a class="reference internal" href="class_ref/class_gutinputsender.html">GutInputSender</a></li>
+<li class="toctree-l1"><a class="reference internal" href="class_ref/class_gutmain.html">GutMain</a></li>
+<li class="toctree-l1"><a class="reference internal" href="class_ref/class_guttest.html">GutTest</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">GUT</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Running on Devices</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/Running-On-Devices.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="running-on-devices">
+<h1>Running on Devices<a class="headerlink" href="Running-On-Devices.html#running-on-devices" title="Permalink to this heading"></a></h1>
+<p>You may want to deploy your tests with your game so you can run tests on different devices and platforms.  GUT provides the handy <code class="docutils literal notranslate"><span class="pre">GutControl</span></code> to help you run your tests.
+<img alt="GutControl" src="_images/GutControl.png" /></p>
+<p>In order to run tests in a deployed game you must create a scene to kick off the tests from within the game.  Here’s the steps:</p>
+<ul class="simple">
+<li><p>Create a scene</p></li>
+<li><p>Add a <code class="docutils literal notranslate"><span class="pre">GutControl</span></code> to the scene.
+<img alt="AddGutControl" src="_images/AddGutControl.png" /></p></li>
+<li><p>Add a script to your scene and paste in the code below.</p></li>
+<li><p>You’re off to the races.</p></li>
+</ul>
+<p>Remember to add <code class="docutils literal notranslate"><span class="pre">*.json</span></code> in your export settings (resources tab), or your config file will not be exported with your game.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span># ------------------------------------------------------------------------------
+# This is an example of using the GutControl (res://addons/gut/gui/GutContro.tscn)
+# to execute tests in a deployed game.
+#
+# Setup:
+# Create a scene.
+# Add a GutControl to your scene, name it GutControl.
+# Add this script to your scene.
+# Run it.
+# ------------------------------------------------------------------------------
+extends Node2D
+@onready var _gut_control = $GutControl
+
+# Holds a reference to the current test script object being run.  Set in
+# signal callbacks.
+var _current_script_object = null
+# Holds the name of the current test being run.  Set in signal callbacks.
+var _current_test_name = null
+
+
+func _ready():
+	simple_setup()
+	# complex_setup()
+
+
+func simple_setup():
+	# You must load a gut config file to use this control.  Here we are loading
+	# the default config file used by the command line.  You can use any config
+	# file you have created.  Use the &quot;save as&quot; button in the Settings subpanel
+	# to create a config file, or write your own.
+	#
+	# Some settings may not work.  For example, the exit flags do not have any
+	# effect.
+	#
+	# Settings are not saved, so any changes will be lost. The idea is that you
+	# want to deploy the settings and users should not be able to save them.  If
+	# you want to save changes, you can call:
+	# 	_gut_control.get_config().write_options(path).
+	# Note that you cannot to write to res:// on mobile platforms, so you will
+	# have to juggle the initial loading from res:// or user:// and save to
+	# user://.
+	_gut_control.load_config_file(&#39;res://.gutconfig.json&#39;)
+
+	# That&#39;s it.  Just get a reference to the control you added to the scene and
+	# give it a config.  The rest of the stuff in this script optional.
+
+
+
+func complex_setup():
+	# See simple setup
+	_gut_control.load_config_file(&#39;res://.gutconfig.json&#39;)
+
+	# Returns a gut_config.gd instance.
+	var config = _gut_control.get_config()
+
+	# Override specific values for the purposes of this scene.  You can see all
+	# the options available in the default_options dictionary in gut_config.gd.
+	# Changing settings AFTER _ready will not have any effect.
+	config.options.should_exit = false
+	config.options.should_exit_on_success = false
+	config.options.compact_mode = false
+	# Note that if you are exporting xml results you may want to set the path to
+	# a file in user:// instead of an absolute path.  Your game may not have
+	# permissions to save files elsewhere when running on a mobile device.
+	config.options.junit_xml_file = &#39;user://deployed_results.xml&#39;
+
+	# Some actions cannot be done until after _ready has finished in all objects
+	_post_ready_setup.call_deferred()
+
+
+
+
+# If you would like to connect to signals provided by gut.gd then you must do
+# so after _ready.  This is an example of getting a reference to gut and all
+# of the signals it provides.
+func _post_ready_setup():
+	var gut = _gut_control.get_gut()
+	gut.start_run.connect(_on_gut_run_start)
+
+	gut.start_script.connect(_on_gut_start_script)
+	gut.end_script.connect(_on_gut_end_script)
+
+	gut.start_test.connect(_on_gut_start_test)
+	gut.end_test.connect(_on_gut_end_test)
+
+	gut.end_run.connect(_on_gut_run_end)
+
+
+# -----------------------
+# Events
+# -----------------------
+func _on_gut_run_start():
+	print(&#39;Starting tests&#39;)
+
+
+# This signal passes a TestCollector.gd/TestScript instance
+func _on_gut_start_script(script_obj):
+	print(script_obj.get_full_name(), &#39; has &#39;, script_obj.tests.size(), &#39; tests&#39;)
+	_current_script_object = script_obj
+
+
+func _on_gut_end_script():
+	var pass_count = 0
+	for test in _current_script_object.tests:
+		if(test.did_pass()):
+			pass_count += 1
+	print(pass_count, &#39;/&#39;, _current_script_object.tests.size(), &quot; passed\n&quot;)
+	_current_script_object = null
+
+
+func _on_gut_start_test(test_name):
+	_current_test_name = test_name
+	print(&#39;  &#39;, test_name)
+
+
+func _on_gut_end_test():
+	# get_test_named returns a TestCollector.gd/Test instance for the name
+	# passed in.
+	var test_object = _current_script_object.get_test_named(_current_test_name)
+	var status = &quot;failed&quot;
+	if(test_object.did_pass()):
+		status = &quot;passed&quot;
+	elif(test_object.pending):
+		status = &quot;pending&quot;
+
+	print(&#39;    &#39;, status)
+	_current_test_name = null
+
+
+func _on_gut_run_end():
+	print(&#39;Tests Done&#39;)
+
+
+# You can kick of the tests via code if you want.
+func _on_run_gut_tests_button_pressed():
+	_gut_control.run_tests()
+</pre></div>
+</div>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="Orphans.html" class="btn btn-neutral float-left" title="Orphans" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="Tutorials.html" class="btn btn-neutral float-right" title="Tutorials" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, Butch Wesley.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

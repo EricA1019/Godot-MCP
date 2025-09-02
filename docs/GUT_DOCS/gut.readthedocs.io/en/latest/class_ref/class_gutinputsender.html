@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>GutInputSender &mdash; GUT 9.4.0 documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/gut_custom.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/dark_mode_css/general.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/dark_mode_css/dark.css" type="text/css" />
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../_static/jquery.js%3Fv=5d32c60e"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js%3Fv=2cd50e6c"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js%3Fv=354d2d61"></script>
+        <script src="../_static/doctools.js%3Fv=888ff710"></script>
+        <script src="../_static/sphinx_highlight.js%3Fv=4825356b"></script>
+        <script src="../_static/dark_mode_js/default_dark.js%3Fv=fd565c74"></script>
+        <script src="../_static/dark_mode_js/theme_switcher.js%3Fv=358d3910"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="GutMain" href="class_gutmain.html" />
+    <link rel="prev" title="GutInputFactory" href="class_gutinputfactory.html" /> 
+<script async type="text/javascript" src="../../../_/static/javascript/readthedocs-addons.js"></script><meta name="readthedocs-project-slug" content="gut" /><meta name="readthedocs-version-slug" content="latest" /><meta name="readthedocs-resolver-filename" content="/class_ref/class_gutinputsender.html" /><meta name="readthedocs-http-status" content="200" /></head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            GUT
+              <img src="../_static/GutDocsLogo.png" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                9.4.0 for Godot-4
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Getting Started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../Install.html">Install</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Quick-Start.html">Quick Start</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Command-Line.html">Command Line</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../New-For-Godot-4.html">Godot 4 Changes</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Test Scripts</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="class_guttest.html">GutTest</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Creating-Tests.html">Creating Tests</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Awaiting.html">Awaiting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Inner-Test-Classes.html">Inner Test Classes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Parameterized-Tests.html">Parameterized Tests</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Simulate.html">Simulate</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Comparing-Things.html">Comparing Things</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Doubling</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../Doubles.html">Doubles</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Partial-Doubles.html">Partial Doubles</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Double-Strategy.html">Doubling Strategy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Stubbing.html">Stubbing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Spies.html">Spies</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Other</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../Contributing.html">Contributing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../GDScript-Warnings.html">GDScript Warnings</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Export-Test-Results.html">Export Test Results</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Hooks.html">Hooks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Memory-Management.html">Memory Management</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Mocking-Input.html">Mocking Input</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Orphans.html">Orphans</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Running-On-Devices.html">Running on Devices</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Tutorials.html">Tutorials</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Class Reference</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../Class-Ref.html">About Class Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="class_addons_gut_cli_optparse.html">addons/gut/cli/optparse.gd</a></li>
+<li class="toctree-l1"><a class="reference internal" href="class_addons_gut_junit_xml_export.html">addons/gut/junit_xml_export.gd</a></li>
+<li class="toctree-l1"><a class="reference internal" href="class_addons_gut_parameter_factory.html">addons/gut/parameter_factory.gd</a></li>
+<li class="toctree-l1"><a class="reference internal" href="class_guthookscript.html">GutHookScript</a></li>
+<li class="toctree-l1"><a class="reference internal" href="class_gutinputfactory.html">GutInputFactory</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="class_gutinputsender.html#">GutInputSender</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="class_gutinputsender.html#description">Description</a></li>
+<li class="toctree-l2"><a class="reference internal" href="class_gutinputsender.html#properties">Properties</a></li>
+<li class="toctree-l2"><a class="reference internal" href="class_gutinputsender.html#methods">Methods</a></li>
+<li class="toctree-l2"><a class="reference internal" href="class_gutinputsender.html#signals">Signals</a></li>
+<li class="toctree-l2"><a class="reference internal" href="class_gutinputsender.html#constants">Constants</a></li>
+<li class="toctree-l2"><a class="reference internal" href="class_gutinputsender.html#property-descriptions">Property Descriptions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="class_gutinputsender.html#method-descriptions">Method Descriptions</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="class_gutmain.html">GutMain</a></li>
+<li class="toctree-l1"><a class="reference internal" href="class_guttest.html">GutTest</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">GUT</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">GutInputSender</li>
+      <li class="wy-breadcrumbs-aside">
+              <!-- User defined GitHub URL -->
+              <a href="https://gut.readthedocs.io/en/latest/class_ref/hide" class="fa fa-github"> Edit on GitHub</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="gutinputsender">
+<span id="class-gutinputsender"></span><h1>GutInputSender<a class="headerlink" href="class_gutinputsender.html#gutinputsender" title="Permalink to this heading"></a></h1>
+<p><strong>Inherits:</strong> <a class="reference external" href="https://docs.godotengine.org/en/stable/classes/class_refcounted.html">RefCounted</a></p>
+<p>The GutInputSender class.  It sends input to places.</p>
+<section class="classref-introduction-group" id="description">
+<h2>Description<a class="headerlink" href="class_gutinputsender.html#description" title="Permalink to this heading"></a></h2>
+<p>GUT Wiki:  <a class="reference external" href="https://gut.readthedocs.io">https://gut.readthedocs.io</a></p>
+<p>See <a class="reference external" href="../Mocking-Input.html">Mocking-Input</a> for examples.</p>
+<p>This class can be used to send <code class="docutils literal notranslate"><span class="pre">InputEvent*</span></code> events to various objects.  It also allows you to script out a series of inputs and play them back in real time.  You could use it to:</p>
+<ul class="simple">
+<li><p>Verify that jump height depends on how long the jump button is pressed.</p></li>
+<li><p>Double tap a direction performs a dash.</p></li>
+<li><p>Down, Down-Forward, Forward + punch throws a fireball.</p></li>
+</ul>
+<p>And much much more.</p>
+<p>As of 9.3.1 you can use <code class="docutils literal notranslate"><span class="pre">GutInputSender</span></code> instead of <code class="docutils literal notranslate"><span class="pre">InputSender</span></code>.  It’s the same thing, but <code class="docutils literal notranslate"><span class="pre">GutInputSender</span></code> is a <code class="docutils literal notranslate"><span class="pre">class_name</span></code> so you may have less warnings and auto-complete will work.</p>
+<p><strong>Warning</strong></p>
+<p>If you move the Godot window to a different monitor while tests are running it can cause input tests to fail.  <a class="reference external" href="https://github.com/bitwes/Gut/issues/643">This issue</a> has more details.</p>
+</section>
+<section class="classref-reftable-group" id="properties">
+<h2>Properties<a class="headerlink" href="class_gutinputsender.html#properties" title="Permalink to this heading"></a></h2>
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference external" href="https://docs.godotengine.org/en/stable/classes/class_variant.html">Variant</a></p></td>
+<td><p><a class="reference internal" href="class_gutinputsender.html#class-gutinputsender-property-mouse-warp"><span class="std std-ref">mouse_warp</span></a></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">false</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference external" href="https://docs.godotengine.org/en/stable/classes/class_variant.html">Variant</a></p></td>
+<td><p><a class="reference internal" href="class_gutinputsender.html#class-gutinputsender-property-draw-mouse"><span class="std std-ref">draw_mouse</span></a></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">true</span></code></p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section class="classref-reftable-group" id="methods">
+<h2>Methods<a class="headerlink" href="class_gutinputsender.html#methods" title="Permalink to this heading"></a></h2>
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><abbr title="No return value.">void</abbr></p></td>
+<td><p><a class="reference internal" href="class_gutinputsender.html#class-gutinputsender-private-method-init"><span class="std std-ref">_init</span></a>(r = null)</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference external" href="https://docs.godotengine.org/en/stable/classes/class_variant.html">Variant</a></p></td>
+<td><p><a class="reference internal" href="class_gutinputsender.html#class-gutinputsender-method-action-down"><span class="std std-ref">action_down</span></a>(which, strength = 1.0)</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference external" href="https://docs.godotengine.org/en/stable/classes/class_variant.html">Variant</a></p></td>
+<td><p><a class="reference internal" href="class_gutinputsender.html#class-gutinputsender-method-action-up"><span class="std std-ref">action_up</span></a>(which, strength = 1.0)</p></td>
+</tr>
+<tr class="row-even"><td><p><abbr title="No return value.">void</abbr></p></td>
+<td><p><a class="reference internal" href="class_gutinputsender.html#class-gutinputsender-method-add-receiver"><span class="std std-ref">add_receiver</span></a>(obj)</p></td>
+</tr>
+<tr class="row-odd"><td><p><abbr title="No return value.">void</abbr></p></td>
+<td><p><a class="reference internal" href="class_gutinputsender.html#class-gutinputsender-method-clear"><span class="std std-ref">clear</span></a>()</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference external" href="https://docs.godotengine.org/en/stable/classes/class_variant.html">Variant</a></p></td>
+<td><p><a class="reference internal" href="class_gutinputsender.html#class-gutinputsender-method-get-auto-flush-input"><span class="std std-ref">get_auto_flush_input</span></a>()</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference external" href="https://docs.godotengine.org/en/stable/classes/class_variant.html">Variant</a></p></td>
+<td><p><a class="reference internal" href="class_gutinputsender.html#class-gutinputsender-method-get-receivers"><span class="std std-ref">get_receivers</span></a>()</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference external" href="https://docs.godotengine.org/en/stable/classes/class_variant.html">Variant</a></p></td>
+<td><p><a class="reference internal" href="class_gutinputsender.html#class-gutinputsender-method-hold-for"><span class="std std-ref">hold_for</span></a>(duration)</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference external" href="https://docs.godotengine.org/en/stable/classes/class_variant.html">Variant</a></p></td>
+<td><p><a class="reference internal" href="class_gutinputsender.html#class-gutinputsender-method-hold-frames"><span class="std std-ref">hold_frames</span></a>(duration: <a class="reference external" href="https://docs.godotengine.org/en/stable/classes/class_int.html">int</a>)</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference external" href="https://docs.godotengine.org/en/stable/classes/class_variant.html">Variant</a></p></td>
+<td><p><a class="reference internal" href="class_gutinputsender.html#class-gutinputsender-method-hold-seconds"><span class="std std-ref">hold_seconds</span></a>(duration: <a class="reference external" href="https://docs.godotengine.org/en/stable/classes/class_float.html">float</a>)</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference external" href="https://docs.godotengine.org/en/stable/classes/class_variant.html">Variant</a></p></td>
+<td><p><a class="reference internal" href="class_gutinputsender.html#class-gutinputsender-method-is-action-pressed"><span class="std std-ref">is_action_pressed</span></a>(which)</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference external" href="https://docs.godotengine.org/en/stable/classes/class_variant.html">Variant</a></p></td>
+<td><p><a class="reference internal" href="class_gutinputsender.html#class-gutinputsender-method-is-idle"><span class="std std-ref">is_idle</span></a>()</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference external" href="https://docs.godotengine.org/en/stable/classes/class_variant.html">Variant</a></p></td>
+<td><p><a class="reference internal" href="class_gutinputsender.html#class-gutinputsender-method-is-key-pressed"><span class="std std-ref">is_key_pressed</span></a>(which)</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference external" href="https://docs.godotengine.org/en/stable/classes/class_variant.html">Variant</a></p></td>
+<td><p><a class="reference internal" href="class_gutinputsender.html#class-gutinputsender-method-is-mouse-button-pressed"><span class="std std-ref">is_mouse_button_pressed</span></a>(which)</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference external" href="https://docs.godotengine.org/en/stable/classes/class_variant.html">Variant</a></p></td>
+<td><p><a class="reference internal" href="class_gutinputsender.html#class-gutinputsender-method-key-down"><span class="std std-ref">key_down</span></a>(which)</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference external" href="https://docs.godotengine.org/en/stable/classes/class_variant.html">Variant</a></p></td>
+<td><p><a class="reference internal" href="class_gutinputsender.html#class-gutinputsender-method-key-echo"><span class="std std-ref">key_echo</span></a>()</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference external" href="https://docs.godotengine.org/en/stable/classes/class_variant.html">Variant</a></p></td>
+<td><p><a class="reference internal" href="class_gutinputsender.html#class-gutinputsender-method-key-up"><span class="std std-ref">key_up</span></a>(which)</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference external" href="https://docs.godotengine.org/en/stable/classes/class_variant.html">Variant</a></p></td>
+<td><p><a class="reference internal" href="class_gutinputsender.html#class-gutinputsender-method-mouse-double-click"><span class="std std-ref">mouse_double_click</span></a>(position = null, global_position = null)</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference external" href="https://docs.godotengine.org/en/stable/classes/class_variant.html">Variant</a></p></td>
+<td><p><a class="reference internal" href="class_gutinputsender.html#class-gutinputsender-method-mouse-left-button-down"><span class="std std-ref">mouse_left_button_down</span></a>(position = null, global_position = null)</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference external" href="https://docs.godotengine.org/en/stable/classes/class_variant.html">Variant</a></p></td>
+<td><p><a class="reference internal" href="class_gutinputsender.html#class-gutinputsender-method-mouse-left-button-up"><span class="std std-ref">mouse_left_button_up</span></a>(position = null, global_position = null)</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference external" href="https://docs.godotengine.org/en/stable/classes/class_variant.html">Variant</a></p></td>
+<td><p><a class="reference internal" href="class_gutinputsender.html#class-gutinputsender-method-mouse-left-click-at"><span class="std std-ref">mouse_left_click_at</span></a>(where, duration = “5f”)</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference external" href="https://docs.godotengine.org/en/stable/classes/class_variant.html">Variant</a></p></td>
+<td><p><a class="reference internal" href="class_gutinputsender.html#class-gutinputsender-method-mouse-motion"><span class="std std-ref">mouse_motion</span></a>(position, global_position = null)</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference external" href="https://docs.godotengine.org/en/stable/classes/class_variant.html">Variant</a></p></td>
+<td><p><a class="reference internal" href="class_gutinputsender.html#class-gutinputsender-method-mouse-relative-motion"><span class="std std-ref">mouse_relative_motion</span></a>(offset, speed = Vector2(0, 0))</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference external" href="https://docs.godotengine.org/en/stable/classes/class_variant.html">Variant</a></p></td>
+<td><p><a class="reference internal" href="class_gutinputsender.html#class-gutinputsender-method-mouse-right-button-down"><span class="std std-ref">mouse_right_button_down</span></a>(position = null, global_position = null)</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference external" href="https://docs.godotengine.org/en/stable/classes/class_variant.html">Variant</a></p></td>
+<td><p><a class="reference internal" href="class_gutinputsender.html#class-gutinputsender-method-mouse-right-button-up"><span class="std std-ref">mouse_right_button_up</span></a>(position = null, global_position = null)</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference external" href="https://docs.godotengine.org/en/stable/classes/class_variant.html">Variant</a></p></td>
+<td><p><a class="reference internal" href="class_gutinputsender.html#class-gutinputsender-method-mouse-set-position"><span class="std std-ref">mouse_set_position</span></a>(position, global_position = null)</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference external" href="https://docs.godotengine.org/en/stable/classes/class_variant.html">Variant</a></p></td>
+<td><p><a class="reference internal" href="class_gutinputsender.html#class-gutinputsender-method-release-all"><span class="std std-ref">release_all</span></a>()</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference external" href="https://docs.godotengine.org/en/stable/classes/class_variant.html">Variant</a></p></td>
+<td><p><a class="reference internal" href="class_gutinputsender.html#class-gutinputsender-method-send-event"><span class="std std-ref">send_event</span></a>(event)</p></td>
+</tr>
+<tr class="row-odd"><td><p><abbr title="No return value.">void</abbr></p></td>
+<td><p><a class="reference internal" href="class_gutinputsender.html#class-gutinputsender-method-set-auto-flush-input"><span class="std std-ref">set_auto_flush_input</span></a>(val)</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference external" href="https://docs.godotengine.org/en/stable/classes/class_variant.html">Variant</a></p></td>
+<td><p><a class="reference internal" href="class_gutinputsender.html#class-gutinputsender-method-wait"><span class="std std-ref">wait</span></a>(t)</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference external" href="https://docs.godotengine.org/en/stable/classes/class_variant.html">Variant</a></p></td>
+<td><p><a class="reference internal" href="class_gutinputsender.html#class-gutinputsender-method-wait-frames"><span class="std std-ref">wait_frames</span></a>(num_frames)</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference external" href="https://docs.godotengine.org/en/stable/classes/class_variant.html">Variant</a></p></td>
+<td><p><a class="reference internal" href="class_gutinputsender.html#class-gutinputsender-method-wait-secs"><span class="std std-ref">wait_secs</span></a>(num_secs)</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<hr class="classref-section-separator docutils" />
+<section class="classref-descriptions-group" id="signals">
+<h2>Signals<a class="headerlink" href="class_gutinputsender.html#signals" title="Permalink to this heading"></a></h2>
+<p class="classref-signal" id="class-gutinputsender-signal-idle"><strong>idle</strong>() <a class="reference internal" href="class_gutinputsender.html#class-gutinputsender-signal-idle"><span class="std std-ref">🔗</span></a></p>
+<p>Emitted when all events in the input queue have been sent.</p>
+</section>
+<hr class="classref-section-separator docutils" />
+<section class="classref-descriptions-group" id="constants">
+<h2>Constants<a class="headerlink" href="class_gutinputsender.html#constants" title="Permalink to this heading"></a></h2>
+<p class="classref-constant" id="class-gutinputsender-constant-input-warn"><strong>INPUT_WARN</strong> = <code class="docutils literal notranslate"><span class="pre">&quot;If</span> <span class="pre">using</span> <span class="pre">Input</span> <span class="pre">as</span> <span class="pre">a</span> <span class="pre">reciever</span> <span class="pre">it</span> <span class="pre">will</span> <span class="pre">not</span> <span class="pre">respond</span> <span class="pre">to</span> <span class="pre">*_down</span> <span class="pre">events</span> <span class="pre">until</span> <span class="pre">a</span> <span class="pre">*_up</span> <span class="pre">event</span> <span class="pre">is</span> <span class="pre">recieved.</span>&#160; <span class="pre">Call</span> <span class="pre">the</span> <span class="pre">appropriate</span> <span class="pre">*_up</span> <span class="pre">event</span> <span class="pre">or</span> <span class="pre">use</span> <span class="pre">hold_for(...)</span> <span class="pre">to</span> <span class="pre">automatically</span> <span class="pre">release</span> <span class="pre">after</span> <span class="pre">some</span> <span class="pre">duration.&quot;</span></code> <a class="reference internal" href="class_gutinputsender.html#class-gutinputsender-constant-input-warn"><span class="std std-ref">🔗</span></a></p>
+<p>Local reference to the GutInputFactory static class</p>
+</section>
+<hr class="classref-section-separator docutils" />
+<section class="classref-descriptions-group" id="property-descriptions">
+<h2>Property Descriptions<a class="headerlink" href="class_gutinputsender.html#property-descriptions" title="Permalink to this heading"></a></h2>
+<p class="classref-property" id="class-gutinputsender-property-mouse-warp"><a class="reference external" href="https://docs.godotengine.org/en/stable/classes/class_variant.html">Variant</a> <strong>mouse_warp</strong> = <code class="docutils literal notranslate"><span class="pre">false</span></code> <a class="reference internal" href="class_gutinputsender.html#class-gutinputsender-property-mouse-warp"><span class="std std-ref">🔗</span></a></p>
+<p>Warp mouse when sending InputEventMouse* events</p>
+<hr class="classref-item-separator docutils" />
+<p class="classref-property" id="class-gutinputsender-property-draw-mouse"><a class="reference external" href="https://docs.godotengine.org/en/stable/classes/class_variant.html">Variant</a> <strong>draw_mouse</strong> = <code class="docutils literal notranslate"><span class="pre">true</span></code> <a class="reference internal" href="class_gutinputsender.html#class-gutinputsender-property-draw-mouse"><span class="std std-ref">🔗</span></a></p>
+<p>Draw mouse position cross hairs.  Useful to see where the mouse is at when not using <a class="reference internal" href="class_gutinputsender.html#class-gutinputsender-property-mouse-warp"><span class="std std-ref">mouse_warp</span></a></p>
+</section>
+<hr class="classref-section-separator docutils" />
+<section class="classref-descriptions-group" id="method-descriptions">
+<h2>Method Descriptions<a class="headerlink" href="class_gutinputsender.html#method-descriptions" title="Permalink to this heading"></a></h2>
+<p class="classref-method" id="class-gutinputsender-private-method-init"><abbr title="No return value.">void</abbr> <strong>_init</strong>(r = null) <a class="reference internal" href="class_gutinputsender.html#class-gutinputsender-private-method-init"><span class="std std-ref">🔗</span></a></p>
+<p>Accepts a single optional receiver.</p>
+<hr class="classref-item-separator docutils" />
+<p class="classref-method" id="class-gutinputsender-method-add-receiver"><abbr title="No return value.">void</abbr> <strong>add_receiver</strong>(obj) <a class="reference internal" href="class_gutinputsender.html#class-gutinputsender-method-add-receiver"><span class="std std-ref">🔗</span></a></p>
+<p>Add an object to receive input events.</p>
+<hr class="classref-item-separator docutils" />
+<p class="classref-method" id="class-gutinputsender-method-get-receivers"><a class="reference external" href="https://docs.godotengine.org/en/stable/classes/class_variant.html">Variant</a> <strong>get_receivers</strong>() <a class="reference internal" href="class_gutinputsender.html#class-gutinputsender-method-get-receivers"><span class="std std-ref">🔗</span></a></p>
+<p>Returns the receivers that have been added.</p>
+<hr class="classref-item-separator docutils" />
+<p class="classref-method" id="class-gutinputsender-method-is-idle"><a class="reference external" href="https://docs.godotengine.org/en/stable/classes/class_variant.html">Variant</a> <strong>is_idle</strong>() <a class="reference internal" href="class_gutinputsender.html#class-gutinputsender-method-is-idle"><span class="std std-ref">🔗</span></a></p>
+<p>Returns true if the input queue has items to be processed, false if not.</p>
+<hr class="classref-item-separator docutils" />
+<p class="classref-method" id="class-gutinputsender-method-is-key-pressed"><a class="reference external" href="https://docs.godotengine.org/en/stable/classes/class_variant.html">Variant</a> <strong>is_key_pressed</strong>(which) <a class="reference internal" href="class_gutinputsender.html#class-gutinputsender-method-is-key-pressed"><span class="std std-ref">🔗</span></a></p>
+<div class="contribute docutils container">
+<p>No description</p>
+</div>
+<hr class="classref-item-separator docutils" />
+<p class="classref-method" id="class-gutinputsender-method-is-action-pressed"><a class="reference external" href="https://docs.godotengine.org/en/stable/classes/class_variant.html">Variant</a> <strong>is_action_pressed</strong>(which) <a class="reference internal" href="class_gutinputsender.html#class-gutinputsender-method-is-action-pressed"><span class="std std-ref">🔗</span></a></p>
+<div class="contribute docutils container">
+<p>No description</p>
+</div>
+<hr class="classref-item-separator docutils" />
+<p class="classref-method" id="class-gutinputsender-method-is-mouse-button-pressed"><a class="reference external" href="https://docs.godotengine.org/en/stable/classes/class_variant.html">Variant</a> <strong>is_mouse_button_pressed</strong>(which) <a class="reference internal" href="class_gutinputsender.html#class-gutinputsender-method-is-mouse-button-pressed"><span class="std std-ref">🔗</span></a></p>
+<div class="contribute docutils container">
+<p>No description</p>
+</div>
+<hr class="classref-item-separator docutils" />
+<p class="classref-method" id="class-gutinputsender-method-get-auto-flush-input"><a class="reference external" href="https://docs.godotengine.org/en/stable/classes/class_variant.html">Variant</a> <strong>get_auto_flush_input</strong>() <a class="reference internal" href="class_gutinputsender.html#class-gutinputsender-method-get-auto-flush-input"><span class="std std-ref">🔗</span></a></p>
+<p>Get the value of <a class="reference internal" href="class_gutinputsender.html#class-gutinputsender-method-set-auto-flush-input"><span class="std std-ref">set_auto_flush_input</span></a>.</p>
+<hr class="classref-item-separator docutils" />
+<p class="classref-method" id="class-gutinputsender-method-set-auto-flush-input"><abbr title="No return value.">void</abbr> <strong>set_auto_flush_input</strong>(val) <a class="reference internal" href="class_gutinputsender.html#class-gutinputsender-method-set-auto-flush-input"><span class="std std-ref">🔗</span></a></p>
+<p>Enable/Disable auto flushing of input.  When enabled the <strong>GutInputSender</strong> will call <code class="docutils literal notranslate"><span class="pre">Input.flush_buffered_events</span></code> after each event is sent. See the “use_accumulated_input” section in <a class="reference external" href="../Mocking-Input.html">Mocking-Input</a> for more information.</p>
+<hr class="classref-item-separator docutils" />
+<p class="classref-method" id="class-gutinputsender-method-wait"><a class="reference external" href="https://docs.godotengine.org/en/stable/classes/class_variant.html">Variant</a> <strong>wait</strong>(t) <a class="reference internal" href="class_gutinputsender.html#class-gutinputsender-method-wait"><span class="std std-ref">🔗</span></a></p>
+<p>Adds a delay between the last input queue item added and any queue item added next.  By default this will wait <code class="docutils literal notranslate"><span class="pre">t</span></code> seconds.  You can specify a number of frames to wait by passing a string composed of a number and “f”. For example <code class="docutils literal notranslate"><span class="pre">wait(&quot;5f&quot;)</span></code> will wait 5 frames.</p>
+<hr class="classref-item-separator docutils" />
+<p class="classref-method" id="class-gutinputsender-method-clear"><abbr title="No return value.">void</abbr> <strong>clear</strong>() <a class="reference internal" href="class_gutinputsender.html#class-gutinputsender-method-clear"><span class="std std-ref">🔗</span></a></p>
+<p>Clears the input queue and any state such as the last event sent and any pressed actions/buttons.  Does not clear the list of receivers.</p>
+<p>This should be done between each test when the <strong>GutInputSender</strong> is a class level variable so that state does not leak between tests.</p>
+<hr class="classref-item-separator docutils" />
+<p class="classref-method" id="class-gutinputsender-method-key-up"><a class="reference external" href="https://docs.godotengine.org/en/stable/classes/class_variant.html">Variant</a> <strong>key_up</strong>(which) <a class="reference internal" href="class_gutinputsender.html#class-gutinputsender-method-key-up"><span class="std std-ref">🔗</span></a></p>
+<p>Sends a <a class="reference external" href="https://docs.godotengine.org/en/stable/classes/class_inputeventkey.html">InputEventKey</a> event with <code class="docutils literal notranslate"><span class="pre">pressed</span> <span class="pre">=</span> <span class="pre">false</span></code>.  <code class="docutils literal notranslate"><span class="pre">which</span></code> can be a character or a <code class="docutils literal notranslate"><span class="pre">KEY_*</span></code> constant.</p>
+<hr class="classref-item-separator docutils" />
+<p class="classref-method" id="class-gutinputsender-method-key-down"><a class="reference external" href="https://docs.godotengine.org/en/stable/classes/class_variant.html">Variant</a> <strong>key_down</strong>(which) <a class="reference internal" href="class_gutinputsender.html#class-gutinputsender-method-key-down"><span class="std std-ref">🔗</span></a></p>
+<p>Sends a <a class="reference external" href="https://docs.godotengine.org/en/stable/classes/class_inputeventkey.html">InputEventKey</a> event with <code class="docutils literal notranslate"><span class="pre">pressed</span> <span class="pre">=</span> <span class="pre">true</span></code>.  <code class="docutils literal notranslate"><span class="pre">which</span></code> can be a character or a <code class="docutils literal notranslate"><span class="pre">KEY_*</span></code> constant.</p>
+<hr class="classref-item-separator docutils" />
+<p class="classref-method" id="class-gutinputsender-method-key-echo"><a class="reference external" href="https://docs.godotengine.org/en/stable/classes/class_variant.html">Variant</a> <strong>key_echo</strong>() <a class="reference internal" href="class_gutinputsender.html#class-gutinputsender-method-key-echo"><span class="std std-ref">🔗</span></a></p>
+<p>Sends an echo <a class="reference external" href="https://docs.godotengine.org/en/stable/classes/class_inputeventkey.html">InputEventKey</a> event of the last key event.</p>
+<hr class="classref-item-separator docutils" />
+<p class="classref-method" id="class-gutinputsender-method-action-up"><a class="reference external" href="https://docs.godotengine.org/en/stable/classes/class_variant.html">Variant</a> <strong>action_up</strong>(which, strength = 1.0) <a class="reference internal" href="class_gutinputsender.html#class-gutinputsender-method-action-up"><span class="std std-ref">🔗</span></a></p>
+<p>Sends a “action up” <a class="reference external" href="https://docs.godotengine.org/en/stable/classes/class_inputeventaction.html">InputEventAction</a> instance.  <code class="docutils literal notranslate"><span class="pre">which</span></code> is the name of the action defined in the Key Map.</p>
+<hr class="classref-item-separator docutils" />
+<p class="classref-method" id="class-gutinputsender-method-action-down"><a class="reference external" href="https://docs.godotengine.org/en/stable/classes/class_variant.html">Variant</a> <strong>action_down</strong>(which, strength = 1.0) <a class="reference internal" href="class_gutinputsender.html#class-gutinputsender-method-action-down"><span class="std std-ref">🔗</span></a></p>
+<p>Sends a “action down” <a class="reference external" href="https://docs.godotengine.org/en/stable/classes/class_inputeventaction.html">InputEventAction</a> instance.  <code class="docutils literal notranslate"><span class="pre">which</span></code> is the name of the action defined in the Key Map.</p>
+<hr class="classref-item-separator docutils" />
+<p class="classref-method" id="class-gutinputsender-method-mouse-left-button-down"><a class="reference external" href="https://docs.godotengine.org/en/stable/classes/class_variant.html">Variant</a> <strong>mouse_left_button_down</strong>(position = null, global_position = null) <a class="reference internal" href="class_gutinputsender.html#class-gutinputsender-method-mouse-left-button-down"><span class="std std-ref">🔗</span></a></p>
+<p>Sends a “button down” <a class="reference external" href="https://docs.godotengine.org/en/stable/classes/class_inputeventmousebutton.html">InputEventMouseButton</a> for the left mouse button.</p>
+<hr class="classref-item-separator docutils" />
+<p class="classref-method" id="class-gutinputsender-method-mouse-left-button-up"><a class="reference external" href="https://docs.godotengine.org/en/stable/classes/class_variant.html">Variant</a> <strong>mouse_left_button_up</strong>(position = null, global_position = null) <a class="reference internal" href="class_gutinputsender.html#class-gutinputsender-method-mouse-left-button-up"><span class="std std-ref">🔗</span></a></p>
+<p>Sends a “button up” <a class="reference external" href="https://docs.godotengine.org/en/stable/classes/class_inputeventmousebutton.html">InputEventMouseButton</a> for the left mouse button.</p>
+<hr class="classref-item-separator docutils" />
+<p class="classref-method" id="class-gutinputsender-method-mouse-double-click"><a class="reference external" href="https://docs.godotengine.org/en/stable/classes/class_variant.html">Variant</a> <strong>mouse_double_click</strong>(position = null, global_position = null) <a class="reference internal" href="class_gutinputsender.html#class-gutinputsender-method-mouse-double-click"><span class="std std-ref">🔗</span></a></p>
+<p>Sends a “double click” <a class="reference external" href="https://docs.godotengine.org/en/stable/classes/class_inputeventmousebutton.html">InputEventMouseButton</a> for the left mouse button.</p>
+<hr class="classref-item-separator docutils" />
+<p class="classref-method" id="class-gutinputsender-method-mouse-right-button-down"><a class="reference external" href="https://docs.godotengine.org/en/stable/classes/class_variant.html">Variant</a> <strong>mouse_right_button_down</strong>(position = null, global_position = null) <a class="reference internal" href="class_gutinputsender.html#class-gutinputsender-method-mouse-right-button-down"><span class="std std-ref">🔗</span></a></p>
+<p>Sends a “button down” <a class="reference external" href="https://docs.godotengine.org/en/stable/classes/class_inputeventmousebutton.html">InputEventMouseButton</a> for the right mouse button.</p>
+<hr class="classref-item-separator docutils" />
+<p class="classref-method" id="class-gutinputsender-method-mouse-right-button-up"><a class="reference external" href="https://docs.godotengine.org/en/stable/classes/class_variant.html">Variant</a> <strong>mouse_right_button_up</strong>(position = null, global_position = null) <a class="reference internal" href="class_gutinputsender.html#class-gutinputsender-method-mouse-right-button-up"><span class="std std-ref">🔗</span></a></p>
+<p>Sends a “button up” <a class="reference external" href="https://docs.godotengine.org/en/stable/classes/class_inputeventmousebutton.html">InputEventMouseButton</a> for the right mouse button.</p>
+<hr class="classref-item-separator docutils" />
+<p class="classref-method" id="class-gutinputsender-method-mouse-motion"><a class="reference external" href="https://docs.godotengine.org/en/stable/classes/class_variant.html">Variant</a> <strong>mouse_motion</strong>(position, global_position = null) <a class="reference internal" href="class_gutinputsender.html#class-gutinputsender-method-mouse-motion"><span class="std std-ref">🔗</span></a></p>
+<p>Sends a <a class="reference external" href="https://docs.godotengine.org/en/stable/classes/class_inputeventmousemotion.html">InputEventMouseMotion</a> to move the mouse the specified positions.</p>
+<hr class="classref-item-separator docutils" />
+<p class="classref-method" id="class-gutinputsender-method-mouse-relative-motion"><a class="reference external" href="https://docs.godotengine.org/en/stable/classes/class_variant.html">Variant</a> <strong>mouse_relative_motion</strong>(offset, speed = Vector2(0, 0)) <a class="reference internal" href="class_gutinputsender.html#class-gutinputsender-method-mouse-relative-motion"><span class="std std-ref">🔗</span></a></p>
+<p>Sends a <a class="reference external" href="https://docs.godotengine.org/en/stable/classes/class_inputeventmousemotion.html">InputEventMouseMotion</a> that moves the mouse <code class="docutils literal notranslate"><span class="pre">offset</span></code> from the last <a class="reference internal" href="class_gutinputsender.html#class-gutinputsender-method-mouse-motion"><span class="std std-ref">mouse_motion</span></a> or <a class="reference internal" href="class_gutinputsender.html#class-gutinputsender-method-mouse-set-position"><span class="std std-ref">mouse_set_position</span></a> call.</p>
+<hr class="classref-item-separator docutils" />
+<p class="classref-method" id="class-gutinputsender-method-mouse-set-position"><a class="reference external" href="https://docs.godotengine.org/en/stable/classes/class_variant.html">Variant</a> <strong>mouse_set_position</strong>(position, global_position = null) <a class="reference internal" href="class_gutinputsender.html#class-gutinputsender-method-mouse-set-position"><span class="std std-ref">🔗</span></a></p>
+<p>Sets the mouse’s position.  This does not send an event.  This position will be used for the next call to <a class="reference internal" href="class_gutinputsender.html#class-gutinputsender-method-mouse-relative-motion"><span class="std std-ref">mouse_relative_motion</span></a>.</p>
+<hr class="classref-item-separator docutils" />
+<p class="classref-method" id="class-gutinputsender-method-mouse-left-click-at"><a class="reference external" href="https://docs.godotengine.org/en/stable/classes/class_variant.html">Variant</a> <strong>mouse_left_click_at</strong>(where, duration = “5f”) <a class="reference internal" href="class_gutinputsender.html#class-gutinputsender-method-mouse-left-click-at"><span class="std std-ref">🔗</span></a></p>
+<p>Performs a left click at the given position.</p>
+<hr class="classref-item-separator docutils" />
+<p class="classref-method" id="class-gutinputsender-method-send-event"><a class="reference external" href="https://docs.godotengine.org/en/stable/classes/class_variant.html">Variant</a> <strong>send_event</strong>(event) <a class="reference internal" href="class_gutinputsender.html#class-gutinputsender-method-send-event"><span class="std std-ref">🔗</span></a></p>
+<p>Create your own event and use this to send it to all receivers.</p>
+<hr class="classref-item-separator docutils" />
+<p class="classref-method" id="class-gutinputsender-method-release-all"><a class="reference external" href="https://docs.godotengine.org/en/stable/classes/class_variant.html">Variant</a> <strong>release_all</strong>() <a class="reference internal" href="class_gutinputsender.html#class-gutinputsender-method-release-all"><span class="std std-ref">🔗</span></a></p>
+<p>Releases all <a class="reference external" href="https://docs.godotengine.org/en/stable/classes/class_inputeventkey.html">InputEventKey</a>, <a class="reference external" href="https://docs.godotengine.org/en/stable/classes/class_inputeventaction.html">InputEventAction</a>, and <a class="reference external" href="https://docs.godotengine.org/en/stable/classes/class_inputeventmousebutton.html">InputEventMouseButton</a> events that have passed through this instance.  These events could have been generated via the various <code class="docutils literal notranslate"><span class="pre">_down</span></code> methods or passed to <a class="reference internal" href="class_gutinputsender.html#class-gutinputsender-method-send-event"><span class="std std-ref">send_event</span></a>.</p>
+<p>This will send the “release” event (<code class="docutils literal notranslate"><span class="pre">pressed</span> <span class="pre">=</span> <span class="pre">false</span></code>) to all receivers.  This should be done between each test when using <cite>Input</cite> as a receiver.</p>
+<hr class="classref-item-separator docutils" />
+<p class="classref-method" id="class-gutinputsender-method-wait-frames"><a class="reference external" href="https://docs.godotengine.org/en/stable/classes/class_variant.html">Variant</a> <strong>wait_frames</strong>(num_frames) <a class="reference internal" href="class_gutinputsender.html#class-gutinputsender-method-wait-frames"><span class="std std-ref">🔗</span></a></p>
+<p>Same as <a class="reference internal" href="class_gutinputsender.html#class-gutinputsender-method-wait"><span class="std std-ref">wait</span></a> but only accepts a number of frames to wait.</p>
+<hr class="classref-item-separator docutils" />
+<p class="classref-method" id="class-gutinputsender-method-wait-secs"><a class="reference external" href="https://docs.godotengine.org/en/stable/classes/class_variant.html">Variant</a> <strong>wait_secs</strong>(num_secs) <a class="reference internal" href="class_gutinputsender.html#class-gutinputsender-method-wait-secs"><span class="std std-ref">🔗</span></a></p>
+<p>Same as <a class="reference internal" href="class_gutinputsender.html#class-gutinputsender-method-wait"><span class="std std-ref">wait</span></a> but only accepts a number of seconds to wait.</p>
+<hr class="classref-item-separator docutils" />
+<p class="classref-method" id="class-gutinputsender-method-hold-for"><a class="reference external" href="https://docs.godotengine.org/en/stable/classes/class_variant.html">Variant</a> <strong>hold_for</strong>(duration) <a class="reference internal" href="class_gutinputsender.html#class-gutinputsender-method-hold-for"><span class="std std-ref">🔗</span></a></p>
+<p>This is a special <a class="reference internal" href="class_gutinputsender.html#class-gutinputsender-method-wait"><span class="std std-ref">wait</span></a> that will emit the previous input queue item with <code class="docutils literal notranslate"><span class="pre">pressed</span> <span class="pre">=</span> <span class="pre">false</span></code> after a delay.  If you pass a number then it will wait that many seconds.  You can also use the <cite>“4f”</cite> format to wait a specific number of frames.</p>
+<p>For example <code class="docutils literal notranslate"><span class="pre">sender.action_down('jump').hold_for(&quot;10f&quot;)</span></code> will cause two <a class="reference external" href="https://docs.godotengine.org/en/stable/classes/class_inputeventaction.html">InputEventAction</a> instances to be sent.  The “jump-down” event from <a class="reference internal" href="class_gutinputsender.html#class-gutinputsender-method-action-down"><span class="std std-ref">action_down</span></a> and then a “jump-up” event after 10 frames.</p>
+<hr class="classref-item-separator docutils" />
+<p class="classref-method" id="class-gutinputsender-method-hold-frames"><a class="reference external" href="https://docs.godotengine.org/en/stable/classes/class_variant.html">Variant</a> <strong>hold_frames</strong>(duration: <a class="reference external" href="https://docs.godotengine.org/en/stable/classes/class_int.html">int</a>) <a class="reference internal" href="class_gutinputsender.html#class-gutinputsender-method-hold-frames"><span class="std std-ref">🔗</span></a></p>
+<p>Same as <a class="reference internal" href="class_gutinputsender.html#class-gutinputsender-method-hold-for"><span class="std std-ref">hold_for</span></a> but specifically holds for a number of physics frames.</p>
+<hr class="classref-item-separator docutils" />
+<p class="classref-method" id="class-gutinputsender-method-hold-seconds"><a class="reference external" href="https://docs.godotengine.org/en/stable/classes/class_variant.html">Variant</a> <strong>hold_seconds</strong>(duration: <a class="reference external" href="https://docs.godotengine.org/en/stable/classes/class_float.html">float</a>) <a class="reference internal" href="class_gutinputsender.html#class-gutinputsender-method-hold-seconds"><span class="std std-ref">🔗</span></a></p>
+<p>Same as <a class="reference internal" href="class_gutinputsender.html#class-gutinputsender-method-hold-for"><span class="std std-ref">hold_for</span></a> but specifically holds for a number of seconds.</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="class_gutinputfactory.html" class="btn btn-neutral float-left" title="GutInputFactory" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="class_gutmain.html" class="btn btn-neutral float-right" title="GutMain" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, Butch Wesley.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -1,0 +1,30 @@
+# Backups
+.backups/
+
+# Godot
+.import/
+export_presets.cfg
+*.import
+
+# Rust
+target/
+.index_data/
+
+# Python
+__pycache__/
+*.pyc
+
+# Node
+node_modules/
+
+# Editors
+.vscode/
+.idea/
+
+# OS
+.DS_Store
+Thumbs.db
+
+#EOF# Godot 4+ specific ignores
+.godot/
+/android/

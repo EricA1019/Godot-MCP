@@ -1,0 +1,49 @@
+repos:
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.6.0
+    hooks:
+      - id: trailing-whitespace
+      - id: end-of-file-fixer
+      - id: mixed-line-ending
+      - id: check-merge-conflict
+      - id: check-added-large-files
+        args: ["--maxkb=2048"]
+      - id: detect-private-key
+      - id: check-yaml
+      - id: check-json
+      - id: pretty-format-json
+        args: ["--autofix", "--no-ensure-ascii"]
+
+  - repo: https://github.com/doublify/pre-commit-rust
+    rev: v1.0
+    hooks:
+      - id: cargo-fmt
+      - id: cargo-clippy
+        args: ["--all-targets", "--", "-D", "warnings"]
+
+  - repo: https://github.com/Scony/godot-gdscript-toolkit
+    rev: 4.3.0
+    hooks:
+      - id: gdformat
+        files: ^.*\.gd$
+      - id: gdlint
+        files: ^.*\.gd$
+
+  - repo: local
+    hooks:
+      - id: godot-scene-sanity
+        name: Godot scene sanity (basic)
+        entry: bash -lc 'grep -R "^\[gd_scene" -n examples/**/*.tscn >/dev/null || true'
+        language: system
+        pass_filenames: false
+        files: ^examples/.*\.tscn$
+      - id: local-backup-on-push
+        name: Local backup on push
+        entry: bash -lc './scripts/backup_local.sh'
+        language: system
+        pass_filenames: false
+        stages: [push]
+
+# To enable: pip install pre-commit && pre-commit install
+
+#EOF

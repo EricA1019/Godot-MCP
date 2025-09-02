@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mocking Input &mdash; GUT 9.4.0 documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/gut_custom.css" type="text/css" />
+      <link rel="stylesheet" href="_static/dark_mode_css/general.css" type="text/css" />
+      <link rel="stylesheet" href="_static/dark_mode_css/dark.css" type="text/css" />
+    <link rel="shortcut icon" href="_static/favicon.ico"/>
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="_static/jquery.js%3Fv=5d32c60e"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js%3Fv=2cd50e6c"></script>
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js%3Fv=354d2d61"></script>
+        <script src="_static/doctools.js%3Fv=888ff710"></script>
+        <script src="_static/sphinx_highlight.js%3Fv=4825356b"></script>
+        <script src="_static/dark_mode_js/default_dark.js%3Fv=fd565c74"></script>
+        <script src="_static/dark_mode_js/theme_switcher.js%3Fv=358d3910"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Orphans" href="Orphans.html" />
+    <link rel="prev" title="Memory Management" href="Memory-Management.html" /> 
+<script async type="text/javascript" src="../../_/static/javascript/readthedocs-addons.js"></script><meta name="readthedocs-project-slug" content="gut" /><meta name="readthedocs-version-slug" content="latest" /><meta name="readthedocs-resolver-filename" content="/Mocking-Input.html" /><meta name="readthedocs-http-status" content="200" /></head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            GUT
+              <img src="_static/GutDocsLogo.png" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                9.4.0 for Godot-4
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Getting Started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="Install.html">Install</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Quick-Start.html">Quick Start</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Command-Line.html">Command Line</a></li>
+<li class="toctree-l1"><a class="reference internal" href="New-For-Godot-4.html">Godot 4 Changes</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Test Scripts</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="class_ref/class_guttest.html">GutTest</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Creating-Tests.html">Creating Tests</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Awaiting.html">Awaiting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Inner-Test-Classes.html">Inner Test Classes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Parameterized-Tests.html">Parameterized Tests</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Simulate.html">Simulate</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Comparing-Things.html">Comparing Things</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Doubling</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="Doubles.html">Doubles</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Partial-Doubles.html">Partial Doubles</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Double-Strategy.html">Doubling Strategy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Stubbing.html">Stubbing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Spies.html">Spies</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Other</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="Contributing.html">Contributing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="GDScript-Warnings.html">GDScript Warnings</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Export-Test-Results.html">Export Test Results</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Hooks.html">Hooks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Memory-Management.html">Memory Management</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="Mocking-Input.html#">Mocking Input</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="Mocking-Input.html#using-an-object-as-a-receiver">Using an Object as a Receiver</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Mocking-Input.html#using-input-as-a-receiver">Using <code class="docutils literal notranslate"><span class="pre">Input</span></code> as a Receiver</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Mocking-Input.html#chaining-input-events">Chaining Input Events</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Mocking-Input.html#examples">Examples</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Mocking-Input.html#gotchas">Gotchas</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Mocking-Input.html#understanding-input-use-accumulated-input">Understanding Input.use_accumulated_input</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="Mocking-Input.html#testing-with-use-accumulated-input">Testing with use_accumulated_input</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="Mocking-Input.html#recommended-approaches">Recommended approaches</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Mocking-Input.html#other-ways-that-aren-t-so-good">Other ways that aren’t so good.</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="Mocking-Input.html#id1">Examples</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="Orphans.html">Orphans</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Running-On-Devices.html">Running on Devices</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Tutorials.html">Tutorials</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Class Reference</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="Class-Ref.html">About Class Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="class_ref/class_addons_gut_cli_optparse.html">addons/gut/cli/optparse.gd</a></li>
+<li class="toctree-l1"><a class="reference internal" href="class_ref/class_addons_gut_junit_xml_export.html">addons/gut/junit_xml_export.gd</a></li>
+<li class="toctree-l1"><a class="reference internal" href="class_ref/class_addons_gut_parameter_factory.html">addons/gut/parameter_factory.gd</a></li>
+<li class="toctree-l1"><a class="reference internal" href="class_ref/class_guthookscript.html">GutHookScript</a></li>
+<li class="toctree-l1"><a class="reference internal" href="class_ref/class_gutinputfactory.html">GutInputFactory</a></li>
+<li class="toctree-l1"><a class="reference internal" href="class_ref/class_gutinputsender.html">GutInputSender</a></li>
+<li class="toctree-l1"><a class="reference internal" href="class_ref/class_gutmain.html">GutMain</a></li>
+<li class="toctree-l1"><a class="reference internal" href="class_ref/class_guttest.html">GutTest</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">GUT</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Mocking Input</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/Mocking-Input.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="mocking-input">
+<h1>Mocking Input<a class="headerlink" href="Mocking-Input.html#mocking-input" title="Permalink to this heading"></a></h1>
+<p>The <a class="reference internal" href="class_ref/class_gutinputsender.html#class-gutinputsender"><span class="std std-ref">GutInputSender</span></a> class operates on one or more receivers.  It will create and send <code class="docutils literal notranslate"><span class="pre">InputEvent</span></code> instances to all of its receivers.</p>
+<p>There are two ways you could be processing your input.  You could be using the <code class="docutils literal notranslate"><span class="pre">_input</span></code> events to receive input events and process them.  The other way is to interact with the <code class="docutils literal notranslate"><span class="pre">Input</span></code> global and detect input in the <code class="docutils literal notranslate"><span class="pre">_process</span></code> and <code class="docutils literal notranslate"><span class="pre">_physics_process</span></code> methods.  <a class="reference internal" href="class_ref/class_gutinputsender.html#class-gutinputsender"><span class="std std-ref">GutInputSender</span></a> works with both approaches, but using <a class="reference internal" href="class_ref/class_gutinputsender.html#class-gutinputsender"><span class="std std-ref">GutInputSender</span></a> differs for each approach.  Read the sections below to learn the best way to use <a class="reference internal" href="class_ref/class_gutinputsender.html#class-gutinputsender"><span class="std std-ref">GutInputSender</span></a> with your game.</p>
+<section id="using-an-object-as-a-receiver">
+<h2>Using an Object as a Receiver<a class="headerlink" href="Mocking-Input.html#using-an-object-as-a-receiver" title="Permalink to this heading"></a></h2>
+<p>When you use an instance of an object as a receiver, <a class="reference internal" href="class_ref/class_gutinputsender.html#class-gutinputsender"><span class="std std-ref">GutInputSender</span></a> will send <code class="docutils literal notranslate"><span class="pre">InputEvent</span></code> instances to the various <code class="docutils literal notranslate"><span class="pre">input</span></code> methods.  They will be called in this order:</p>
+<ol class="arabic simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">_input</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">_gui_input</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">_unhandled_input</span></code></p></li>
+</ol>
+<p>When there are multiple receivers, each receiver will be called in the order they were added.  All three <code class="docutils literal notranslate"><span class="pre">_input</span></code> methods will be called on each receiver then the <a class="reference internal" href="class_ref/class_gutinputsender.html#class-gutinputsender"><span class="std std-ref">GutInputSender</span></a> will move to the next receiver.</p>
+<p>When using objects as receivers it is recommended that each test create its own instance of <a class="reference internal" href="class_ref/class_gutinputsender.html#class-gutinputsender"><span class="std std-ref">GutInputSender</span></a>.  <a class="reference internal" href="class_ref/class_gutinputsender.html#class-gutinputsender"><span class="std std-ref">GutInputSender</span></a> retains information about what actions/buttons/etc have been pressed.  By creating a new instance in each test, you don’t have to worry about clearing this state between tests.</p>
+<p>If you are processing input by directly interacting with the <code class="docutils literal notranslate"><span class="pre">Input</span></code> global, then you should follow the instructions in the next section.</p>
+<div class="highlight-gdscript notranslate"><div class="highlight"><pre><span></span><span class="k">func</span><span class="w"> </span><span class="n">test_shoot</span><span class="p">():</span>
+<span class="w">    </span><span class="k">var</span><span class="w"> </span><span class="n">player</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Player</span><span class="o">.</span><span class="n">new</span><span class="p">()</span>
+<span class="w">    </span><span class="k">var</span><span class="w"> </span><span class="n">sender</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">InputSender</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="n">player</span><span class="p">)</span>
+
+<span class="w">    </span><span class="n">sender</span><span class="o">.</span><span class="n">action_down</span><span class="p">(</span><span class="s2">&quot;shoot&quot;</span><span class="p">)</span>
+<span class="w">    </span><span class="n">assert_true</span><span class="p">(</span><span class="n">player</span><span class="o">.</span><span class="n">is_shooting</span><span class="p">())</span>
+</pre></div>
+</div>
+</section>
+<section id="using-input-as-a-receiver">
+<h2>Using <code class="docutils literal notranslate"><span class="pre">Input</span></code> as a Receiver<a class="headerlink" href="Mocking-Input.html#using-input-as-a-receiver" title="Permalink to this heading"></a></h2>
+<p>When <code class="docutils literal notranslate"><span class="pre">Input</span></code> is used as a receiver <code class="docutils literal notranslate"><span class="pre">Input</span></code> will send all inputs it receives from the <a class="reference internal" href="class_ref/class_gutinputsender.html#class-gutinputsender"><span class="std std-ref">GutInputSender</span></a> to every object that has been added to the tree.  <code class="docutils literal notranslate"><span class="pre">Input</span></code> will treat all the events it gets exactly the same as if the events were triggered from hardware.  This means all the <code class="docutils literal notranslate"><span class="pre">is_action_just_pressed</span></code> and similar functions will work the same.  The <code class="docutils literal notranslate"><span class="pre">InputEvent</span></code> instances will also be sent to the various <code class="docutils literal notranslate"><span class="pre">_input</span></code> methods on objects in the tree in whatever order <code class="docutils literal notranslate"><span class="pre">Input</span></code> desires.</p>
+<p>Using <code class="docutils literal notranslate"><span class="pre">Input</span></code> makes testing objects that handle input via <code class="docutils literal notranslate"><span class="pre">_process</span></code> or <code class="docutils literal notranslate"><span class="pre">_process_delta</span></code> much easier but you have to be a little careful when using it though.  Since the <code class="docutils literal notranslate"><span class="pre">Input</span></code> instance is global and retains its state for the duration of the test run.</p>
+<ol class="arabic simple">
+<li><p>You should declare your <a class="reference internal" href="class_ref/class_gutinputsender.html#class-gutinputsender"><span class="std std-ref">GutInputSender</span></a> instance at the class level.  You will need access to it in the <code class="docutils literal notranslate"><span class="pre">after_each</span></code> method.</p></li>
+<li><p>Call <code class="docutils literal notranslate"><span class="pre">release_all</span></code> on the <a class="reference internal" href="class_ref/class_gutinputsender.html#class-gutinputsender"><span class="std std-ref">GutInputSender</span></a> in <code class="docutils literal notranslate"><span class="pre">after_each</span></code>.  This makes sure that <code class="docutils literal notranslate"><span class="pre">Input</span></code> doesn’t think that a button is pressed when you don’t expect it to be.  If <code class="docutils literal notranslate"><span class="pre">Input</span></code> thinks a button is pressed, it will not send any “down” events until it gets an “up” event.</p></li>
+<li><p>Call <code class="docutils literal notranslate"><span class="pre">clear</span></code> on the <a class="reference internal" href="class_ref/class_gutinputsender.html#class-gutinputsender"><span class="std std-ref">GutInputSender</span></a> in <code class="docutils literal notranslate"><span class="pre">after_each</span></code>.  This clears out any state the <a class="reference internal" href="class_ref/class_gutinputsender.html#class-gutinputsender"><span class="std std-ref">GutInputSender</span></a> has.  It tracks inputs so that functions like <code class="docutils literal notranslate"><span class="pre">hold_for</span></code> can create dynamic “up” events, as well as various other things.  Calling <code class="docutils literal notranslate"><span class="pre">clear</span></code> makes sure that <a class="reference internal" href="class_ref/class_gutinputsender.html#class-gutinputsender"><span class="std std-ref">GutInputSender</span></a> state does not leak from one test to another.</p></li>
+<li><p>You must ALWAYS await before making an assert or your objects will not get a chance to process the frame the <code class="docutils literal notranslate"><span class="pre">Input</span></code> was sent on (<code class="docutils literal notranslate"><span class="pre">_process</span></code> and <code class="docutils literal notranslate"><span class="pre">_physics_process</span></code> will not be called without a await).</p></li>
+</ol>
+<div class="highlight-gdscript notranslate"><div class="highlight"><pre><span></span><span class="k">var</span><span class="w"> </span><span class="n">_sender</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">InputSender</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="n">Input</span><span class="p">)</span>
+
+<span class="k">func</span><span class="w"> </span><span class="n">after_each</span><span class="p">():</span>
+<span class="w">    </span><span class="n">_sender</span><span class="o">.</span><span class="n">release_all</span><span class="p">()</span>
+<span class="w">    </span><span class="n">_sender</span><span class="o">.</span><span class="n">clear</span><span class="p">()</span>
+
+<span class="k">func</span><span class="w"> </span><span class="n">test_shoot</span><span class="p">():</span>
+<span class="w">    </span><span class="k">var</span><span class="w"> </span><span class="n">player</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Player</span><span class="o">.</span><span class="n">new</span><span class="p">()</span>
+
+<span class="w">    </span><span class="n">_sender</span><span class="o">.</span><span class="n">action_down</span><span class="p">(</span><span class="s2">&quot;shoot&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">wait_frames</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="w">    </span><span class="n">await</span><span class="p">(</span><span class="n">_sender</span><span class="o">.</span><span class="n">idle</span><span class="p">)</span>
+
+<span class="w">    </span><span class="n">assert_true</span><span class="p">(</span><span class="n">player</span><span class="o">.</span><span class="n">is_shooting</span><span class="p">())</span>
+</pre></div>
+</div>
+</section>
+<section id="chaining-input-events">
+<h2>Chaining Input Events<a class="headerlink" href="Mocking-Input.html#chaining-input-events" title="Permalink to this heading"></a></h2>
+<p>The <a class="reference internal" href="class_ref/class_gutinputsender.html#class-gutinputsender"><span class="std std-ref">GutInputSender</span></a> methods return the instance so you can chain multiple calls together to script out a sequence of inputs.  The sequence is immediately started.  When the sequence finishes the <code class="docutils literal notranslate"><span class="pre">'idle'</span></code> signal is emitted.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">var</span> <span class="n">player</span> <span class="o">=</span> <span class="n">Player</span><span class="o">.</span><span class="n">new</span><span class="p">()</span>
+<span class="n">var</span> <span class="n">sender</span> <span class="o">=</span> <span class="n">InputSender</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="n">player</span><span class="p">)</span>
+
+<span class="c1"># press a, then b, then release a, then release b</span>
+<span class="n">sender</span><span class="o">.</span><span class="n">key_down</span><span class="p">(</span><span class="s2">&quot;a&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">wait</span><span class="p">(</span><span class="mf">.1</span><span class="p">)</span>\
+    <span class="o">.</span><span class="n">key_down</span><span class="p">(</span><span class="n">KEY_B</span><span class="p">)</span><span class="o">.</span><span class="n">wait</span><span class="p">(</span><span class="mf">.1</span><span class="p">)</span>\
+    <span class="o">.</span><span class="n">key_up</span><span class="p">(</span><span class="s2">&quot;a&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">wait</span><span class="p">(</span><span class="mf">.1</span><span class="p">)</span>\
+    <span class="o">.</span><span class="n">key_up</span><span class="p">(</span><span class="n">KEY_B</span><span class="p">)</span>
+<span class="k">await</span><span class="p">(</span><span class="n">sender</span><span class="o">.</span><span class="n">idle</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>The <a class="reference internal" href="class_ref/class_gutinputsender.html#class-gutinputsender"><span class="std std-ref">GutInputSender</span></a> will emit the <code class="docutils literal notranslate"><span class="pre">idle</span></code> signal when all inputs in a sequence have been sent and all <code class="docutils literal notranslate"><span class="pre">waits</span></code> have expired.</p>
+<p>Any events that do not have a <code class="docutils literal notranslate"><span class="pre">wait</span></code> or <code class="docutils literal notranslate"><span class="pre">hold_for</span></code> call in between them will be fired on the same frame.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># checking for is_action_just_pressed for &quot;jump&quot; and &quot;fire&quot; will be true in the same frame.</span>
+<span class="n">sender</span><span class="o">.</span><span class="n">action</span><span class="o">-</span><span class="n">down</span><span class="p">(</span><span class="s2">&quot;jump&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">action_down</span><span class="p">(</span><span class="s2">&quot;fire&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>You can use a trailing <code class="docutils literal notranslate"><span class="pre">wait</span></code> to give the result of the input time to play out</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># wait an extra .2 seconds at the end so that asserts will be run after the</span>
+<span class="c1"># shooting animation finishes.</span>
+<span class="n">sender</span><span class="o">.</span><span class="n">action_down</span><span class="p">(</span><span class="s2">&quot;shoot&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">hold_for</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">wait</span><span class="p">(</span><span class="mf">.2</span><span class="p">)</span>
+<span class="k">await</span><span class="p">(</span><span class="n">sender</span><span class="o">.</span><span class="n">idle</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="examples">
+<h2>Examples<a class="headerlink" href="Mocking-Input.html#examples" title="Permalink to this heading"></a></h2>
+<p>These are examples of scripting out inputs and sending them to <code class="docutils literal notranslate"><span class="pre">Input</span></code>.  The <code class="docutils literal notranslate"><span class="pre">Player</span></code> class in these examples would be handling input in <code class="docutils literal notranslate"><span class="pre">_process</span></code> or <code class="docutils literal notranslate"><span class="pre">_process_physics</span></code>.</p>
+<div class="highlight-gdscript notranslate"><div class="highlight"><pre><span></span><span class="k">extends</span><span class="w"> </span><span class="n">GutTest</span>
+
+<span class="c1"># When sending events to Input the InputSender instance should be defined at</span>
+<span class="c1"># the class level so that you can easily clear it between tests in after_each.</span>
+<span class="k">var</span><span class="w"> </span><span class="n">_sender</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">InputSender</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="n">Input</span><span class="p">)</span>
+
+<span class="c1"># IMPORTANT:  When using Input as the receiver of events you should always</span>
+<span class="c1">#             release_all and clear the InputSender so that any</span>
+<span class="c1">#             actions/keys/buttons that are not released in a test are released</span>
+<span class="c1">#             before the next test runs.  &quot;down&quot; events will not be sent by</span>
+<span class="c1">#             Input if the action/button/etc is currently &quot;down&quot;.</span>
+<span class="k">func</span><span class="w"> </span><span class="n">after_each</span><span class="p">():</span>
+<span class="w">    </span><span class="n">_sender</span><span class="o">.</span><span class="n">release_all</span><span class="p">()</span>
+<span class="w">    </span><span class="n">_sender</span><span class="o">.</span><span class="n">clear</span><span class="p">()</span>
+
+
+<span class="c1"># In this test we press and hold the jump button for .1 seconds then wait</span>
+<span class="c1"># another .3 seconds for the jump to take take place.  We then assert that</span>
+<span class="c1"># the character has moved up between 4 and 5 pixels.</span>
+<span class="k">func</span><span class="w"> </span><span class="n">test_tapping_jump_jumps_certain_height</span><span class="p">():</span>
+<span class="w">    </span><span class="k">var</span><span class="w"> </span><span class="n">player</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">add_child_autofree</span><span class="p">(</span><span class="n">Player</span><span class="o">.</span><span class="n">new</span><span class="p">())</span>
+
+<span class="w">    </span><span class="n">_sender</span><span class="o">.</span><span class="n">action_down</span><span class="p">(</span><span class="s2">&quot;jump&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">hold_for</span><span class="p">(</span><span class="o">.</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">wait</span><span class="p">(</span><span class="o">.</span><span class="mi">3</span><span class="p">)</span>
+<span class="w">    </span><span class="n">await</span><span class="p">(</span><span class="n">_sender</span><span class="o">.</span><span class="n">idle</span><span class="p">)</span>
+
+<span class="w">    </span><span class="n">assert_between</span><span class="p">(</span><span class="n">player</span><span class="o">.</span><span class="n">position</span><span class="o">.</span><span class="n">y</span><span class="p">,</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w"> </span><span class="mi">5</span><span class="p">)</span>
+
+
+<span class="c1"># This is similar to the other test but we hold jump for longer and then</span>
+<span class="c1"># verify the player jumped higher.</span>
+<span class="k">func</span><span class="w"> </span><span class="n">test_holding_jump_jumps_higher</span><span class="p">():</span>
+<span class="w">    </span><span class="k">var</span><span class="w"> </span><span class="n">player</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">add_child_autofree</span><span class="p">(</span><span class="n">Player</span><span class="o">.</span><span class="n">new</span><span class="p">())</span>
+
+<span class="w">    </span><span class="n">_sender</span><span class="o">.</span><span class="n">action_down</span><span class="p">(</span><span class="s2">&quot;jump&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">hold_for</span><span class="p">(</span><span class="o">.</span><span class="mi">75</span><span class="p">)</span>
+<span class="w">    </span><span class="n">await</span><span class="p">(</span><span class="n">_sender</span><span class="o">.</span><span class="n">idle</span><span class="p">)</span>
+
+<span class="w">    </span><span class="n">assert_between</span><span class="p">(</span><span class="n">player</span><span class="o">.</span><span class="n">position</span><span class="o">.</span><span class="n">y</span><span class="p">,</span><span class="w"> </span><span class="mi">7</span><span class="p">,</span><span class="w"> </span><span class="mi">8</span><span class="p">)</span>
+
+
+<span class="c1"># This tests throwing a fireball, like with Ryu or Ken from Street Fighter.</span>
+<span class="c1"># Note that there is not a hold_for after &quot;forward&quot; and the key_down for</span>
+<span class="c1"># fierce punch (FP) immediately after.  This means the &quot;forward&quot; motion AND</span>
+<span class="c1"># FP are pressed in the same frame.</span>
+<span class="k">func</span><span class="w"> </span><span class="n">test_fireball_input</span><span class="p">():</span>
+<span class="w">    </span><span class="k">var</span><span class="w"> </span><span class="n">player</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">add_child_autofree</span><span class="p">(</span><span class="n">Player</span><span class="o">.</span><span class="n">new</span><span class="p">())</span>
+
+<span class="w">    </span><span class="n">_sender</span><span class="o">.</span><span class="n">action_down</span><span class="p">(</span><span class="s2">&quot;down&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">hold_for</span><span class="p">(</span><span class="s2">&quot;2f&quot;</span><span class="p">)</span>\
+<span class="w">        </span><span class="o">.</span><span class="n">action_down</span><span class="p">(</span><span class="s2">&quot;down_forward&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">hold_for</span><span class="p">(</span><span class="s2">&quot;2f&quot;</span><span class="p">)</span>\
+<span class="w">        </span><span class="o">.</span><span class="n">action_down</span><span class="p">(</span><span class="s2">&quot;forward&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">key_down</span><span class="p">(</span><span class="s2">&quot;FP&quot;</span><span class="p">)</span>
+<span class="w">    </span><span class="n">await</span><span class="p">(</span><span class="n">_sender</span><span class="o">.</span><span class="n">idle</span><span class="p">)</span>
+
+<span class="w">    </span><span class="n">assert_true</span><span class="p">(</span><span class="n">player</span><span class="o">.</span><span class="n">is_throwing_fireball</span><span class="p">())</span>
+
+
+<span class="c1"># In this example we are testing that two actions in combination cause the</span>
+<span class="c1"># player to slide.  Note that there is no release of the actions in this</span>
+<span class="c1"># test.  This is a good example of why using release_all in after_each makes</span>
+<span class="c1"># the tests simpler to write and prevents leaking of inputs from one test to</span>
+<span class="c1"># another.</span>
+<span class="k">func</span><span class="w"> </span><span class="n">test_holding_down_and_jump_does_slide</span><span class="p">():</span>
+<span class="w">    </span><span class="k">var</span><span class="w"> </span><span class="n">player</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">add_child_autofree</span><span class="p">(</span><span class="n">Player</span><span class="o">.</span><span class="n">new</span><span class="p">())</span>
+
+<span class="w">    </span><span class="n">_sender</span><span class="o">.</span><span class="n">action_down</span><span class="p">(</span><span class="s2">&quot;down&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">wait</span><span class="p">(</span><span class="s2">&quot;1f&quot;</span><span class="p">)</span>\
+<span class="w">        </span><span class="o">.</span><span class="n">action_down</span><span class="p">(</span><span class="s2">&quot;jump&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">wait</span><span class="p">(</span><span class="s2">&quot;2f&quot;</span><span class="p">)</span>
+<span class="w">    </span><span class="n">await</span><span class="p">(</span><span class="n">_sender</span><span class="o">.</span><span class="n">idle</span><span class="p">)</span>
+
+<span class="w">    </span><span class="n">assert_gt</span><span class="p">(</span><span class="n">player</span><span class="o">.</span><span class="n">velocity</span><span class="o">.</span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="gotchas">
+<h2>Gotchas<a class="headerlink" href="Mocking-Input.html#gotchas" title="Permalink to this heading"></a></h2>
+<ul class="simple">
+<li><p>When using <code class="docutils literal notranslate"><span class="pre">Input</span></code> as a receiver, everything in the tree gets the signals AND any actual inputs from hardware will be sent as well.  It’s best not to touch anything when running these tests.</p></li>
+<li><p>If you use a class level <a class="reference internal" href="class_ref/class_gutinputsender.html#class-gutinputsender"><span class="std std-ref">GutInputSender</span></a> and forget to call <code class="docutils literal notranslate"><span class="pre">release_all</span></code> and <code class="docutils literal notranslate"><span class="pre">clear</span></code> between tests then things will eventually start behaving weird and your tests will pass/fail in unpredictable ways.</p></li>
+</ul>
+</section>
+<section id="understanding-input-use-accumulated-input">
+<h2>Understanding Input.use_accumulated_input<a class="headerlink" href="Mocking-Input.html#understanding-input-use-accumulated-input" title="Permalink to this heading"></a></h2>
+<p>When <code class="docutils literal notranslate"><span class="pre">use_accumualted_input</span></code> is enabled, <code class="docutils literal notranslate"><span class="pre">Input</span></code> waits to process input until the end of a frame.  This means that if you do not flush the buffer or there are no “waits” or calls to <code class="docutils literal notranslate"><span class="pre">await</span></code> before you test how input was processed then your tests will fail.</p>
+<section id="testing-with-use-accumulated-input">
+<h3>Testing with use_accumulated_input<a class="headerlink" href="Mocking-Input.html#testing-with-use-accumulated-input" title="Permalink to this heading"></a></h3>
+<section id="recommended-approaches">
+<h4>Recommended approaches<a class="headerlink" href="Mocking-Input.html#recommended-approaches" title="Permalink to this heading"></a></h4>
+<ol class="arabic simple">
+<li><p>If you game does not want to have <code class="docutils literal notranslate"><span class="pre">use_accumulated_input</span></code> enabled, then disable it in a an Autoload.  GUT loads autoloads before running so this will disable it for all tests.</p></li>
+<li><p>Always have a trailing <code class="docutils literal notranslate"><span class="pre">wait</span></code> when sending input <code class="docutils literal notranslate"><span class="pre">_sender.key_down('a').wait('10f')</span></code>.  In testing, 6 frames wasn’t enough but 7 was <em>(for reasons I don’t understand but probably should so I made I used 10 frames for good measure)</em>.</p></li>
+<li><p>After sending all your input, call <code class="docutils literal notranslate"><span class="pre">Input.flush_buffered_events</span></code>.  Only use this in the specific cases where you know you want to send inputs immediately since this is NOT how your game will actually receive inputs.</p></li>
+</ol>
+</section>
+<section id="other-ways-that-aren-t-so-good">
+<h4>Other ways that aren’t so good.<a class="headerlink" href="Mocking-Input.html#other-ways-that-aren-t-so-good" title="Permalink to this heading"></a></h4>
+<p>If you use these approaches you should quarantine these tests in their own Inner Class or script so that they do not influence other tests that do not expect the buffer to be constantly flushed or <code class="docutils literal notranslate"><span class="pre">use_accumulated_input</span></code> to be disabled.</p>
+<ol class="arabic simple">
+<li><p>In GUT 7.4.0 <a class="reference internal" href="class_ref/class_gutinputsender.html#class-gutinputsender"><span class="std std-ref">GutInputSender</span></a> has an <code class="docutils literal notranslate"><span class="pre">auto_flush_input</span></code> property which is disabled by default.  When enabled this will call <code class="docutils literal notranslate"><span class="pre">Input.flush_buffered_events</span></code> after each input sent through an <a class="reference internal" href="class_ref/class_gutinputsender.html#class-gutinputsender"><span class="std std-ref">GutInputSender</span></a>.  This is a bit dangerous since this can cause some of your tests to not test the way your game will receive input when playing the game.</p></li>
+<li><p>You can disable <code class="docutils literal notranslate"><span class="pre">use_accumulated_input</span></code> in <code class="docutils literal notranslate"><span class="pre">before_all</span></code> and re-enable in <code class="docutils literal notranslate"><span class="pre">after_all</span></code>.  Just like with <code class="docutils literal notranslate"><span class="pre">auto_flush_input</span></code>, this has the potential to not test all inputs the same way as your game will get them when playing the game.</p></li>
+</ol>
+</section>
+</section>
+<section id="id1">
+<h3>Examples<a class="headerlink" href="Mocking-Input.html#id1" title="Permalink to this heading"></a></h3>
+<p>The following assume <code class="docutils literal notranslate"><span class="pre">use_accumulated_input</span></code> is enabled and uses Godot 3.5 syntax.  In 3.4 you have to call <code class="docutils literal notranslate"><span class="pre">set_use_accumulated_input</span></code>.  There is no way to check the value of this flag in 3.4.</p>
+<div class="highlight-gdscript notranslate"><div class="highlight"><pre><span></span><span class="k">extends</span><span class="w"> </span><span class="n">GutTest</span>
+
+<span class="k">var</span><span class="w"> </span><span class="n">_sender</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">InputSender</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="n">Input</span><span class="p">)</span>
+
+<span class="k">func</span><span class="w"> </span><span class="n">before_all</span><span class="p">():</span>
+<span class="w">    </span><span class="n">InputMap</span><span class="o">.</span><span class="n">add_action</span><span class="p">(</span><span class="s2">&quot;jump&quot;</span><span class="p">)</span>
+
+<span class="k">func</span><span class="w"> </span><span class="n">after_each</span><span class="p">():</span>
+<span class="w">    </span><span class="n">_sender</span><span class="o">.</span><span class="n">release_all</span><span class="p">()</span>
+<span class="w">    </span><span class="n">_sender</span><span class="o">.</span><span class="n">clear</span><span class="p">()</span>
+
+<span class="k">func</span><span class="w"> </span><span class="n">test_when_uai_enabled_input_not_processed_immediately</span><span class="p">():</span>
+<span class="w">    </span><span class="n">_sender</span><span class="o">.</span><span class="n">key_down</span><span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">)</span>
+<span class="w">    </span><span class="n">assert_false</span><span class="p">(</span><span class="n">Input</span><span class="o">.</span><span class="n">is_key_pressed</span><span class="p">(</span><span class="n">KEY_A</span><span class="p">))</span>
+
+<span class="k">func</span><span class="w"> </span><span class="n">test_when_uai_enabled_just_pressed_is_not_processed_immediately</span><span class="p">():</span>
+<span class="w">    </span><span class="n">_sender</span><span class="o">.</span><span class="n">action_down</span><span class="p">(</span><span class="s1">&#39;jump&#39;</span><span class="p">)</span>
+<span class="w">    </span><span class="n">assert_false</span><span class="p">(</span><span class="n">Input</span><span class="o">.</span><span class="n">is_action_just_pressed</span><span class="p">(</span><span class="s1">&#39;jump&#39;</span><span class="p">))</span>
+
+<span class="k">func</span><span class="w"> </span><span class="n">test_when_uai_enabled_waiting_makes_button_pressed</span><span class="p">():</span>
+<span class="w">    </span><span class="c1"># wait 10 frames.  In testing, 6 frames failed, but 7 passed.  Added 3 for</span>
+<span class="w">    </span><span class="c1"># good measure.</span>
+<span class="w">    </span><span class="n">_sender</span><span class="o">.</span><span class="n">key_down</span><span class="p">(</span><span class="n">KEY_Y</span><span class="p">)</span><span class="o">.</span><span class="n">wait</span><span class="p">(</span><span class="s1">&#39;10f&#39;</span><span class="p">)</span>
+<span class="w">    </span><span class="n">await</span><span class="p">(</span><span class="n">_sender</span><span class="o">.</span><span class="n">idle</span><span class="p">)</span>
+<span class="w">    </span><span class="n">assert_true</span><span class="p">(</span><span class="n">_sender</span><span class="o">.</span><span class="n">is_key_pressed</span><span class="p">(</span><span class="n">KEY_Y</span><span class="p">))</span>
+<span class="w">    </span><span class="n">assert_true</span><span class="p">(</span><span class="n">Input</span><span class="o">.</span><span class="n">is_key_pressed</span><span class="p">(</span><span class="n">KEY_Y</span><span class="p">))</span>
+
+<span class="k">func</span><span class="w"> </span><span class="n">test_when_uai_enabled_flushig_buffer_sends_input_immediatly</span><span class="p">():</span>
+<span class="w">    </span><span class="n">_sender</span><span class="o">.</span><span class="n">key_down</span><span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">)</span>
+<span class="w">    </span><span class="n">Input</span><span class="o">.</span><span class="n">flush_buffered_events</span><span class="p">()</span>
+<span class="w">    </span><span class="n">assert_true</span><span class="p">(</span><span class="n">Input</span><span class="o">.</span><span class="n">is_key_pressed</span><span class="p">(</span><span class="n">KEY_A</span><span class="p">))</span>
+
+<span class="k">func</span><span class="w"> </span><span class="n">test_disabling_uai_sends_input_immediately</span><span class="p">():</span>
+<span class="w">    </span><span class="n">Input</span><span class="o">.</span><span class="n">use_accumulated_input</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="bp">false</span>
+<span class="w">    </span><span class="n">_sender</span><span class="o">.</span><span class="n">key_down</span><span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">)</span>
+<span class="w">    </span><span class="n">assert_true</span><span class="p">(</span><span class="n">Input</span><span class="o">.</span><span class="n">is_key_pressed</span><span class="p">(</span><span class="n">KEY_A</span><span class="p">))</span>
+<span class="w">    </span><span class="c1"># re-enable so we don&#39;t ruin other tests</span>
+<span class="w">    </span><span class="n">Input</span><span class="o">.</span><span class="n">use_accumulated_input</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="bp">true</span>
+
+<span class="k">func</span><span class="w"> </span><span class="n">test_when_uai_enabled_flushing_buffer_just_pressed_is_processed_immediately</span><span class="p">():</span>
+<span class="w">    </span><span class="n">_sender</span><span class="o">.</span><span class="n">action_down</span><span class="p">(</span><span class="s1">&#39;jump&#39;</span><span class="p">)</span>
+<span class="w">    </span><span class="n">Input</span><span class="o">.</span><span class="n">flush_buffered_events</span><span class="p">()</span>
+<span class="w">    </span><span class="n">assert_true</span><span class="p">(</span><span class="n">Input</span><span class="o">.</span><span class="n">is_action_just_pressed</span><span class="p">(</span><span class="s1">&#39;jump&#39;</span><span class="p">))</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p><a class="reference internal" href="class_ref/class_gutinputsender.html#class-gutinputsender"><span class="std std-ref">GutInputSender Class Reference</span></a></p></li>
+<li><p><a class="reference internal" href="class_ref/class_gutinputfactory.html#class-gutinputfactory"><span class="std std-ref">GutInputFactory Class Reference</span></a></p></li>
+</ul>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="Memory-Management.html" class="btn btn-neutral float-left" title="Memory Management" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="Orphans.html" class="btn btn-neutral float-right" title="Orphans" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, Butch Wesley.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

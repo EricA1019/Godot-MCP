@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Command Line &mdash; GUT 9.4.0 documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/gut_custom.css" type="text/css" />
+      <link rel="stylesheet" href="_static/dark_mode_css/general.css" type="text/css" />
+      <link rel="stylesheet" href="_static/dark_mode_css/dark.css" type="text/css" />
+    <link rel="shortcut icon" href="_static/favicon.ico"/>
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="_static/jquery.js%3Fv=5d32c60e"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js%3Fv=2cd50e6c"></script>
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js%3Fv=354d2d61"></script>
+        <script src="_static/doctools.js%3Fv=888ff710"></script>
+        <script src="_static/sphinx_highlight.js%3Fv=4825356b"></script>
+        <script src="_static/dark_mode_js/default_dark.js%3Fv=fd565c74"></script>
+        <script src="_static/dark_mode_js/theme_switcher.js%3Fv=358d3910"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Godot 4 Changes" href="New-For-Godot-4.html" />
+    <link rel="prev" title="Quick Start" href="Quick-Start.html" /> 
+<script async type="text/javascript" src="../../_/static/javascript/readthedocs-addons.js"></script><meta name="readthedocs-project-slug" content="gut" /><meta name="readthedocs-version-slug" content="latest" /><meta name="readthedocs-resolver-filename" content="/Command-Line.html" /><meta name="readthedocs-http-status" content="200" /></head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            GUT
+              <img src="_static/GutDocsLogo.png" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                9.4.0 for Godot-4
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Getting Started</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="Install.html">Install</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Quick-Start.html">Quick Start</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="Command-Line.html#">Command Line</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="Command-Line.html#options">Options</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Command-Line.html#examples">Examples</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Command-Line.html#config-file">Config file</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="Command-Line.html#example">Example</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="Command-Line.html#common-errors">Common Errors</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="New-For-Godot-4.html">Godot 4 Changes</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Test Scripts</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="class_ref/class_guttest.html">GutTest</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Creating-Tests.html">Creating Tests</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Awaiting.html">Awaiting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Inner-Test-Classes.html">Inner Test Classes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Parameterized-Tests.html">Parameterized Tests</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Simulate.html">Simulate</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Comparing-Things.html">Comparing Things</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Doubling</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="Doubles.html">Doubles</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Partial-Doubles.html">Partial Doubles</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Double-Strategy.html">Doubling Strategy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Stubbing.html">Stubbing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Spies.html">Spies</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Other</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="Contributing.html">Contributing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="GDScript-Warnings.html">GDScript Warnings</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Export-Test-Results.html">Export Test Results</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Hooks.html">Hooks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Memory-Management.html">Memory Management</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Mocking-Input.html">Mocking Input</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Orphans.html">Orphans</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Running-On-Devices.html">Running on Devices</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Tutorials.html">Tutorials</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Class Reference</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="Class-Ref.html">About Class Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="class_ref/class_addons_gut_cli_optparse.html">addons/gut/cli/optparse.gd</a></li>
+<li class="toctree-l1"><a class="reference internal" href="class_ref/class_addons_gut_junit_xml_export.html">addons/gut/junit_xml_export.gd</a></li>
+<li class="toctree-l1"><a class="reference internal" href="class_ref/class_addons_gut_parameter_factory.html">addons/gut/parameter_factory.gd</a></li>
+<li class="toctree-l1"><a class="reference internal" href="class_ref/class_guthookscript.html">GutHookScript</a></li>
+<li class="toctree-l1"><a class="reference internal" href="class_ref/class_gutinputfactory.html">GutInputFactory</a></li>
+<li class="toctree-l1"><a class="reference internal" href="class_ref/class_gutinputsender.html">GutInputSender</a></li>
+<li class="toctree-l1"><a class="reference internal" href="class_ref/class_gutmain.html">GutMain</a></li>
+<li class="toctree-l1"><a class="reference internal" href="class_ref/class_guttest.html">GutTest</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">GUT</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Command Line</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/Command-Line.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="command-line">
+<h1>Command Line<a class="headerlink" href="Command-Line.html#command-line" title="Permalink to this heading"></a></h1>
+<p>Also supplied in this repo is the <code class="docutils literal notranslate"><span class="pre">gut_cmdln.gd</span></code> script that can be run from the command line.  This is also used by the VSCode Plugin <a class="reference external" href="https://marketplace.visualstudio.com/items?itemName=bitwes.gut-extension">gut-extension</a>.</p>
+<p><strong>Note:</strong> All the examples here come from my Mac/Bash.</p>
+<p>In the examples below I will be using <code class="docutils literal notranslate"><span class="pre">godot</span></code> as a command.  This is an alias I have created as:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">alias</span><span class="w"> </span><span class="nv">godot</span><span class="o">=</span><span class="s1">&#39;/Applications/Godot.app/Contents/MacOS/Godot&#39;</span>
+</pre></div>
+</div>
+<p>From the command line, at the root of your project, use the following command to run the script.  Use the options below to run tests.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>godot<span class="w"> </span>-d<span class="w"> </span>-s<span class="w"> </span>--path<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$PWD</span><span class="s2">&quot;</span><span class="w"> </span>addons/gut/gut_cmdln.gd
+</pre></div>
+</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">-d</span></code> option tells Godot to run in debug mode which is helpful.  The <code class="docutils literal notranslate"><span class="pre">-s</span></code> option tells Godot to run a script. <code class="docutils literal notranslate"><span class="pre">--path</span> <span class="pre">&quot;$PWD&quot;</span></code> tells Godot to treat the current directory as the root of a project.</p>
+<p>When running from command line, <code class="docutils literal notranslate"><span class="pre">0</span></code> will be returned if all tests pass and <code class="docutils literal notranslate"><span class="pre">1</span></code> will be returned if any fail (<code class="docutils literal notranslate"><span class="pre">pending</span></code> doesn’t affect the return value).</p>
+<section id="options">
+<h2>Options<a class="headerlink" href="Command-Line.html#options" title="Permalink to this heading"></a></h2>
+<p><em>Output from the command line help (-gh)</em></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">---</span>  <span class="n">Gut</span>  <span class="o">---</span>
+<span class="o">---------------------------------------------------------</span>
+<span class="n">This</span> <span class="ow">is</span> <span class="n">the</span> <span class="n">command</span> <span class="n">line</span> <span class="n">interface</span> <span class="k">for</span> <span class="n">the</span> <span class="n">unit</span> <span class="n">testing</span> <span class="n">tool</span> <span class="n">Gut</span><span class="o">.</span>  <span class="n">With</span> <span class="n">this</span>
+<span class="n">interface</span> <span class="n">you</span> <span class="n">can</span> <span class="n">run</span> <span class="n">one</span> <span class="ow">or</span> <span class="n">more</span> <span class="n">test</span> <span class="n">scripts</span> <span class="kn">from</span><span class="w"> </span><span class="nn">the</span> <span class="n">command</span> <span class="n">line</span><span class="o">.</span>  <span class="n">In</span> <span class="n">order</span>
+<span class="k">for</span> <span class="n">the</span> <span class="n">Gut</span> <span class="n">options</span> <span class="n">to</span> <span class="ow">not</span> <span class="n">clash</span> <span class="k">with</span> <span class="nb">any</span> <span class="n">other</span> <span class="n">godot</span> <span class="n">options</span><span class="p">,</span> <span class="n">each</span> <span class="n">option</span>
+<span class="n">starts</span> <span class="k">with</span> <span class="n">a</span> <span class="s2">&quot;g&quot;</span><span class="o">.</span>  <span class="n">Also</span><span class="p">,</span> <span class="nb">any</span> <span class="n">option</span> <span class="n">that</span> <span class="n">requires</span> <span class="n">a</span> <span class="n">value</span> <span class="n">will</span> <span class="n">take</span> <span class="n">the</span> <span class="n">form</span>
+<span class="n">of</span> <span class="s2">&quot;-g&lt;name&gt;=&lt;value&gt;&quot;</span><span class="o">.</span>  <span class="n">There</span> <span class="n">cannot</span> <span class="n">be</span> <span class="nb">any</span> <span class="n">spaces</span> <span class="n">between</span> <span class="n">the</span> <span class="n">option</span><span class="p">,</span> <span class="n">the</span> <span class="s2">&quot;=&quot;</span><span class="p">,</span>
+<span class="ow">or</span> <span class="n">inside</span> <span class="n">a</span> <span class="n">specified</span> <span class="n">value</span> <span class="ow">or</span> <span class="n">godot</span> <span class="n">will</span> <span class="n">think</span> <span class="n">you</span> <span class="n">are</span> <span class="n">trying</span> <span class="n">to</span> <span class="n">run</span> <span class="n">a</span> <span class="n">scene</span><span class="o">.</span>
+
+<span class="n">Options</span>
+<span class="o">-------</span>
+  <span class="o">-</span><span class="n">gtest</span>                    <span class="n">Comma</span> <span class="n">delimited</span> <span class="nb">list</span> <span class="n">of</span> <span class="n">full</span> <span class="n">paths</span> <span class="n">to</span> <span class="n">test</span> <span class="n">scripts</span> <span class="n">to</span> <span class="n">run</span><span class="o">.</span>
+  <span class="o">-</span><span class="n">gdir</span>                     <span class="n">Comma</span> <span class="n">delimited</span> <span class="nb">list</span> <span class="n">of</span> <span class="n">directories</span> <span class="n">to</span> <span class="n">add</span> <span class="n">tests</span> <span class="n">from</span><span class="o">.</span>
+  <span class="o">-</span><span class="n">gprefix</span>                  <span class="n">Prefix</span> <span class="n">used</span> <span class="n">to</span> <span class="n">find</span> <span class="n">tests</span> <span class="n">when</span> <span class="n">specifying</span> <span class="o">-</span><span class="n">gdir</span><span class="o">.</span>  <span class="n">Default</span> <span class="s2">&quot;test_&quot;</span><span class="o">.</span>
+  <span class="o">-</span><span class="n">gsuffix</span>                  <span class="n">Suffix</span> <span class="n">used</span> <span class="n">to</span> <span class="n">find</span> <span class="n">tests</span> <span class="n">when</span> <span class="n">specifying</span> <span class="o">-</span><span class="n">gdir</span><span class="o">.</span>  <span class="n">Default</span> <span class="s2">&quot;.gd&quot;</span><span class="o">.</span>
+  <span class="o">-</span><span class="n">ghide_orphans</span>            <span class="n">Display</span> <span class="n">orphan</span> <span class="n">counts</span> <span class="k">for</span> <span class="n">tests</span> <span class="ow">and</span> <span class="n">scripts</span><span class="o">.</span>  <span class="n">Default</span> <span class="s2">&quot;False&quot;</span><span class="o">.</span>
+  <span class="o">-</span><span class="n">gmaximize</span>                <span class="n">Maximizes</span> <span class="n">test</span> <span class="n">runner</span> <span class="n">window</span> <span class="n">to</span> <span class="n">fit</span> <span class="n">the</span> <span class="n">viewport</span><span class="o">.</span>
+  <span class="o">-</span><span class="n">gexit</span>                    <span class="n">Exit</span> <span class="n">after</span> <span class="n">running</span> <span class="n">tests</span><span class="o">.</span>  <span class="n">If</span> <span class="ow">not</span> <span class="n">specified</span> <span class="n">you</span> <span class="n">have</span> <span class="n">to</span> <span class="n">manually</span> <span class="n">close</span> <span class="n">the</span> <span class="n">window</span><span class="o">.</span>
+  <span class="o">-</span><span class="n">gexit_on_success</span>         <span class="n">Only</span> <span class="n">exit</span> <span class="k">if</span> <span class="nb">all</span> <span class="n">tests</span> <span class="k">pass</span><span class="o">.</span>
+  <span class="o">-</span><span class="n">glog</span>                     <span class="n">Log</span> <span class="n">level</span><span class="o">.</span>  <span class="n">Default</span> <span class="mi">1</span>
+  <span class="o">-</span><span class="n">gignore_pause</span>            <span class="n">Ignores</span> <span class="nb">any</span> <span class="n">calls</span> <span class="n">to</span> <span class="n">gut</span><span class="o">.</span><span class="n">pause_before_teardown</span><span class="o">.</span>
+  <span class="o">-</span><span class="n">gselect</span>                  <span class="n">Select</span> <span class="n">a</span> <span class="n">script</span> <span class="n">to</span> <span class="n">run</span> <span class="n">initially</span><span class="o">.</span>  <span class="n">The</span> <span class="n">first</span> <span class="n">script</span> <span class="n">that</span> <span class="n">was</span> <span class="n">loaded</span> <span class="n">using</span> <span class="o">-</span><span class="n">gtest</span> <span class="ow">or</span> <span class="o">-</span><span class="n">gdir</span> <span class="n">that</span> <span class="n">contains</span> <span class="n">the</span> <span class="n">specified</span> <span class="n">string</span> <span class="n">will</span> <span class="n">be</span> <span class="n">executed</span><span class="o">.</span>  <span class="n">You</span> <span class="n">may</span> <span class="n">run</span> <span class="n">others</span> <span class="n">by</span> <span class="n">interacting</span> <span class="k">with</span> <span class="n">the</span> <span class="n">GUI</span><span class="o">.</span>
+  <span class="o">-</span><span class="n">gunit_test_name</span>          <span class="n">Name</span> <span class="n">of</span> <span class="n">a</span> <span class="n">test</span> <span class="n">to</span> <span class="n">run</span><span class="o">.</span>  <span class="n">Any</span> <span class="n">test</span> <span class="n">that</span> <span class="n">contains</span> <span class="n">the</span> <span class="n">specified</span> <span class="n">text</span> <span class="n">will</span> <span class="n">be</span> <span class="n">run</span><span class="p">,</span> <span class="nb">all</span> <span class="n">others</span> <span class="n">will</span> <span class="n">be</span> <span class="n">skipped</span><span class="o">.</span>
+  <span class="o">-</span><span class="n">gh</span>                       <span class="n">Print</span> <span class="n">this</span> <span class="n">help</span><span class="p">,</span> <span class="n">then</span> <span class="n">quit</span>
+  <span class="o">-</span><span class="n">gconfig</span>                  <span class="n">A</span> <span class="n">config</span> <span class="n">file</span> <span class="n">that</span> <span class="n">contains</span> <span class="n">configuration</span> <span class="n">information</span><span class="o">.</span>  <span class="n">Default</span> <span class="ow">is</span> <span class="n">res</span><span class="p">:</span><span class="o">//.</span><span class="n">gutconfig</span><span class="o">.</span><span class="n">json</span>
+  <span class="o">-</span><span class="n">ginner_class</span>             <span class="n">Only</span> <span class="n">run</span> <span class="n">inner</span> <span class="n">classes</span> <span class="n">that</span> <span class="n">contain</span> <span class="n">this</span> <span class="n">string</span>
+  <span class="o">-</span><span class="n">gopacity</span>                 <span class="n">Set</span> <span class="n">opacity</span> <span class="n">of</span> <span class="n">test</span> <span class="n">runner</span> <span class="n">window</span><span class="o">.</span> <span class="n">Use</span> <span class="nb">range</span> <span class="mi">0</span> <span class="o">-</span> <span class="mf">100.</span> <span class="mi">0</span> <span class="o">=</span> <span class="n">transparent</span><span class="p">,</span> <span class="mi">100</span> <span class="o">=</span> <span class="n">opaque</span><span class="o">.</span>
+  <span class="o">-</span><span class="n">gpo</span>                      <span class="n">Print</span> <span class="n">option</span> <span class="n">values</span> <span class="kn">from</span><span class="w"> </span><span class="nn">all</span> <span class="n">sources</span> <span class="ow">and</span> <span class="n">the</span> <span class="n">value</span> <span class="n">used</span><span class="p">,</span> <span class="n">then</span> <span class="n">quit</span><span class="o">.</span>
+  <span class="o">-</span><span class="n">ginclude_subdirs</span>         <span class="n">Include</span> <span class="n">subdirectories</span> <span class="n">of</span> <span class="o">-</span><span class="n">gdir</span><span class="o">.</span>
+  <span class="o">-</span><span class="n">gdouble_strategy</span>         <span class="n">Default</span> <span class="n">strategy</span> <span class="n">to</span> <span class="n">use</span> <span class="n">when</span> <span class="n">doubling</span><span class="o">.</span>  <span class="n">Valid</span> <span class="n">values</span> <span class="n">are</span> <span class="p">[</span><span class="n">partial</span><span class="p">,</span> <span class="n">full</span><span class="p">]</span><span class="o">.</span>  <span class="n">Default</span> <span class="s2">&quot;partial&quot;</span>
+  <span class="o">-</span><span class="n">gdisable_colors</span>          <span class="n">Disable</span> <span class="n">command</span> <span class="n">line</span> <span class="n">colors</span><span class="o">.</span>
+  <span class="o">-</span><span class="n">gpre_run_script</span>          <span class="n">pre</span><span class="o">-</span><span class="n">run</span> <span class="n">hook</span> <span class="n">script</span> <span class="n">path</span>
+  <span class="o">-</span><span class="n">gpost_run_script</span>         <span class="n">post</span><span class="o">-</span><span class="n">run</span> <span class="n">hook</span> <span class="n">script</span> <span class="n">path</span>
+  <span class="o">-</span><span class="n">gprint_gutconfig_sample</span>  <span class="n">Print</span> <span class="n">out</span> <span class="n">json</span> <span class="n">that</span> <span class="n">can</span> <span class="n">be</span> <span class="n">used</span> <span class="n">to</span> <span class="n">make</span> <span class="n">a</span> <span class="n">gutconfig</span> <span class="n">file</span> <span class="n">then</span> <span class="n">quit</span><span class="o">.</span>
+  <span class="o">-</span><span class="n">gfont_name</span>               <span class="n">Valid</span> <span class="n">values</span> <span class="n">are</span><span class="p">:</span>  <span class="p">[</span><span class="n">AnonymousPro</span><span class="p">,</span> <span class="n">CourierPro</span><span class="p">,</span> <span class="n">LobsterTwo</span><span class="p">,</span> <span class="n">Default</span><span class="p">]</span><span class="o">.</span>  <span class="n">Default</span> <span class="s2">&quot;CourierPrime&quot;</span>
+  <span class="o">-</span><span class="n">gfont_size</span>               <span class="n">Font</span> <span class="n">size</span><span class="p">,</span> <span class="n">default</span> <span class="s2">&quot;16&quot;</span>
+  <span class="o">-</span><span class="n">gbackground_color</span>        <span class="n">Background</span> <span class="n">color</span> <span class="k">as</span> <span class="n">an</span> <span class="n">html</span> <span class="n">color</span><span class="p">,</span> <span class="n">default</span> <span class="s2">&quot;ff262626&quot;</span>
+  <span class="o">-</span><span class="n">gfont_color</span>              <span class="n">Font</span> <span class="n">color</span> <span class="k">as</span> <span class="n">an</span> <span class="n">html</span> <span class="n">color</span><span class="p">,</span> <span class="n">default</span> <span class="s2">&quot;ffcccccc&quot;</span>
+  <span class="o">-</span><span class="n">gjunit_xml_file</span>          <span class="n">Export</span> <span class="n">results</span> <span class="n">of</span> <span class="n">run</span> <span class="n">to</span> <span class="n">this</span> <span class="n">file</span> <span class="ow">in</span> <span class="n">the</span> <span class="n">Junit</span> <span class="n">XML</span> <span class="nb">format</span><span class="o">.</span>
+  <span class="o">-</span><span class="n">gjunit_xml_timestamp</span>     <span class="n">Include</span> <span class="n">a</span> <span class="n">timestamp</span> <span class="ow">in</span> <span class="n">the</span> <span class="o">-</span><span class="n">gjunit_xml_file</span><span class="p">,</span> <span class="n">default</span> <span class="kc">False</span>
+<span class="o">---------------------------------------------------------</span>
+</pre></div>
+</div>
+</section>
+<section id="examples">
+<h2>Examples<a class="headerlink" href="Command-Line.html#examples" title="Permalink to this heading"></a></h2>
+<p>Run godot in debug mode (-d), run a test script (-gtest), set log level to lowest (-glog), exit when done (-gexit)</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>godot<span class="w"> </span>-s<span class="w"> </span>addons/gut/gut_cmdln.gd<span class="w"> </span>-d<span class="w"> </span>--path<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$PWD</span><span class="s2">&quot;</span><span class="w"> </span>-gtest<span class="o">=</span>res://test/unit/sample_tests.gd<span class="w"> </span>-glog<span class="o">=</span><span class="m">1</span><span class="w"> </span>-gexit
+</pre></div>
+</div>
+<p>Load all test scripts that begin with ‘me_’ and end in ‘.res’ and run me_only_only_me.res (given that the directory contains the following scripts:  me_and_only_me.res, me_only.res, me_one.res, me_two.res).  I don’t specify the -gexit on this one since I might want to run all the scripts using the GUI after I run this one script.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>godot<span class="w"> </span>-s<span class="w"> </span>addons/gut/gut_cmdln.gd<span class="w"> </span>-d<span class="w"> </span>--path<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$PWD</span><span class="s2">&quot;</span><span class="w"> </span>-gdir<span class="o">=</span>res://test/unit<span class="w"> </span>-gprefix<span class="o">=</span>me_<span class="w"> </span>-gsuffix<span class="o">=</span>.res<span class="w"> </span>-gselect<span class="o">=</span>only_me
+</pre></div>
+</div>
+</section>
+<section id="config-file">
+<h2>Config file<a class="headerlink" href="Command-Line.html#config-file" title="Permalink to this heading"></a></h2>
+<p>To cut down on the amount of arguments you have to pass to gut and to make it easier to change them, you can optionally use a json file to specify some of the values.  By default <code class="docutils literal notranslate"><span class="pre">gut_cmdln</span></code> looks for a config file at <code class="docutils literal notranslate"><span class="pre">res://.gutconfig.json</span></code>.  You can specify a different file using the <code class="docutils literal notranslate"><span class="pre">-gconfig</span></code> option.</p>
+<p>Here is a sample file.  You can print out the text for a gutconfig file using the <code class="docutils literal notranslate"><span class="pre">-gprint_gutconfig_sample</span></code> option.</p>
+<section id="example">
+<h3>Example<a class="headerlink" href="Command-Line.html#example" title="Permalink to this heading"></a></h3>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;dirs&quot;</span><span class="p">:[</span><span class="s2">&quot;res://test/unit/&quot;</span><span class="p">,</span><span class="s2">&quot;res://test/integration/&quot;</span><span class="p">],</span>
+<span class="w">  </span><span class="nt">&quot;double_strategy&quot;</span><span class="p">:</span><span class="s2">&quot;partial&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;ignore_pause&quot;</span><span class="p">:</span><span class="kc">false</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;include_subdirs&quot;</span><span class="p">:</span><span class="kc">true</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;inner_class&quot;</span><span class="p">:</span><span class="s2">&quot;&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;log_level&quot;</span><span class="p">:</span><span class="mi">3</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;opacity&quot;</span><span class="p">:</span><span class="mi">100</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;prefix&quot;</span><span class="p">:</span><span class="s2">&quot;test_&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;selected&quot;</span><span class="p">:</span><span class="s2">&quot;&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;should_exit&quot;</span><span class="p">:</span><span class="kc">true</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;should_maximize&quot;</span><span class="p">:</span><span class="kc">true</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;suffix&quot;</span><span class="p">:</span><span class="s2">&quot;.gd&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;tests&quot;</span><span class="p">:[],</span>
+<span class="w">  </span><span class="nt">&quot;unit_test_name&quot;</span><span class="p">:</span><span class="s2">&quot;&quot;</span><span class="p">,</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="common-errors">
+<h2>Common Errors<a class="headerlink" href="Command-Line.html#common-errors" title="Permalink to this heading"></a></h2>
+<p>I really only know of one so far, but if you get a space in your command somewhere, you might see something like this:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ERROR</span><span class="p">:</span>  <span class="n">No</span> <span class="n">loader</span> <span class="n">found</span> <span class="k">for</span> <span class="n">resource</span><span class="p">:</span> <span class="n">res</span><span class="p">:</span><span class="o">//</span><span class="n">samples3</span>
+<span class="n">At</span><span class="p">:</span>  <span class="n">core</span>\<span class="n">io</span>\<span class="n">resource_loader</span><span class="o">.</span><span class="n">cpp</span><span class="p">:</span><span class="mi">209</span>
+<span class="n">ERROR</span><span class="p">:</span>  <span class="n">Failed</span> <span class="n">loading</span> <span class="n">scene</span><span class="p">:</span> <span class="n">res</span><span class="p">:</span><span class="o">//</span><span class="n">samples3</span>
+<span class="n">At</span><span class="p">:</span>  <span class="n">main</span>\<span class="n">main</span><span class="o">.</span><span class="n">cpp</span><span class="p">:</span><span class="mi">1260</span>
+</pre></div>
+</div>
+<p>I got this one when I accidentally put a space instead of an “=” after <code class="docutils literal notranslate"><span class="pre">-gselect</span></code>.</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="Quick-Start.html" class="btn btn-neutral float-left" title="Quick Start" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="New-For-Godot-4.html" class="btn btn-neutral float-right" title="Godot 4 Changes" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, Butch Wesley.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

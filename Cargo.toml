@@ -1,0 +1,9 @@
+[workspace]
+members = [
+    "crates/mcp-server",
+    "crates/common",
+    "crates/index",
+]
+resolver = "2"
+
+#EOF

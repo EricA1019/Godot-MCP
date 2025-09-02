@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Quick Start &mdash; GUT 9.4.0 documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/gut_custom.css" type="text/css" />
+      <link rel="stylesheet" href="_static/dark_mode_css/general.css" type="text/css" />
+      <link rel="stylesheet" href="_static/dark_mode_css/dark.css" type="text/css" />
+    <link rel="shortcut icon" href="_static/favicon.ico"/>
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="_static/jquery.js%3Fv=5d32c60e"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js%3Fv=2cd50e6c"></script>
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js%3Fv=354d2d61"></script>
+        <script src="_static/doctools.js%3Fv=888ff710"></script>
+        <script src="_static/sphinx_highlight.js%3Fv=4825356b"></script>
+        <script src="_static/dark_mode_js/default_dark.js%3Fv=fd565c74"></script>
+        <script src="_static/dark_mode_js/theme_switcher.js%3Fv=358d3910"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Command Line" href="Command-Line.html" />
+    <link rel="prev" title="Install" href="Install.html" /> 
+<script async type="text/javascript" src="../../_/static/javascript/readthedocs-addons.js"></script><meta name="readthedocs-project-slug" content="gut" /><meta name="readthedocs-version-slug" content="latest" /><meta name="readthedocs-resolver-filename" content="/Quick-Start.html" /><meta name="readthedocs-http-status" content="200" /></head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            GUT
+              <img src="_static/GutDocsLogo.png" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                9.4.0 for Godot-4
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Getting Started</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="Install.html">Install</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="Quick-Start.html#">Quick Start</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="Quick-Start.html#install">Install</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Quick-Start.html#creating-two-example-tests">Creating Two Example Tests</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Quick-Start.html#run-tests">Run Tests</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Quick-Start.html#creating-tests">Creating Tests</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Quick-Start.html#doubles-spies-stubs">Doubles/Spies/Stubs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Quick-Start.html#partial-doubles">Partial Doubles</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Quick-Start.html#parameterized-tests">Parameterized Tests</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Quick-Start.html#await">Await</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Quick-Start.html#leak-testing-and-memory-management">Leak Testing and Memory Management</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="Command-Line.html">Command Line</a></li>
+<li class="toctree-l1"><a class="reference internal" href="New-For-Godot-4.html">Godot 4 Changes</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Test Scripts</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="class_ref/class_guttest.html">GutTest</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Creating-Tests.html">Creating Tests</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Awaiting.html">Awaiting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Inner-Test-Classes.html">Inner Test Classes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Parameterized-Tests.html">Parameterized Tests</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Simulate.html">Simulate</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Comparing-Things.html">Comparing Things</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Doubling</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="Doubles.html">Doubles</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Partial-Doubles.html">Partial Doubles</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Double-Strategy.html">Doubling Strategy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Stubbing.html">Stubbing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Spies.html">Spies</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Other</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="Contributing.html">Contributing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="GDScript-Warnings.html">GDScript Warnings</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Export-Test-Results.html">Export Test Results</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Hooks.html">Hooks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Memory-Management.html">Memory Management</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Mocking-Input.html">Mocking Input</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Orphans.html">Orphans</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Running-On-Devices.html">Running on Devices</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Tutorials.html">Tutorials</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Class Reference</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="Class-Ref.html">About Class Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="class_ref/class_addons_gut_cli_optparse.html">addons/gut/cli/optparse.gd</a></li>
+<li class="toctree-l1"><a class="reference internal" href="class_ref/class_addons_gut_junit_xml_export.html">addons/gut/junit_xml_export.gd</a></li>
+<li class="toctree-l1"><a class="reference internal" href="class_ref/class_addons_gut_parameter_factory.html">addons/gut/parameter_factory.gd</a></li>
+<li class="toctree-l1"><a class="reference internal" href="class_ref/class_guthookscript.html">GutHookScript</a></li>
+<li class="toctree-l1"><a class="reference internal" href="class_ref/class_gutinputfactory.html">GutInputFactory</a></li>
+<li class="toctree-l1"><a class="reference internal" href="class_ref/class_gutinputsender.html">GutInputSender</a></li>
+<li class="toctree-l1"><a class="reference internal" href="class_ref/class_gutmain.html">GutMain</a></li>
+<li class="toctree-l1"><a class="reference internal" href="class_ref/class_guttest.html">GutTest</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">GUT</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Quick Start</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/Quick-Start.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="quick-start">
+<h1>Quick Start<a class="headerlink" href="Quick-Start.html#quick-start" title="Permalink to this heading"></a></h1>
+<p>This page contains brief descriptions of many of GUT’s features.  Most sections have a “More information” link where more in depth documentation can be found.</p>
+<section id="install">
+<h2>Install<a class="headerlink" href="Quick-Start.html#install" title="Permalink to this heading"></a></h2>
+<p>Add GUT to your project by downloading the <code class="docutils literal notranslate"><span class="pre">GUT</span> <span class="pre">-</span> <span class="pre">Godot</span> <span class="pre">Unit</span> <span class="pre">Testing</span></code> package in the Godot Asset Library (top center of Godot screen).  For more details and alternate install methods, check the <a class="reference internal" href="Install.html"><span class="doc std std-doc">install page</span></a>.</p>
+</section>
+<section id="creating-two-example-tests">
+<h2>Creating Two Example Tests<a class="headerlink" href="Quick-Start.html#creating-two-example-tests" title="Permalink to this heading"></a></h2>
+<p>For purposes of this Quick Start guide, create a script file <code class="docutils literal notranslate"><span class="pre">res://test/unit/test_example.gd</span></code> with the following content:</p>
+<div class="highlight-gdscript notranslate"><div class="highlight"><pre><span></span><span class="k">extends</span><span class="w"> </span><span class="n">GutTest</span>
+
+<span class="k">func</span><span class="w"> </span><span class="n">test_passes</span><span class="p">():</span>
+<span class="w">	</span><span class="c1"># this test will pass because 1 does equal 1</span>
+<span class="w">	</span><span class="n">assert_eq</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span>
+
+<span class="k">func</span><span class="w"> </span><span class="n">test_fails</span><span class="p">():</span>
+<span class="w">	</span><span class="c1"># this test will fail because those strings are not equal</span>
+<span class="w">	</span><span class="n">assert_eq</span><span class="p">(</span><span class="s1">&#39;hello&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;goodbye&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="run-tests">
+<h2>Run Tests<a class="headerlink" href="Quick-Start.html#run-tests" title="Permalink to this heading"></a></h2>
+<ul class="simple">
+<li><p>Open the GUT panel</p></li>
+</ul>
+<p><img alt="GUT Panel Location" src="_images/gut_panel_where.png" /></p>
+<ul class="simple">
+<li><p>Configure the directories where your tests are in the GUT Panel settings (you may need to scroll down to see this section).  If you created the example test above, this would be in <code class="docutils literal notranslate"><span class="pre">res://test/unit</span></code>.  A good strategy with GUT is to separate unit and integration tests into separate directory structures (such as <code class="docutils literal notranslate"><span class="pre">res://test/unit</span></code> and <code class="docutils literal notranslate"><span class="pre">res://test/integration</span></code>).  Once you get a lot of tests, this will make it easier to run the fast unit tests frequently, and the slower integration tests only as often as is useful.</p></li>
+</ul>
+<p><img alt="GUT Panel Test Directories" src="_images/gut_panel_test_directories.png" /></p>
+<ul class="simple">
+<li><p>Click “Run All” to run all your tests.</p></li>
+<li><p>Open a test script and click the button with your test script’s name (<code class="docutils literal notranslate"><span class="pre">test_test.gd</span></code> in image below) to run only that test script.</p></li>
+<li><p>Open a test script, put the cursor inside a test function, click the button with your test function’s name (<code class="docutils literal notranslate"><span class="pre">test_fails_when_number_not_equal</span></code> in the image below) to run just that one test.</p></li>
+</ul>
+<p><img alt="Gut Panel" src="_images/gut_panel.png" /></p>
+<p>Mouse-over labels and buttons in the GUT panel for more information.  You can even set keyboard shortcuts for all of the GUT panel actions.</p>
+<p>You can also run tests via the <a class="reference internal" href="Command-Line.html"><span class="doc std std-doc">command line</span></a> and through <a class="reference external" href="https://marketplace.visualstudio.com/items?itemName=bitwes.gut-extension">VSCode</a></p>
+</section>
+<section id="creating-tests">
+<h2>Creating Tests<a class="headerlink" href="Quick-Start.html#creating-tests" title="Permalink to this heading"></a></h2>
+<p>Much more information is available in the <a class="reference internal" href="Creating-Tests.html"><span class="doc std std-doc">Creating Tests</span></a> document, but here are some basics:</p>
+<ul class="simple">
+<li><p>All test scripts must extend <code class="docutils literal notranslate"><span class="pre">GutTest</span></code> (<code class="docutils literal notranslate"><span class="pre">res://addons/gut/test.gd</span></code>) script supplied by GUT.</p></li>
+</ul>
+<div class="highlight-gdscript notranslate"><div class="highlight"><pre><span></span><span class="k">extends</span><span class="w"> </span><span class="n">GutTest</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>By default, all test files must begin with <code class="docutils literal notranslate"><span class="pre">test_</span></code> to be found by GUT. You can change the prefix and suffix of test files in the GUT settings.</p></li>
+</ul>
+<p>There is a plethora of asserts and helpers that are listed <a class="reference internal" href="Asserts-and-Methods.html"><span class="doc std std-doc">here</span></a></p>
+<p>Setup and teardown methods:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">before_all</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">before_each</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">after_each</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">after_all</span></code></p></li>
+</ul>
+<p>Any method that starts with “test” will be run as a test.</p>
+<div class="highlight-gdscript notranslate"><div class="highlight"><pre><span></span><span class="k">extends</span><span class="w"> </span><span class="n">GutTest</span>
+
+<span class="k">func</span><span class="w"> </span><span class="n">before_all</span><span class="p">():</span>
+<span class="w">	</span><span class="n">gut</span><span class="o">.</span><span class="n">p</span><span class="p">(</span><span class="s2">&quot;Runs once before all tests&quot;</span><span class="p">)</span>
+
+<span class="k">func</span><span class="w"> </span><span class="n">before_each</span><span class="p">():</span>
+<span class="w">	</span><span class="n">gut</span><span class="o">.</span><span class="n">p</span><span class="p">(</span><span class="s2">&quot;Runs before each test.&quot;</span><span class="p">)</span>
+
+<span class="k">func</span><span class="w"> </span><span class="n">after_each</span><span class="p">():</span>
+<span class="w">	</span><span class="n">gut</span><span class="o">.</span><span class="n">p</span><span class="p">(</span><span class="s2">&quot;Runs after each test.&quot;</span><span class="p">)</span>
+
+<span class="k">func</span><span class="w"> </span><span class="n">after_all</span><span class="p">():</span>
+<span class="w">	</span><span class="n">gut</span><span class="o">.</span><span class="n">p</span><span class="p">(</span><span class="s2">&quot;Runs once after all tests&quot;</span><span class="p">)</span>
+
+<span class="k">func</span><span class="w"> </span><span class="n">test_assert_eq_number_not_equal</span><span class="p">():</span>
+<span class="w">	</span><span class="n">assert_eq</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;Should fail.  1 != 2&quot;</span><span class="p">)</span>
+
+<span class="k">func</span><span class="w"> </span><span class="n">test_assert_eq_number_equal</span><span class="p">():</span>
+<span class="w">	</span><span class="n">assert_eq</span><span class="p">(</span><span class="s1">&#39;asdf&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;asdf&#39;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;Should pass&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>You can use inner classes to group tests together.  The class name must start with “Test” and extend <code class="docutils literal notranslate"><span class="pre">test.gd</span></code>.</p>
+<div class="highlight-gdscript notranslate"><div class="highlight"><pre><span></span><span class="k">extends</span><span class="w"> </span><span class="n">GutTest</span>
+
+<span class="k">class</span><span class="w"> </span><span class="n">TestSomeAspects</span><span class="p">:</span>
+<span class="w">	</span><span class="k">extends</span><span class="w"> </span><span class="n">GutTest</span>
+
+<span class="w">	</span><span class="k">func</span><span class="w"> </span><span class="n">test_assert_eq_number_not_equal</span><span class="p">():</span>
+<span class="w">		</span><span class="n">assert_eq</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;Should fail.  1 != 2&quot;</span><span class="p">)</span>
+
+<span class="w">	</span><span class="k">func</span><span class="w"> </span><span class="n">test_assert_eq_number_equal</span><span class="p">():</span>
+<span class="w">		</span><span class="n">assert_eq</span><span class="p">(</span><span class="s1">&#39;asdf&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;asdf&#39;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;Should pass&quot;</span><span class="p">)</span>
+
+<span class="k">class</span><span class="w"> </span><span class="n">TestOtherAspects</span><span class="p">:</span>
+<span class="w">	</span><span class="k">extends</span><span class="w"> </span><span class="n">GutTest</span>
+
+<span class="w">	</span><span class="k">func</span><span class="w"> </span><span class="n">test_assert_true_with_true</span><span class="p">():</span>
+<span class="w">		</span><span class="n">assert_true</span><span class="p">(</span><span class="bp">true</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;Should pass, true is true&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="doubles-spies-stubs">
+<h2>Doubles/Spies/Stubs<a class="headerlink" href="Quick-Start.html#doubles-spies-stubs" title="Permalink to this heading"></a></h2>
+<p>More Information:  <a class="reference internal" href="Doubles.html"><span class="doc std std-doc">Doubles</span></a>, <a class="reference internal" href="Spies.html"><span class="doc std std-doc">Spies</span></a>, <a class="reference internal" href="Stubbing.html"><span class="doc std std-doc">Stubs</span></a></p>
+<p>You can make a double of just about anything.  <code class="docutils literal notranslate"><span class="pre">double</span></code> returns a loaded class/scene, not an instance.  Doubles extend the object to be doubled and have empty implementations for all methods defined in the script or parent scripts, but not parent Godot methods that are not overridden.</p>
+<div class="highlight-gdscript notranslate"><div class="highlight"><pre><span></span><span class="k">var</span><span class="w"> </span><span class="n">Foo</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">load</span><span class="p">(</span><span class="s1">&#39;res://foo.gd&#39;</span><span class="p">)</span>
+<span class="k">var</span><span class="w"> </span><span class="n">MyScene</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">load</span><span class="p">(</span><span class="s1">&#39;res://my_scene.tscn&#39;</span><span class="p">)</span>
+
+<span class="k">var</span><span class="w"> </span><span class="n">double_foo</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">double</span><span class="p">(</span><span class="n">Foo</span><span class="p">)</span><span class="o">.</span><span class="n">new</span><span class="p">()</span>
+<span class="k">var</span><span class="w"> </span><span class="n">double_scene</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">double</span><span class="p">(</span><span class="n">MyScene</span><span class="p">)</span><span class="o">.</span><span class="n">instantiate</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>You can stub your double to do different things.  Unstubbed methods that are called generate log messages.</p>
+<div class="highlight-gdscript notranslate"><div class="highlight"><pre><span></span><span class="k">var</span><span class="w"> </span><span class="n">double_foo</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">double</span><span class="p">(</span><span class="n">Foo</span><span class="p">)</span><span class="o">.</span><span class="n">new</span><span class="p">()</span>
+<span class="n">stub</span><span class="p">(</span><span class="n">double_foo</span><span class="o">.</span><span class="n">bar</span><span class="p">)</span><span class="o">.</span><span class="n">to_return</span><span class="p">(</span><span class="mi">42</span><span class="p">)</span>
+<span class="n">stub</span><span class="p">(</span><span class="n">double_foo</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;something&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">to_call_super</span><span class="p">()</span><span class="w"> </span><span class="c1"># do what method would normally do</span>
+<span class="n">stub</span><span class="p">(</span><span class="n">double_foo</span><span class="o">.</span><span class="n">other_thing</span><span class="p">)</span><span class="o">.</span><span class="n">to_return</span><span class="p">(</span><span class="mi">77</span><span class="p">)</span><span class="o">.</span><span class="n">when_passed</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;c&#39;</span><span class="p">)</span>
+<span class="n">stub</span><span class="p">(</span><span class="n">double_foo</span><span class="o">.</span><span class="n">other_thing</span><span class="o">.</span><span class="n">bind</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;z&#39;</span><span class="p">))</span><span class="o">.</span><span class="n">to_do_nothing</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>You can spy on your doubles with various asserts and helpers.</p>
+<div class="highlight-gdscript notranslate"><div class="highlight"><pre><span></span><span class="k">var</span><span class="w"> </span><span class="n">double_foo</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">double</span><span class="p">(</span><span class="n">Foo</span><span class="p">)</span><span class="o">.</span><span class="n">new</span><span class="p">()</span>
+
+<span class="o">...</span>
+
+<span class="n">assert_called</span><span class="p">(</span><span class="n">double_foo</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;bar&#39;</span><span class="p">)</span>
+<span class="n">assert_not_called</span><span class="p">(</span><span class="n">double_foo</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;something&#39;</span><span class="p">)</span>
+<span class="n">assert_call_count</span><span class="p">(</span><span class="n">double_foo</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;call_me&#39;</span><span class="p">,</span><span class="w"> </span><span class="mi">10</span><span class="p">)</span>
+
+<span class="c1"># assert other_thing called with parameters in array.</span>
+<span class="n">assert_called</span><span class="p">(</span><span class="n">double_foo</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;other_thing&#39;</span><span class="p">,</span><span class="w"> </span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;c&#39;</span><span class="p">])</span>
+
+<span class="c1"># Get an array of the parameters sent to the last</span>
+<span class="c1"># call to call_me</span>
+<span class="k">var</span><span class="w"> </span><span class="n">called_with_last</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">get_call_parameters</span><span class="p">(</span><span class="n">double_foo</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;call_me&#39;</span><span class="p">)</span>
+
+<span class="c1"># get the parameters passed to the 4th call of `call_me`</span>
+<span class="k">var</span><span class="w"> </span><span class="n">called_with_4</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">get_call_parameters</span><span class="p">(</span><span class="n">double_foo</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;call_me&#39;</span><span class="p">,</span><span class="w"> </span><span class="mi">4</span><span class="p">))</span>
+</pre></div>
+</div>
+</section>
+<section id="partial-doubles">
+<h2>Partial Doubles<a class="headerlink" href="Quick-Start.html#partial-doubles" title="Permalink to this heading"></a></h2>
+<p><a class="reference internal" href="Partial-Doubles.html"><span class="doc std std-doc">More Information</span></a></p>
+<p>Partial doubles have all the same properties of a double except they retain the source functionality by default.  You can stub and spy on them just like a double, but anything not stubbed will behave as if it wasn’t a double.</p>
+<div class="highlight-gdscript notranslate"><div class="highlight"><pre><span></span><span class="k">var</span><span class="w"> </span><span class="n">double_bar</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">partial_double</span><span class="p">(</span><span class="n">Bar</span><span class="p">)</span><span class="o">.</span><span class="n">instance</span><span class="p">()</span>
+
+<span class="c1"># the foo method will do nothing always now</span>
+<span class="n">stub</span><span class="p">(</span><span class="n">double_ba</span><span class="o">.</span><span class="n">foo</span><span class="p">)</span><span class="o">.</span><span class="n">to_do_nothing</span><span class="p">()</span>
+
+<span class="c1"># the something method will return 27 when passed 32,</span>
+<span class="c1"># but act normally when passed anything else.</span>
+<span class="n">stub</span><span class="p">(</span><span class="n">double_bar</span><span class="o">.</span><span class="n">something</span><span class="p">)</span><span class="o">.</span><span class="n">to_return</span><span class="p">(</span><span class="mi">27</span><span class="p">)</span><span class="o">.</span><span class="n">when_passed</span><span class="p">(</span><span class="mi">32</span><span class="p">)</span>
+
+<span class="c1"># example of spying</span>
+<span class="n">assert_called</span><span class="p">(</span><span class="n">double_bar</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;other_thing&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="parameterized-tests">
+<h2>Parameterized Tests<a class="headerlink" href="Quick-Start.html#parameterized-tests" title="Permalink to this heading"></a></h2>
+<p><a class="reference internal" href="Parameterized-Tests.html"><span class="doc std std-doc">More Information</span></a></p>
+<p>You can create tests that will be run multiple times and be passed multiple values.</p>
+<ul class="simple">
+<li><p>The test must have one and only one parameter.</p></li>
+<li><p>That parameter must be defaulted to call <code class="docutils literal notranslate"><span class="pre">use_parameters</span></code>.</p></li>
+<li><p>The value passed to use_parameters must be an array.</p>
+<ul>
+<li><p>Each element in the array will result in one execution of the test with that element passed in.</p></li>
+</ul>
+</li>
+</ul>
+<div class="highlight-gdscript notranslate"><div class="highlight"><pre><span></span><span class="k">var</span><span class="w"> </span><span class="n">test_params</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[[</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">],</span><span class="w"> </span><span class="p">[</span><span class="mi">4</span><span class="p">,</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w"> </span><span class="mi">6</span><span class="p">]]</span>
+<span class="k">func</span><span class="w"> </span><span class="n">test_with_parameters</span><span class="p">(</span><span class="n">p</span><span class="o">=</span><span class="n">use_parameters</span><span class="p">(</span><span class="n">test_params</span><span class="p">)):</span>
+<span class="w">	</span><span class="n">assert_eq</span><span class="p">(</span><span class="n">p</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="w"> </span><span class="n">p</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">p</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+
+<span class="c1"># The first array contains the name of the parameters, the 2nd array contains the values.</span>
+<span class="k">var</span><span class="w"> </span><span class="n">named_params</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ParameterFactory</span><span class="o">.</span><span class="n">named_parameters</span><span class="p">([</span><span class="s1">&#39;a&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;b&#39;</span><span class="p">],</span><span class="w"> </span><span class="p">[[</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">],</span><span class="w"> </span><span class="p">[</span><span class="s1">&#39;one&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;two&#39;</span><span class="p">]])</span>
+<span class="k">func</span><span class="w"> </span><span class="n">test_with_named_params</span><span class="p">(</span><span class="n">p</span><span class="o">=</span><span class="n">use_parameters</span><span class="p">(</span><span class="n">better_params</span><span class="p">)):</span>
+<span class="w">	</span><span class="n">assert_ne</span><span class="p">(</span><span class="n">p</span><span class="o">.</span><span class="n">a</span><span class="p">,</span><span class="w"> </span><span class="n">p</span><span class="o">.</span><span class="n">b</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>There are helpers to make your parameters more readable.</p>
+</section>
+<section id="await">
+<h2>Await<a class="headerlink" href="Quick-Start.html#await" title="Permalink to this heading"></a></h2>
+<p><a class="reference internal" href="Awaiting.html"><span class="doc std std-doc">More Information</span></a></p>
+<p>You can use <code class="docutils literal notranslate"><span class="pre">await</span></code> in your tests to allow time to pass before making assertions.  This can be useful if you need to wait for some interaction to play out, a signal to be emitted, or wait for things to happen in the next frames, such as physics process or draw.</p>
+<p>If you want to wait for a certain amount of time you can use <code class="docutils literal notranslate"><span class="pre">wait_seconds</span></code>.</p>
+<div class="highlight-gdscript notranslate"><div class="highlight"><pre><span></span><span class="n">await</span><span class="w"> </span><span class="n">wait_seconds</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>You can <code class="docutils literal notranslate"><span class="pre">await</span></code> to a signal or an amount of time, whichever comes first with <code class="docutils literal notranslate"><span class="pre">wait_for_signal</span></code>.  This ensures that your tests do not hang when a signal is not emitted.</p>
+<div class="highlight-gdscript notranslate"><div class="highlight"><pre><span></span><span class="k">var</span><span class="w"> </span><span class="n">my_obj</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">load</span><span class="p">(</span><span class="s1">&#39;res://my_obj.gd&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">new</span><span class="p">()</span>
+<span class="n">await</span><span class="w"> </span><span class="n">wait_for_signal</span><span class="p">(</span><span class="n">my_obj</span><span class="o">.</span><span class="n">some_signal</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>You can also <code class="docutils literal notranslate"><span class="pre">await</span></code> for a number of physics frames using <code class="docutils literal notranslate"><span class="pre">wait_physics_frames</span></code>.  It’s best to wait at least 2 frames as waiting one frame can be flaky.</p>
+<div class="highlight-gdscript notranslate"><div class="highlight"><pre><span></span><span class="n">await</span><span class="w"> </span><span class="n">wait_physics_frames</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Or a number of idle/process frames using <code class="docutils literal notranslate"><span class="pre">wait_process_frames</span></code>.</p>
+<div class="highlight-gdscript notranslate"><div class="highlight"><pre><span></span><span class="n">await</span><span class="w"> </span><span class="n">wait_process_frames</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="leak-testing-and-memory-management">
+<h2>Leak Testing and Memory Management<a class="headerlink" href="Quick-Start.html#leak-testing-and-memory-management" title="Permalink to this heading"></a></h2>
+<p><a class="reference internal" href="Memory-Management.html"><span class="doc std std-doc">More Information</span></a></p>
+<p>Call <code class="docutils literal notranslate"><span class="pre">autofree</span></code> or <code class="docutils literal notranslate"><span class="pre">autoqfree</span></code> on anything you want to be automatically freed up after your test.  These return whatever you pass it so you can save a line of code!</p>
+<div class="highlight-gdscript notranslate"><div class="highlight"><pre><span></span><span class="k">var</span><span class="w"> </span><span class="n">my_node</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">autofree</span><span class="p">(</span><span class="n">Node</span><span class="o">.</span><span class="n">new</span><span class="p">())</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">autofree</span></code> calls <code class="docutils literal notranslate"><span class="pre">free</span></code> on the object and <code class="docutils literal notranslate"><span class="pre">autoqfree</span></code> calls <code class="docutils literal notranslate"><span class="pre">queue_free</span></code>.</p>
+<p>If you plan to add your object to the tree you can use the <code class="docutils literal notranslate"><span class="pre">add_child_autofree</span></code> and <code class="docutils literal notranslate"><span class="pre">add_child_autoqfree</span></code> methods to add them as a child of the test script and free them at the end of the test.</p>
+<div class="highlight-gdscript notranslate"><div class="highlight"><pre><span></span><span class="k">var</span><span class="w"> </span><span class="n">my_node</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">add_child_autofree</span><span class="p">(</span><span class="n">Node2D</span><span class="o">.</span><span class="n">new</span><span class="p">())</span>
+</pre></div>
+</div>
+<p>Orphan counts are displayed after each test/script that generates orphans and at the end of the run.  If you don’t see output, then you don’t have any orphans!  You can disable this feature if you want.</p>
+<p>All objects created with <code class="docutils literal notranslate"><span class="pre">double</span></code> or <code class="docutils literal notranslate"><span class="pre">partial_double</span></code> are freed automatically after a test finishes.</p>
+<p>You can assert you didn’t make any new orphans with <code class="docutils literal notranslate"><span class="pre">assert_no_new_orphans</span></code>.  <code class="docutils literal notranslate"><span class="pre">assert_no_new_orphans</span></code> doesn’t know about objects passed to <code class="docutils literal notranslate"><span class="pre">autofree</span></code> so they will be counted if they are not in the tree.</p>
+<div class="highlight-gdscript notranslate"><div class="highlight"><pre><span></span><span class="k">func</span><span class="w"> </span><span class="n">test_freeing</span><span class="p">():</span>
+<span class="w">	</span><span class="k">var</span><span class="w"> </span><span class="n">node</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Node</span><span class="o">.</span><span class="n">new</span><span class="p">()</span>
+<span class="w">	</span><span class="n">assert_no_new_orphans</span><span class="p">(</span><span class="s1">&#39;this one fails&#39;</span><span class="p">)</span>
+<span class="w">	</span><span class="n">node</span><span class="o">.</span><span class="n">free</span><span class="p">()</span>
+<span class="w">	</span><span class="n">assert_no_new_orphans</span><span class="p">(</span><span class="s1">&#39;this one passes&#39;</span><span class="p">)</span>
+
+<span class="c1"># If you queue_free then you have to wait for it to be freed.</span>
+<span class="k">func</span><span class="w"> </span><span class="n">test_queue_freeing</span><span class="p">():</span>
+<span class="w">	</span><span class="k">var</span><span class="w"> </span><span class="n">node</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Node</span><span class="o">.</span><span class="n">new</span><span class="p">()</span>
+<span class="w">	</span><span class="n">node</span><span class="o">.</span><span class="n">queue_free</span><span class="p">()</span>
+<span class="w">	</span><span class="n">assert_no_new_orphans</span><span class="p">(</span><span class="s1">&#39;this one fails&#39;</span><span class="p">)</span>
+<span class="w">	</span><span class="n">await</span><span class="p">(</span><span class="n">wait_seconds</span><span class="p">(</span><span class="o">.</span><span class="mi">1</span><span class="p">))</span>
+<span class="w">	</span><span class="n">assert_no_new_orphans</span><span class="p">(</span><span class="s1">&#39;this one passes&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="Install.html" class="btn btn-neutral float-left" title="Install" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="Command-Line.html" class="btn btn-neutral float-right" title="Command Line" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, Butch Wesley.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

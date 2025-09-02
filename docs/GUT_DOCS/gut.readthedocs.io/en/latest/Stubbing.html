@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Stubbing &mdash; GUT 9.4.0 documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/gut_custom.css" type="text/css" />
+      <link rel="stylesheet" href="_static/dark_mode_css/general.css" type="text/css" />
+      <link rel="stylesheet" href="_static/dark_mode_css/dark.css" type="text/css" />
+    <link rel="shortcut icon" href="_static/favicon.ico"/>
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="_static/jquery.js%3Fv=5d32c60e"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js%3Fv=2cd50e6c"></script>
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js%3Fv=354d2d61"></script>
+        <script src="_static/doctools.js%3Fv=888ff710"></script>
+        <script src="_static/sphinx_highlight.js%3Fv=4825356b"></script>
+        <script src="_static/dark_mode_js/default_dark.js%3Fv=fd565c74"></script>
+        <script src="_static/dark_mode_js/theme_switcher.js%3Fv=358d3910"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Spies" href="Spies.html" />
+    <link rel="prev" title="Doubling Strategy" href="Double-Strategy.html" /> 
+<script async type="text/javascript" src="../../_/static/javascript/readthedocs-addons.js"></script><meta name="readthedocs-project-slug" content="gut" /><meta name="readthedocs-version-slug" content="latest" /><meta name="readthedocs-resolver-filename" content="/Stubbing.html" /><meta name="readthedocs-http-status" content="200" /></head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            GUT
+              <img src="_static/GutDocsLogo.png" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                9.4.0 for Godot-4
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Getting Started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="Install.html">Install</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Quick-Start.html">Quick Start</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Command-Line.html">Command Line</a></li>
+<li class="toctree-l1"><a class="reference internal" href="New-For-Godot-4.html">Godot 4 Changes</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Test Scripts</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="class_ref/class_guttest.html">GutTest</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Creating-Tests.html">Creating Tests</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Awaiting.html">Awaiting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Inner-Test-Classes.html">Inner Test Classes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Parameterized-Tests.html">Parameterized Tests</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Simulate.html">Simulate</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Comparing-Things.html">Comparing Things</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Doubling</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="Doubles.html">Doubles</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Partial-Doubles.html">Partial Doubles</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Double-Strategy.html">Doubling Strategy</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="Stubbing.html#">Stubbing</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="Stubbing.html#syntax">Syntax</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="Stubbing.html#stub-callable">stub(callable)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Stubbing.html#stub-double-instance-method-name">stub(double_instance, method_name)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Stubbing.html#stub-script-method-name-stub-path-to-script-method-name">stub(script, method_name) / stub(path_to_script, method_name):</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="Stubbing.html#stub-actions">Stub Actions</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="Stubbing.html#to-return-value">to_return(value)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Stubbing.html#to-do-nothing">to_do_nothing()</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Stubbing.html#to-call-super">to_call_super()</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Stubbing.html#to-call-callable">to_call(callable)</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="Stubbing.html#stub-qualifiers">Stub Qualifiers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Stubbing.html#method-signature-modifiers">Method Signature Modifiers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Stubbing.html#stubbing-at-the-script-level-vs-instance-level">Stubbing at the Script level vs Instance level</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Stubbing.html#stubbing-based-off-of-parameter-values">Stubbing based off of parameter values</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Stubbing.html#stubbing-packed-scenes">Stubbing Packed Scenes</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="Stubbing.html#example">Example</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="Stubbing.html#stubbing-method-parameter-defaults">Stubbing Method Parameter Defaults</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Stubbing.html#stubbing-method-parameter-count">Stubbing Method Parameter Count</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Stubbing.html#stubbing-accessors">Stubbing Accessors</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="Spies.html">Spies</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Other</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="Contributing.html">Contributing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="GDScript-Warnings.html">GDScript Warnings</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Export-Test-Results.html">Export Test Results</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Hooks.html">Hooks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Memory-Management.html">Memory Management</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Mocking-Input.html">Mocking Input</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Orphans.html">Orphans</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Running-On-Devices.html">Running on Devices</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Tutorials.html">Tutorials</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Class Reference</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="Class-Ref.html">About Class Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="class_ref/class_addons_gut_cli_optparse.html">addons/gut/cli/optparse.gd</a></li>
+<li class="toctree-l1"><a class="reference internal" href="class_ref/class_addons_gut_junit_xml_export.html">addons/gut/junit_xml_export.gd</a></li>
+<li class="toctree-l1"><a class="reference internal" href="class_ref/class_addons_gut_parameter_factory.html">addons/gut/parameter_factory.gd</a></li>
+<li class="toctree-l1"><a class="reference internal" href="class_ref/class_guthookscript.html">GutHookScript</a></li>
+<li class="toctree-l1"><a class="reference internal" href="class_ref/class_gutinputfactory.html">GutInputFactory</a></li>
+<li class="toctree-l1"><a class="reference internal" href="class_ref/class_gutinputsender.html">GutInputSender</a></li>
+<li class="toctree-l1"><a class="reference internal" href="class_ref/class_gutmain.html">GutMain</a></li>
+<li class="toctree-l1"><a class="reference internal" href="class_ref/class_guttest.html">GutTest</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">GUT</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Stubbing</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/Stubbing.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="stubbing">
+<h1>Stubbing<a class="headerlink" href="Stubbing.html#stubbing" title="Permalink to this heading"></a></h1>
+<p>The <code class="docutils literal notranslate"><span class="pre">stub</span></code> function allows you to define behavior for methods of a Doubled instance.  Stubs can be layered to address general and specific circumstances.  You can use <code class="docutils literal notranslate"><span class="pre">stub</span></code> to</p>
+<ul class="simple">
+<li><p>Force a method to do nothing and return a specific value.</p></li>
+<li><p>Call <code class="docutils literal notranslate"><span class="pre">super</span></code>’s version of the method, allowing the double to retain original functionality.</p></li>
+<li><p>Call a <code class="docutils literal notranslate"><span class="pre">Callable</span></code> of your choosing (aka Monkey Patching).</p></li>
+<li><p>Force the method to take no action (useful when using Partial Doubles).</p></li>
+</ul>
+<p>You can also use <code class="docutils literal notranslate"><span class="pre">stub</span></code> to change the signature of a method by</p>
+<ul class="simple">
+<li><p>Set default parameter values.  All doubles default all parameters on all methods to <code class="docutils literal notranslate"><span class="pre">null</span></code> because GUT can’t do anything else yet.  If your method has default values, and it has been stubbed to <code class="docutils literal notranslate"><span class="pre">call_super</span></code>, you may need to specify these values.  See <code class="docutils literal notranslate"><span class="pre">param_defaults</span></code> below.</p></li>
+<li><p>Changing the parameter count (useful in very specific cases, mostly involving <code class="docutils literal notranslate"><span class="pre">vararg</span></code>).</p></li>
+</ul>
+<p>All Stubs are cleared between tests.  If you want to stub a method for all your tests do this in <code class="docutils literal notranslate"><span class="pre">before_each</span></code> using <code class="docutils literal notranslate"><span class="pre">stub(MyScript,</span> <span class="pre">&quot;method_name&quot;)...</span></code>.  You should not stub anything in <code class="docutils literal notranslate"><span class="pre">before_all</span></code>, <code class="docutils literal notranslate"><span class="pre">after_each</span></code>, or <code class="docutils literal notranslate"><span class="pre">after_all</span></code>.</p>
+<section id="syntax">
+<h2>Syntax<a class="headerlink" href="Stubbing.html#syntax" title="Permalink to this heading"></a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">stub</span></code> creates a stub for a method on a specific instance of a Double or any instance of a Doubled script.  After calling <code class="docutils literal notranslate"><span class="pre">stub</span></code> you chain calls to the various actioins available to tell GUT what the stub should do.  <code class="docutils literal notranslate"><span class="pre">stub</span></code> can be called numerous ways:</p>
+<section id="stub-callable">
+<h3>stub(callable)<a class="headerlink" href="Stubbing.html#stub-callable" title="Permalink to this heading"></a></h3>
+<p>This will create a stub for the Double instance and method of the callable.  If the Callable has bound parameters the stub will only be used when the parameters used when calling the method match the bound parameters.  Using bound parameters is the same as using <code class="docutils literal notranslate"><span class="pre">when_passed</span></code>.</p>
+<div class="highlight-gdscript notranslate"><div class="highlight"><pre><span></span><span class="k">var</span><span class="w"> </span><span class="n">inst</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">double</span><span class="p">(</span><span class="n">MyScript</span><span class="p">)</span><span class="o">.</span><span class="n">new</span><span class="p">()</span>
+<span class="n">stub</span><span class="p">(</span><span class="n">inst</span><span class="o">.</span><span class="n">some_method</span><span class="p">)</span><span class="o">.</span><span class="n">to_return</span><span class="p">(</span><span class="mi">111</span><span class="p">)</span>
+<span class="n">stub</span><span class="p">(</span><span class="n">inst</span><span class="o">.</span><span class="n">some_method</span><span class="o">.</span><span class="n">bind</span><span class="p">(</span><span class="s2">&quot;a&quot;</span><span class="p">))</span><span class="o">.</span><span class="n">to_return</span><span class="p">(</span><span class="mi">999</span><span class="p">)</span>
+
+<span class="n">assert_eq</span><span class="p">(</span><span class="n">inst</span><span class="o">.</span><span class="n">some_method</span><span class="p">(</span><span class="s2">&quot;not a&quot;</span><span class="p">),</span><span class="w"> </span><span class="mi">111</span><span class="p">)</span>
+<span class="n">assert_eq</span><span class="p">(</span><span class="n">inst</span><span class="o">.</span><span class="n">some_method</span><span class="p">(</span><span class="s2">&quot;a&quot;</span><span class="p">),</span><span class="w"> </span><span class="mi">999</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="stub-double-instance-method-name">
+<h3>stub(double_instance, method_name)<a class="headerlink" href="Stubbing.html#stub-double-instance-method-name" title="Permalink to this heading"></a></h3>
+<p>This creates a stub for the object and method.  This is the same as <code class="docutils literal notranslate"><span class="pre">stub(callable)</span></code>.  If you wish to stub for specific parameter values, use <code class="docutils literal notranslate"><span class="pre">when_passed</span></code>.</p>
+<div class="highlight-gdscript notranslate"><div class="highlight"><pre><span></span><span class="k">var</span><span class="w"> </span><span class="n">inst</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">double</span><span class="p">(</span><span class="n">MyScript</span><span class="p">)</span><span class="o">.</span><span class="n">new</span><span class="p">()</span>
+<span class="n">stub</span><span class="p">(</span><span class="n">inst</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;some_method&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">to_return</span><span class="p">(</span><span class="mi">111</span><span class="p">)</span>
+<span class="n">stub</span><span class="p">(</span><span class="n">inst</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;some_method&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">when_passed</span><span class="p">(</span><span class="s2">&quot;a&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">to_return</span><span class="p">(</span><span class="mi">999</span><span class="p">)</span>
+
+<span class="n">assert_eq</span><span class="p">(</span><span class="n">inst</span><span class="o">.</span><span class="n">some_method</span><span class="p">(</span><span class="s2">&quot;not a&quot;</span><span class="p">),</span><span class="w"> </span><span class="mi">111</span><span class="p">)</span>
+<span class="n">assert_eq</span><span class="p">(</span><span class="n">inst</span><span class="o">.</span><span class="n">some_method</span><span class="p">(</span><span class="s2">&quot;a&quot;</span><span class="p">),</span><span class="w"> </span><span class="mi">999</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="stub-script-method-name-stub-path-to-script-method-name">
+<h3>stub(script, method_name) / stub(path_to_script, method_name):<a class="headerlink" href="Stubbing.html#stub-script-method-name-stub-path-to-script-method-name" title="Permalink to this heading"></a></h3>
+<p>Creates a stub for <code class="docutils literal notranslate"><span class="pre">method_name</span></code> on all Doubles of a <code class="docutils literal notranslate"><span class="pre">script</span></code>.  This stub will be used if a stub is not added for an instance.  It is best to do this in <code class="docutils literal notranslate"><span class="pre">before_each</span></code>.</p>
+<div class="highlight-gdscript notranslate"><div class="highlight"><pre><span></span><span class="k">func</span><span class="w"> </span><span class="n">before_each</span><span class="p">():</span>
+<span class="w">  </span><span class="n">stub</span><span class="p">(</span><span class="n">MyScript</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;some_method&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">to_return</span><span class="p">(</span><span class="mi">111</span><span class="p">)</span>
+
+<span class="k">func</span><span class="w"> </span><span class="n">test_script_level_stubs</span><span class="p">():</span>
+<span class="w">  </span><span class="k">var</span><span class="w"> </span><span class="n">uses_script_stub</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">double</span><span class="p">(</span><span class="n">MyScript</span><span class="p">)</span><span class="o">.</span><span class="n">new</span><span class="p">()</span>
+<span class="w">  </span><span class="k">var</span><span class="w"> </span><span class="n">has_instance_stub</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">double</span><span class="p">(</span><span class="n">MyScript</span><span class="p">)</span><span class="o">.</span><span class="n">new</span><span class="p">()</span>
+<span class="w">  </span><span class="n">stub</span><span class="p">(</span><span class="n">has_instance_stub</span><span class="o">.</span><span class="n">some_method</span><span class="p">)</span><span class="o">.</span><span class="n">to_return</span><span class="p">(</span><span class="mi">555</span><span class="p">)</span>
+<span class="w">  </span><span class="n">stub</span><span class="p">(</span><span class="n">has_instance_stub</span><span class="o">.</span><span class="n">some_method</span><span class="o">.</span><span class="n">bind</span><span class="p">(</span><span class="s2">&quot;a&quot;</span><span class="p">))</span><span class="o">.</span><span class="n">to_return</span><span class="p">(</span><span class="mi">999</span><span class="p">)</span>
+
+<span class="w">  </span><span class="n">assert_eq</span><span class="p">(</span><span class="n">uses_script_stub</span><span class="o">.</span><span class="n">some_method</span><span class="p">(</span><span class="s2">&quot;anything&quot;</span><span class="p">),</span><span class="w"> </span><span class="mi">111</span><span class="p">)</span>
+<span class="w">  </span><span class="n">assert_eq</span><span class="p">(</span><span class="n">uses_script_stub</span><span class="o">.</span><span class="n">some_method</span><span class="p">(</span><span class="s2">&quot;a&quot;</span><span class="p">),</span><span class="w"> </span><span class="mi">111</span><span class="p">)</span>
+
+<span class="w">  </span><span class="n">assert_eq</span><span class="p">(</span><span class="n">has_instance_stub</span><span class="o">.</span><span class="n">some_method</span><span class="p">(</span><span class="s2">&quot;anything&quot;</span><span class="p">),</span><span class="w"> </span><span class="mi">555</span><span class="p">)</span>
+<span class="w">  </span><span class="n">assert_eq</span><span class="p">(</span><span class="n">has_instance_stub</span><span class="o">.</span><span class="n">some_method</span><span class="p">(</span><span class="s2">&quot;a&quot;</span><span class="p">),</span><span class="w"> </span><span class="mi">999</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="stub-actions">
+<h2>Stub Actions<a class="headerlink" href="Stubbing.html#stub-actions" title="Permalink to this heading"></a></h2>
+<p>You can stub a method to take the following actions when called.  These actions will be taken based on the best matched stub found for the method.</p>
+<p><strong>Only one action should be specified as only one will be used.</strong></p>
+<p>Chain an action to the end of a call to <code class="docutils literal notranslate"><span class="pre">stub</span></code></p>
+<div class="highlight-gdscript notranslate"><div class="highlight"><pre><span></span><span class="n">stub</span><span class="p">(</span><span class="n">MyScript</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;some_method&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">to_return</span><span class="p">(</span><span class="mi">9</span><span class="p">)</span>
+</pre></div>
+</div>
+<section id="to-return-value">
+<h3>to_return(value)<a class="headerlink" href="Stubbing.html#to-return-value" title="Permalink to this heading"></a></h3>
+<p>This stubs the method to do nothing and return a specific value when called.</p>
+</section>
+<section id="to-do-nothing">
+<h3>to_do_nothing()<a class="headerlink" href="Stubbing.html#to-do-nothing" title="Permalink to this heading"></a></h3>
+<p>This is the same as <code class="docutils literal notranslate"><span class="pre">to_return(null)</span></code> but has a nice explicit name that is easy to read.  This is mostly used with Partial Doubles to make them not “call super”.</p>
+<div class="highlight-gdscript notranslate"><div class="highlight"><pre><span></span><span class="k">var</span><span class="w"> </span><span class="n">inst</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">partial_double</span><span class="p">(</span><span class="n">MyScript</span><span class="p">)</span><span class="o">.</span><span class="n">new</span><span class="p">()</span>
+<span class="n">stub</span><span class="p">(</span><span class="n">inst</span><span class="o">.</span><span class="n">_set</span><span class="p">)</span><span class="o">.</span><span class="n">to_do_nothing</span><span class="p">()</span>
+
+<span class="n">inst</span><span class="o">.</span><span class="n">some_property</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">9</span>
+<span class="n">assert_ne</span><span class="p">(</span><span class="n">inst</span><span class="o">.</span><span class="n">some_property</span><span class="p">,</span><span class="w"> </span><span class="mi">9</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="to-call-super">
+<h3>to_call_super()<a class="headerlink" href="Stubbing.html#to-call-super" title="Permalink to this heading"></a></h3>
+<p>This will cause a method to punch through to <code class="docutils literal notranslate"><span class="pre">super</span></code>’s implementation of the method retaining the original functionality of the method.</p>
+<div class="highlight-gdscript notranslate"><div class="highlight"><pre><span></span><span class="k">var</span><span class="w"> </span><span class="n">dbl_inst</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">double</span><span class="p">(</span><span class="n">MyScript</span><span class="p">)</span><span class="o">.</span><span class="n">new</span><span class="p">()</span>
+<span class="k">var</span><span class="w"> </span><span class="n">inst</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">double</span><span class="p">(</span><span class="n">MyScript</span><span class="p">)</span><span class="o">.</span><span class="n">new</span><span class="p">()</span>
+
+<span class="n">stub</span><span class="p">(</span><span class="n">dbl_inst</span><span class="o">.</span><span class="n">some_method</span><span class="p">)</span><span class="o">.</span><span class="n">to_call_super</span><span class="p">()</span>
+
+<span class="n">assert_eq</span><span class="p">(</span><span class="n">dbl_inst</span><span class="o">.</span><span class="n">some_method</span><span class="p">(),</span><span class="w"> </span><span class="n">inst</span><span class="o">.</span><span class="n">some_method</span><span class="p">())</span>
+</pre></div>
+</div>
+</section>
+<section id="to-call-callable">
+<h3>to_call(callable)<a class="headerlink" href="Stubbing.html#to-call-callable" title="Permalink to this heading"></a></h3>
+<p>This will cause the double to call the method specified.  Any value returned from the <code class="docutils literal notranslate"><span class="pre">Callable</span></code> will be returned by the original method.</p>
+<p>The parameters passed to the original method will be sent to the <code class="docutils literal notranslate"><span class="pre">Callable.</span></code>  Be sure the parameters of the <code class="docutils literal notranslate"><span class="pre">Callable</span></code> are compatable with the parameters of the original method or a runtime error will occur.</p>
+<p>Any parameters bound to the <code class="docutils literal notranslate"><span class="pre">Callable</span></code> will be passed <strong>after</strong> the parameters sent to the original method.  Bound parameters will not be included when spying.</p>
+<div class="highlight-gdscript notranslate"><div class="highlight"><pre><span></span><span class="k">func</span><span class="w"> </span><span class="n">return_passed</span><span class="p">(</span><span class="n">p1</span><span class="o">=</span><span class="nb nb-Type">null</span><span class="p">,</span><span class="w"> </span><span class="n">p2</span><span class="o">=</span><span class="nb nb-Type">null</span><span class="p">,</span><span class="w"> </span><span class="n">p3</span><span class="o">=</span><span class="nb nb-Type">null</span><span class="p">,</span><span class="w"> </span><span class="n">p4</span><span class="o">=</span><span class="nb nb-Type">null</span><span class="p">,</span><span class="w"> </span><span class="n">p5</span><span class="o">=</span><span class="nb nb-Type">null</span><span class="p">,</span><span class="w"> </span><span class="n">p6</span><span class="o">=</span><span class="nb nb-Type">null</span><span class="p">):</span>
+<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="p">[</span><span class="n">p1</span><span class="p">,</span><span class="w"> </span><span class="n">p2</span><span class="p">,</span><span class="w"> </span><span class="n">p3</span><span class="p">,</span><span class="w"> </span><span class="n">p4</span><span class="p">,</span><span class="w"> </span><span class="n">p5</span><span class="p">,</span><span class="w"> </span><span class="n">p6</span><span class="p">]</span>
+
+<span class="k">func</span><span class="w"> </span><span class="n">test_illustrate_stub_action_to_call</span><span class="p">():</span>
+<span class="w">  </span><span class="k">var</span><span class="w"> </span><span class="n">dbl_inst</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">double</span><span class="p">(</span><span class="n">MyScript</span><span class="p">)</span><span class="o">.</span><span class="n">new</span><span class="p">()</span>
+
+<span class="w">  </span><span class="n">stub</span><span class="p">(</span><span class="n">MyScript</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;foo&quot;</span><span class="p">)</span>\
+<span class="w">    </span><span class="o">.</span><span class="n">to_call</span><span class="p">(</span><span class="k">func</span><span class="p">(</span><span class="n">value</span><span class="p">):</span><span class="w">  </span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;We did not get a seven.&quot;</span><span class="p">))</span>
+
+<span class="w">  </span><span class="n">stub</span><span class="p">(</span><span class="n">MyScript</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;foo&quot;</span><span class="p">)</span>\
+<span class="w">    </span><span class="o">.</span><span class="n">when_passed</span><span class="p">(</span><span class="mi">7</span><span class="p">)</span>\
+<span class="w">    </span><span class="o">.</span><span class="n">to_call</span><span class="p">(</span><span class="k">func</span><span class="p">(</span><span class="n">value</span><span class="p">):</span><span class="w">  </span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;We got a 7&quot;</span><span class="p">))</span>
+
+
+<span class="w">  </span><span class="c1"># This illustrates the ordering of bound parameters, return values, and</span>
+<span class="w">  </span><span class="c1"># argument spying.</span>
+<span class="w">  </span><span class="n">stub</span><span class="p">(</span><span class="n">dbl_inst</span><span class="o">.</span><span class="n">bar</span><span class="p">)</span><span class="o">.</span><span class="n">to_call</span><span class="p">(</span><span class="n">return_passed</span><span class="o">.</span><span class="n">bind</span><span class="p">(</span><span class="s2">&quot;three&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;four&quot;</span><span class="p">))</span>
+<span class="w">  </span><span class="k">var</span><span class="w"> </span><span class="n">result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">dbl_inst</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="s2">&quot;one&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;two&quot;</span><span class="p">)</span>
+<span class="w">  </span><span class="n">assert_eq</span><span class="p">(</span><span class="n">result</span><span class="p">,</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;one&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;two&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;three&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;four&quot;</span><span class="p">,</span><span class="w"> </span><span class="nb nb-Type">null</span><span class="p">,</span><span class="w"> </span><span class="nb nb-Type">null</span><span class="p">])</span>
+<span class="w">  </span><span class="n">assert_called</span><span class="p">(</span><span class="n">dbl_inst</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;bar&quot;</span><span class="p">,</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;one&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;two&quot;</span><span class="p">],</span>
+<span class="w">    </span><span class="s2">&quot;This passes because bound arguments are not spied on.&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>All the greatness and super weirdness of using lambdas applies.</p>
+<div class="highlight-gdscript notranslate"><div class="highlight"><pre><span></span><span class="k">func</span><span class="w"> </span><span class="n">test_using_local_variable_in_callable</span><span class="p">():</span>
+<span class="w">  </span><span class="k">var</span><span class="w"> </span><span class="n">this_var</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;some value&quot;</span>
+<span class="w">  </span><span class="k">var</span><span class="w"> </span><span class="n">d</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">double</span><span class="p">(</span><span class="n">DoubleMe</span><span class="p">)</span><span class="o">.</span><span class="n">new</span><span class="p">()</span>
+<span class="w">  </span><span class="n">stub</span><span class="p">(</span><span class="n">d</span><span class="o">.</span><span class="n">has_one_param</span><span class="p">)</span><span class="o">.</span><span class="n">to_call</span><span class="p">(</span>
+<span class="w">    </span><span class="k">func</span><span class="p">(</span><span class="n">value</span><span class="p">):</span>
+<span class="w">      </span><span class="n">this_var</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;another value&quot;</span>
+<span class="w">      </span><span class="k">return</span><span class="w"> </span><span class="n">this_var</span><span class="p">)</span>
+
+<span class="w">  </span><span class="k">var</span><span class="w"> </span><span class="n">result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">d</span><span class="o">.</span><span class="n">has_one_param</span><span class="p">(</span><span class="s2">&quot;asdf&quot;</span><span class="p">)</span>
+
+<span class="w">  </span><span class="c1"># These all pass</span>
+<span class="w">  </span><span class="n">assert_eq</span><span class="p">(</span><span class="n">result</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;another value&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;Seems reasonable&quot;</span><span class="p">)</span>
+<span class="w">  </span><span class="n">assert_ne</span><span class="p">(</span><span class="n">result</span><span class="p">,</span><span class="w"> </span><span class="n">this_var</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;Why would this pass?&quot;</span><span class="p">)</span>
+<span class="w">  </span><span class="n">assert_eq</span><span class="p">(</span><span class="n">this_var</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;some value&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;Ohhh, well ok.&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="stub-qualifiers">
+<h2>Stub Qualifiers<a class="headerlink" href="Stubbing.html#stub-qualifiers" title="Permalink to this heading"></a></h2>
+<p>There is only one qualifier, <code class="docutils literal notranslate"><span class="pre">when_passed</span></code>.  Only the last <code class="docutils literal notranslate"><span class="pre">when_passed</span></code> qualifier will be used.  If you wish to stub the same action for multiple argument patterns you must make multiple stubs.  See the various examples above.</p>
+</section>
+<section id="method-signature-modifiers">
+<h2>Method Signature Modifiers<a class="headerlink" href="Stubbing.html#method-signature-modifiers" title="Permalink to this heading"></a></h2>
+<p>You alter a method’s signature with:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">param_defaults([default1,</span> <span class="pre">default2,</span> <span class="pre">...])</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">param_count(x)</span></code></p></li>
+</ul>
+<p>There are very few cases where you would want to do this.  They are discussed further near the end of this page.</p>
+</section>
+<section id="stubbing-at-the-script-level-vs-instance-level">
+<h2>Stubbing at the Script level vs Instance level<a class="headerlink" href="Stubbing.html#stubbing-at-the-script-level-vs-instance-level" title="Permalink to this heading"></a></h2>
+<p>The <code class="docutils literal notranslate"><span class="pre">stub</span></code> method is pretty smart about what you pass it.  You can pass it a path, an Object or an instance.  If you pass an instance, it <strong>must</strong> be an instance of a double.</p>
+<p>When passed an Object or a path, it will stub the value for <strong>all</strong> instances that do not have explicitly defined stubs.  When you pass it an instance of a doubled class, then the stubbed return will only be set for that instance.</p>
+<div class="highlight-gdscript notranslate"><div class="highlight"><pre><span></span><span class="k">var</span><span class="w"> </span><span class="n">DoubleThis</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">load</span><span class="p">(</span><span class="s1">&#39;res://scripts/double_this.gd&#39;</span><span class="p">)</span>
+<span class="k">var</span><span class="w"> </span><span class="n">Doubled</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">double</span><span class="p">(</span><span class="n">DoubleThis</span><span class="p">)</span>
+<span class="k">var</span><span class="w"> </span><span class="n">inst</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Doubled</span><span class="o">.</span><span class="n">new</span><span class="p">()</span>
+
+<span class="c1"># These two are equivalent, and stub returns_seven for any doubles of</span>
+<span class="c1"># DoubleThis to return 500.</span>
+<span class="n">stub</span><span class="p">(</span><span class="s1">&#39;res://scripts/double_this.gd&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;returns_seven&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">to_return</span><span class="p">(</span><span class="mi">500</span><span class="p">)</span>
+<span class="c1"># or</span>
+<span class="n">stub</span><span class="p">(</span><span class="n">DoubleThis</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;returns_seven&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">to_return</span><span class="p">(</span><span class="mi">500</span><span class="p">)</span>
+<span class="n">assert_eq</span><span class="p">(</span><span class="n">inst</span><span class="o">.</span><span class="n">returns_seven</span><span class="p">(),</span><span class="w"> </span><span class="mi">500</span><span class="p">)</span>
+
+<span class="c1"># This will stub returns_seven on the passed in instance ONLY.</span>
+<span class="c1"># Any other instances will return 500 from the lines above.</span>
+<span class="k">var</span><span class="w"> </span><span class="n">stub_again</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Doubled</span><span class="o">.</span><span class="n">new</span><span class="p">()</span>
+<span class="n">stub</span><span class="p">(</span><span class="n">stub_again</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;returns_seven&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">to_return</span><span class="p">(</span><span class="s1">&#39;words&#39;</span><span class="p">)</span>
+<span class="n">assert_eq</span><span class="p">(</span><span class="n">stub_again</span><span class="o">.</span><span class="n">returns_seven</span><span class="p">(),</span><span class="w"> </span><span class="s1">&#39;words&#39;</span><span class="p">)</span>
+<span class="n">assert_eq</span><span class="p">(</span><span class="n">inst</span><span class="o">.</span><span class="n">returns_seven</span><span class="p">,</span><span class="w"> </span><span class="mi">500</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="stubbing-based-off-of-parameter-values">
+<h2>Stubbing based off of parameter values<a class="headerlink" href="Stubbing.html#stubbing-based-off-of-parameter-values" title="Permalink to this heading"></a></h2>
+<p>You can stub a method to return a specific value based on what was passed to it.</p>
+<div class="highlight-gdscript notranslate"><div class="highlight"><pre><span></span><span class="k">var</span><span class="w"> </span><span class="n">DoubleThis</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">load</span><span class="p">(</span><span class="s1">&#39;res://scripts/double_this.gd&#39;</span><span class="p">)</span>
+<span class="k">var</span><span class="w"> </span><span class="n">Doubled</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">double</span><span class="p">(</span><span class="n">DoubleThis</span><span class="p">)</span>
+<span class="k">var</span><span class="w"> </span><span class="n">inst</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Doubled</span><span class="o">.</span><span class="n">new</span><span class="p">()</span>
+
+<span class="c1"># Script level using when_passed</span>
+<span class="n">stub</span><span class="p">(</span><span class="n">DoubleThis</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;return_hello&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">to_return</span><span class="p">(</span><span class="s2">&quot;world&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">when_passed</span><span class="p">(</span><span class="s2">&quot;hello&quot;</span><span class="p">)</span>
+<span class="c1"># Instance level using bound callable</span>
+<span class="n">stub</span><span class="p">(</span><span class="n">inst</span><span class="o">.</span><span class="n">return_hello</span><span class="o">.</span><span class="n">bind</span><span class="p">(</span><span class="s2">&quot;foo&quot;</span><span class="p">))</span><span class="o">.</span><span class="n">to_return</span><span class="p">(</span><span class="s2">&quot;bar&quot;</span><span class="p">)</span>
+
+<span class="n">assert_eq</span><span class="p">(</span><span class="n">inst</span><span class="o">.</span><span class="n">return_hello</span><span class="p">(),</span><span class="w"> </span><span class="s2">&quot;hello&quot;</span><span class="p">)</span>
+<span class="n">assert_eq</span><span class="p">(</span><span class="n">inst</span><span class="o">.</span><span class="n">return_hello</span><span class="p">(</span><span class="s2">&quot;hello&quot;</span><span class="p">),</span><span class="w"> </span><span class="s2">&quot;world&quot;</span><span class="p">)</span>
+<span class="n">assert_eq</span><span class="p">(</span><span class="n">inst</span><span class="o">.</span><span class="n">return_hello</span><span class="p">(</span><span class="s2">&quot;foo&quot;</span><span class="p">),</span><span class="w"> </span><span class="s2">&quot;bar&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>The ordering of <code class="docutils literal notranslate"><span class="pre">when_passed</span></code> and <code class="docutils literal notranslate"><span class="pre">to_return</span></code> does not matter.</p>
+</section>
+<section id="stubbing-packed-scenes">
+<h2>Stubbing Packed Scenes<a class="headerlink" href="Stubbing.html#stubbing-packed-scenes" title="Permalink to this heading"></a></h2>
+<p>When stubbing doubled scenes, use the path to the scene, <strong>not</strong> the path to the scene’s script.  If you double and stub the script used by the scene, the <code class="docutils literal notranslate"><span class="pre">instance</span></code> you make from <code class="docutils literal notranslate"><span class="pre">double</span></code> will not return values stubbed for the script.  It will only return values stubbed for the scene.</p>
+<p>In order for a scene to be doubled, the scene’s script must be able to be instantiated with <code class="docutils literal notranslate"><span class="pre">new</span></code> with zero parameters passed.</p>
+<section id="example">
+<h3>Example<a class="headerlink" href="Stubbing.html#example" title="Permalink to this heading"></a></h3>
+<p>Given the script <code class="docutils literal notranslate"><span class="pre">res://the_script.gd</span></code>:</p>
+<div class="highlight-gdscript notranslate"><div class="highlight"><pre><span></span><span class="k">func</span><span class="w"> </span><span class="n">return_hello</span><span class="p">():</span>
+<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="s1">&#39;hello&#39;</span>
+</pre></div>
+</div>
+<p>And given a scene with the path <code class="docutils literal notranslate"><span class="pre">res://double_this_scene.tscn</span></code> which has its script set to <code class="docutils literal notranslate"><span class="pre">res://the_script.gd</span></code>.</p>
+<div class="highlight-gdscript notranslate"><div class="highlight"><pre><span></span><span class="k">var</span><span class="w"> </span><span class="n">DoubleThisScene</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">load</span><span class="p">(</span><span class="s1">&#39;res://double_this_scene.tscn&#39;</span><span class="p">)</span>
+
+<span class="k">func</span><span class="w"> </span><span class="n">test_illustrate_stubbing_scenes</span><span class="p">():</span>
+<span class="w">  </span><span class="k">var</span><span class="w"> </span><span class="n">doubled_scene</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">double</span><span class="p">(</span><span class="n">DoubleThisScene</span><span class="p">)</span><span class="o">.</span><span class="n">instantiate</span><span class="p">()</span>
+<span class="w">  </span><span class="n">stub</span><span class="p">(</span><span class="n">doubled_scene</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;return_hello&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">to_return</span><span class="p">(</span><span class="s1">&#39;world&#39;</span><span class="p">)</span>
+
+<span class="w">  </span><span class="n">assert_eq</span><span class="p">(</span><span class="n">doubled_scene</span><span class="o">.</span><span class="n">return_hello</span><span class="p">(),</span><span class="w"> </span><span class="s1">&#39;world&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="stubbing-method-parameter-defaults">
+<h2>Stubbing Method Parameter Defaults<a class="headerlink" href="Stubbing.html#stubbing-method-parameter-defaults" title="Permalink to this heading"></a></h2>
+<p>Godot only provides information about default values for built in methods so Gut doesn’t know what any default values are for methods you have created.  Since it can’t know, Gut defaults all parameters to <code class="docutils literal notranslate"><span class="pre">null</span></code>.  This can cause issues in specific cases (probably all involving calling super).  You can use <code class="docutils literal notranslate"><span class="pre">.param_defaults</span></code> to specify default values to be used.</p>
+<p>Here’s an example where things go wrong</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># res://foo.gd</span>
+<span class="n">var</span> <span class="n">_sum</span>  <span class="o">=</span> <span class="mi">0</span>
+<span class="n">func</span> <span class="n">increment</span><span class="p">(</span><span class="n">inc_by</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
+  <span class="n">_sum</span> <span class="o">+=</span> <span class="n">inc_by</span>
+
+<span class="n">func</span> <span class="n">go_up_one</span><span class="p">():</span>
+  <span class="n">increment</span><span class="p">()</span>
+
+<span class="n">func</span> <span class="n">get_sum</span><span class="p">():</span>
+  <span class="k">return</span> <span class="n">_sum</span>
+</pre></div>
+</div>
+<p>The following test will cause a <code class="docutils literal notranslate"><span class="pre">Invalid</span> <span class="pre">operands</span> <span class="pre">'int'</span> <span class="pre">and</span> <span class="pre">'Nil'</span></code> error.  This is because increment’s <code class="docutils literal notranslate"><span class="pre">inc_by</span></code> parameter is defaulted to <code class="docutils literal notranslate"><span class="pre">null</span></code> in the double.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">var</span> <span class="n">Foo</span> <span class="o">=</span> <span class="n">load</span><span class="p">(</span><span class="s1">&#39;res://foo.gd&#39;</span><span class="p">)</span>
+<span class="n">test_go_up_one_increments_sum_by_1</span><span class="p">():</span>
+  <span class="n">var</span> <span class="n">dbl_foo</span> <span class="o">=</span> <span class="n">double</span><span class="p">(</span><span class="n">Foo</span><span class="p">)</span><span class="o">.</span><span class="n">new</span><span class="p">()</span>
+  <span class="n">stub</span><span class="p">(</span><span class="n">dbl_foo</span><span class="p">,</span> <span class="s1">&#39;go_up_one&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">to_call_super</span><span class="p">()</span>
+
+  <span class="n">dbl_foo</span><span class="o">.</span><span class="n">go_up_one</span><span class="p">()</span>
+  <span class="n">assert_called</span><span class="p">(</span><span class="n">dbl_foo</span><span class="p">,</span> <span class="s1">&#39;increment&#39;</span><span class="p">,</span> <span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+</pre></div>
+</div>
+<p>The fix is to add a <code class="docutils literal notranslate"><span class="pre">param_defaults</span></code> stub</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">stub</span><span class="p">(</span><span class="n">dbl_foo</span><span class="p">,</span> <span class="s1">&#39;increment&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">param_defaults</span><span class="p">([</span><span class="mi">1</span><span class="p">])</span>
+</pre></div>
+</div>
+</section>
+<section id="stubbing-method-parameter-count">
+<h2>Stubbing Method Parameter Count<a class="headerlink" href="Stubbing.html#stubbing-method-parameter-count" title="Permalink to this heading"></a></h2>
+<p><u><strong>Changing the number of parameters must be done before <code class="docutils literal notranslate"><span class="pre">double</span></code> is called</strong></u></p>
+<p>Some built-in methods  have <code class="docutils literal notranslate"><span class="pre">vararg</span></code> parameters.  This makes the parameter list dynamic.  Godot does not provide this information.  This can cause errors due to a signature mismatch.  Your code might be calling a method using 10 parameter values but Gut only sees two.</p>
+<p>Let’s take <code class="docutils literal notranslate"><span class="pre">Node.rpc_id</span></code> for example.  It has two normal parameters and then a vararg of strings as the last parameter.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Variant</span> <span class="n">rpc_id</span><span class="p">(</span><span class="n">peer_id</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">method</span><span class="p">:</span> <span class="n">String</span><span class="p">,</span> <span class="o">...</span><span class="p">)</span> <span class="n">vararg</span>
+</pre></div>
+</div>
+<p>If this method gets called in a partial double with more than 2 parameters Godot will will throw <em>Invalid call to function ‘rpc_id’ in base ‘Control ()’. Expected 2 arguments.</em></p>
+<p>You can use <code class="docutils literal notranslate"><span class="pre">.param_count(x)</span></code> to tell Gut to give the method any number of extra parameters.  You cannot make the method have less parameters.  You must do this before you call <code class="docutils literal notranslate"><span class="pre">double</span></code>.</p>
+<div class="highlight-gdscript notranslate"><div class="highlight"><pre><span></span><span class="k">func</span><span class="w"> </span><span class="n">test_issue_246_rpc_id_varargs</span><span class="p">():</span>
+<span class="w">  </span><span class="c1"># must happen before double is called</span>
+<span class="w">  </span><span class="n">stub</span><span class="p">(</span><span class="n">Node</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;rpc_id&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">to_do_nothing</span><span class="p">()</span><span class="o">.</span><span class="n">param_count</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+
+<span class="w">  </span><span class="k">var</span><span class="w"> </span><span class="n">inst</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">double</span><span class="p">(</span><span class="n">Node</span><span class="p">)</span><span class="o">.</span><span class="n">new</span><span class="p">()</span>
+<span class="w">  </span><span class="n">inst</span><span class="o">.</span><span class="n">rpc_id</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;foo&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;3&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;4&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;5&#39;</span><span class="p">)</span>
+<span class="w">  </span><span class="n">assert_called</span><span class="p">(</span><span class="n">inst</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;rpc_id&#39;</span><span class="p">,</span><span class="w"> </span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;foo&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;3&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;4&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;5&#39;</span><span class="p">])</span>
+</pre></div>
+</div>
+<p>You can also use <code class="docutils literal notranslate"><span class="pre">.param_defaults</span></code> to specify extra parameters if you supply more defaults than the method has parameters.</p>
+<div class="highlight-gdscript notranslate"><div class="highlight"><pre><span></span><span class="k">func</span><span class="w"> </span><span class="n">test_issue_246_rpc_id_varargs_with_defaults</span><span class="p">():</span>
+<span class="w">  </span><span class="c1"># must happen before double is called</span>
+<span class="w">  </span><span class="n">stub</span><span class="p">(</span><span class="n">Node</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;rpc_id&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">to_do_nothing</span><span class="p">()</span><span class="o">.</span><span class="n">param_defaults</span><span class="p">([</span><span class="nb nb-Type">null</span><span class="p">,</span><span class="w"> </span><span class="nb nb-Type">null</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;a&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;b&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;c&#39;</span><span class="p">])</span>
+
+<span class="w">  </span><span class="k">var</span><span class="w"> </span><span class="n">inst</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">double</span><span class="p">(</span><span class="n">Node</span><span class="p">)</span><span class="o">.</span><span class="n">new</span><span class="p">()</span>
+<span class="w">  </span><span class="n">inst</span><span class="o">.</span><span class="n">rpc_id</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;foo&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;z&#39;</span><span class="p">)</span>
+<span class="w">  </span><span class="n">assert_called</span><span class="p">(</span><span class="n">inst</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;rpc_id&#39;</span><span class="p">,</span><span class="w"> </span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;foo&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;z&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;b&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;c&#39;</span><span class="p">])</span>
+</pre></div>
+</div>
+<p>You cannot make a method have less parameters, only more.</p>
+</section>
+<section id="stubbing-accessors">
+<h2>Stubbing Accessors<a class="headerlink" href="Stubbing.html#stubbing-accessors" title="Permalink to this heading"></a></h2>
+<p>It is not possible to stub the accessors for properties if you do not use a secondary method for the accessors.  This means that doubles retain the functionality of the accessors, and it cannot be changed.</p>
+<div class="highlight-gdscript notranslate"><div class="highlight"><pre><span></span><span class="c1"># The get and set for my_property cannot be stubbed.  Doubles retain the</span>
+<span class="c1"># functionality of the get and set methods.</span>
+<span class="k">var</span><span class="w"> </span><span class="n">my_property</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;foo&#39;</span><span class="w"> </span><span class="p">:</span>
+<span class="w">  </span><span class="n">get</span><span class="p">:</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="n">my_property</span>
+<span class="w">  </span><span class="n">set</span><span class="p">(</span><span class="n">val</span><span class="p">):</span><span class="w"> </span><span class="n">my_property</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">val</span>
+</pre></div>
+</div>
+<p>If you use secondary methods, you can stub the behavior, but all doubles will not have any functionality for the accessors by default.</p>
+<div class="highlight-gdscript notranslate"><div class="highlight"><pre><span></span><span class="c1"># You can stub _get_my_property and _set_my_property.  Doubles of this do not</span>
+<span class="c1"># retain the functionality of the accessors.  _get_my_property and</span>
+<span class="c1"># _set_my_property must be stubbed to_call_super to actually return or set</span>
+<span class="c1"># the value of my_property.</span>
+<span class="k">var</span><span class="w"> </span><span class="n">my_property</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;foo&#39;</span><span class="w"> </span><span class="p">:</span>
+<span class="w">  </span><span class="n">get</span><span class="p">:</span><span class="w"> </span><span class="n">_get_my_property</span><span class="p">,</span><span class="w"> </span><span class="n">set</span><span class="p">:</span><span class="w"> </span><span class="n">_set_my_property</span>
+
+<span class="k">func</span><span class="w"> </span><span class="n">_get_my_property</span><span class="p">():</span>
+<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="n">my_property</span>
+
+<span class="k">func</span><span class="w"> </span><span class="n">_set_my_property</span><span class="p">(</span><span class="n">val</span><span class="p">):</span>
+<span class="w">  </span><span class="n">my_property</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">val</span>
+</pre></div>
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="Double-Strategy.html" class="btn btn-neutral float-left" title="Doubling Strategy" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="Spies.html" class="btn btn-neutral float-right" title="Spies" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, Butch Wesley.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

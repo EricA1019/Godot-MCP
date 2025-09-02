@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Awaiting &mdash; GUT 9.4.0 documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/gut_custom.css" type="text/css" />
+      <link rel="stylesheet" href="_static/dark_mode_css/general.css" type="text/css" />
+      <link rel="stylesheet" href="_static/dark_mode_css/dark.css" type="text/css" />
+    <link rel="shortcut icon" href="_static/favicon.ico"/>
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="_static/jquery.js%3Fv=5d32c60e"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js%3Fv=2cd50e6c"></script>
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js%3Fv=354d2d61"></script>
+        <script src="_static/doctools.js%3Fv=888ff710"></script>
+        <script src="_static/sphinx_highlight.js%3Fv=4825356b"></script>
+        <script src="_static/dark_mode_js/default_dark.js%3Fv=fd565c74"></script>
+        <script src="_static/dark_mode_js/theme_switcher.js%3Fv=358d3910"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Inner Test Classes" href="Inner-Test-Classes.html" />
+    <link rel="prev" title="Creating Tests" href="Creating-Tests.html" /> 
+<script async type="text/javascript" src="../../_/static/javascript/readthedocs-addons.js"></script><meta name="readthedocs-project-slug" content="gut" /><meta name="readthedocs-version-slug" content="latest" /><meta name="readthedocs-resolver-filename" content="/Awaiting.html" /><meta name="readthedocs-http-status" content="200" /></head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            GUT
+              <img src="_static/GutDocsLogo.png" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                9.4.0 for Godot-4
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Getting Started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="Install.html">Install</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Quick-Start.html">Quick Start</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Command-Line.html">Command Line</a></li>
+<li class="toctree-l1"><a class="reference internal" href="New-For-Godot-4.html">Godot 4 Changes</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Test Scripts</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="class_ref/class_guttest.html">GutTest</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Creating-Tests.html">Creating Tests</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="Awaiting.html#">Awaiting</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="Awaiting.html#wait-seconds">wait_seconds</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Awaiting.html#wait-physics-frames">wait_physics_frames</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Awaiting.html#wait-idle-frames">wait_idle_frames</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Awaiting.html#wait-for-signal">wait_for_signal</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Awaiting.html#wait-until">wait_until</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Awaiting.html#wait-while">wait_while</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Awaiting.html#pause-before-teardown">pause_before_teardown</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="Inner-Test-Classes.html">Inner Test Classes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Parameterized-Tests.html">Parameterized Tests</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Simulate.html">Simulate</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Comparing-Things.html">Comparing Things</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Doubling</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="Doubles.html">Doubles</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Partial-Doubles.html">Partial Doubles</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Double-Strategy.html">Doubling Strategy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Stubbing.html">Stubbing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Spies.html">Spies</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Other</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="Contributing.html">Contributing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="GDScript-Warnings.html">GDScript Warnings</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Export-Test-Results.html">Export Test Results</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Hooks.html">Hooks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Memory-Management.html">Memory Management</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Mocking-Input.html">Mocking Input</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Orphans.html">Orphans</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Running-On-Devices.html">Running on Devices</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Tutorials.html">Tutorials</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Class Reference</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="Class-Ref.html">About Class Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="class_ref/class_addons_gut_cli_optparse.html">addons/gut/cli/optparse.gd</a></li>
+<li class="toctree-l1"><a class="reference internal" href="class_ref/class_addons_gut_junit_xml_export.html">addons/gut/junit_xml_export.gd</a></li>
+<li class="toctree-l1"><a class="reference internal" href="class_ref/class_addons_gut_parameter_factory.html">addons/gut/parameter_factory.gd</a></li>
+<li class="toctree-l1"><a class="reference internal" href="class_ref/class_guthookscript.html">GutHookScript</a></li>
+<li class="toctree-l1"><a class="reference internal" href="class_ref/class_gutinputfactory.html">GutInputFactory</a></li>
+<li class="toctree-l1"><a class="reference internal" href="class_ref/class_gutinputsender.html">GutInputSender</a></li>
+<li class="toctree-l1"><a class="reference internal" href="class_ref/class_gutmain.html">GutMain</a></li>
+<li class="toctree-l1"><a class="reference internal" href="class_ref/class_guttest.html">GutTest</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">GUT</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Awaiting</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/Awaiting.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="awaiting">
+<h1>Awaiting<a class="headerlink" href="Awaiting.html#awaiting" title="Permalink to this heading"></a></h1>
+<p>If you aren’t sure about coroutines and using <code class="docutils literal notranslate"><span class="pre">await</span></code>, <a class="reference external" href="https://docs.godotengine.org/en/stable/tutorials/scripting/gdscript/gdscript_basics.html#awaiting-signals-or-coroutines">Godot explains it pretty well</a>.  GUT supports coroutines, so you can <code class="docutils literal notranslate"><span class="pre">await</span></code> at anytime in your tests.  GUT also provides some handy methods to make awaiting in your tests a little easier.</p>
+<p>You can use <code class="docutils literal notranslate"><span class="pre">await</span></code> with any of the following methods to pause execution for a duration or until something occurs.  You can find more information about each method below, and in the <code class="docutils literal notranslate"><span class="pre">GutTest</span></code> documentation.</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">wait_seconds</span></code>:  Waits x seconds.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">wait_idle_frames</span></code>:  Waits x process frames(_process(delta)).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">wait_physics_frames</span></code>:  Waits x physics frames(_physics_process(delta)).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">wait_for_signal</span></code>:  Waits until a signal is emitted, or a maximum amount of time.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">wait_until</span></code>:   Waits until a <code class="docutils literal notranslate"><span class="pre">Callable</span></code> returns <code class="docutils literal notranslate"><span class="pre">true</span></code> or a maximum amount of time.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">wait_while</span></code>:   Waits while a <code class="docutils literal notranslate"><span class="pre">Callable</span></code> returns <code class="docutils literal notranslate"><span class="pre">true</span></code> or a maximum amount of time.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">pause_before_teardown</span></code>:  can be called in a test to pause execution at the end of a test, before moving on to the next test or ending the run.</p></li>
+</ul>
+<p>Calling <code class="docutils literal notranslate"><span class="pre">await</span></code> without using one of GUT’s “wait” methods is discouraged.  When you use these methods, GUT provides output to indicate that execution is paused.  If you don’t use them it can look like your tests have stopped running.</p>
+<section id="wait-seconds">
+<h2>wait_seconds<a class="headerlink" href="Awaiting.html#wait-seconds" title="Permalink to this heading"></a></h2>
+<p><a href="class_ref/class_guttest.html#class-guttest-method-wait-seconds">GutTest.wait_seconds</a></p>
+<div class="highlight-gdscript notranslate"><div class="highlight"><pre><span></span><span class="n">wait_seconds</span><span class="p">(</span><span class="n">time</span><span class="p">,</span><span class="w"> </span><span class="n">msg</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">):</span>
+</pre></div>
+</div>
+<p>Sometimes you just want to pause for some amount of time.  Use <code class="docutils literal notranslate"><span class="pre">wait_seconds</span></code> instead of making timers.</p>
+<p>The optional <code class="docutils literal notranslate"><span class="pre">msg</span></code> parameter is logged so you know why test execution is paused.</p>
+<div class="highlight-gdscript notranslate"><div class="highlight"><pre><span></span><span class="c1"># wait 2.8 seconds then continue running the test</span>
+<span class="n">await</span><span class="w"> </span><span class="n">wait_seconds</span><span class="p">(</span><span class="mf">2.8</span><span class="p">)</span>
+
+<span class="c1"># wait .25 seconds, text included in log message</span>
+<span class="n">await</span><span class="w"> </span><span class="n">wait_seconds</span><span class="p">(</span><span class="o">.</span><span class="mi">25</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;waiting for a short period&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="wait-physics-frames">
+<h2>wait_physics_frames<a class="headerlink" href="Awaiting.html#wait-physics-frames" title="Permalink to this heading"></a></h2>
+<p><a href="class_ref/class_guttest.html#class-guttest-method-wait-physics-frames">GutTest.wait_physics_frames</a></p>
+<div class="highlight-gdscript notranslate"><div class="highlight"><pre><span></span><span class="n">wait_physics_frames</span><span class="p">(</span><span class="n">frames</span><span class="p">,</span><span class="w"> </span><span class="n">msg</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">):</span>
+</pre></div>
+</div>
+<p>This returns a signal that is emitted after <code class="docutils literal notranslate"><span class="pre">x</span></code> physics frames have
+elpased.  You can await this method directly to pause execution for <code class="docutils literal notranslate"><span class="pre">x</span></code>
+physics frames.  The frames are counted prior to _physics_process being called
+on any node (when [signal SceneTree.physics_frame] is emitted).  This means the
+signal is emitted after <code class="docutils literal notranslate"><span class="pre">x</span></code> frames and just before the x + 1 frame starts.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">await</span> <span class="n">wait_physics_frames</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>The optional <code class="docutils literal notranslate"><span class="pre">msg</span></code> parameter is logged so you know why test execution is paused.</p>
+<div class="highlight-gdscript notranslate"><div class="highlight"><pre><span></span><span class="c1"># wait 2 frames before continue test execution</span>
+<span class="n">await</span><span class="w"> </span><span class="n">wait_physics_frames</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+
+<span class="c1"># waits some frames and includes optional message</span>
+<span class="n">await</span><span class="w"> </span><span class="n">wait_physics_frames</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;waiting some frames.&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="wait-idle-frames">
+<h2>wait_idle_frames<a class="headerlink" href="Awaiting.html#wait-idle-frames" title="Permalink to this heading"></a></h2>
+<p><a href="class_ref/class_guttest.html#class-guttest-method-wait-idle-frames">GutTest.wait_idle_frames</a></p>
+<div class="highlight-gdscript notranslate"><div class="highlight"><pre><span></span><span class="n">await</span><span class="w"> </span><span class="n">wait_idle_frames</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+<span class="c1"># wait_process_frames is an alias of wait_idle_frames</span>
+<span class="n">await</span><span class="w"> </span><span class="n">wait_process_frames</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>This returns a signal that is emitted after <code class="docutils literal notranslate"><span class="pre">x</span></code> process/idle frames have
+elpased.  You can await this method directly to pause execution for <code class="docutils literal notranslate"><span class="pre">x</span></code>
+process/idle frames.  The frames are counted prior to _process being called
+on any node (when [signal SceneTree.process_frame] is emitted).  This means the
+signal is emitted after <code class="docutils literal notranslate"><span class="pre">x</span></code> frames and just before the x + 1 frame starts.</p>
+</section>
+<section id="wait-for-signal">
+<h2>wait_for_signal<a class="headerlink" href="Awaiting.html#wait-for-signal" title="Permalink to this heading"></a></h2>
+<p><a href="class_ref/class_guttest.html#class-guttest-method-wait-for-signal">GutTest.wait_for_signal</a></p>
+<div class="highlight-gdscript notranslate"><div class="highlight"><pre><span></span><span class="n">wait_for_signal</span><span class="p">(</span><span class="n">sig</span><span class="p">,</span><span class="w"> </span><span class="n">max_wait</span><span class="p">,</span><span class="w"> </span><span class="n">msg</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">):</span>
+</pre></div>
+</div>
+<p>This method will pause execution until a signal is emitted or until <code class="docutils literal notranslate"><span class="pre">max_wait</span></code> seconds have passed, whichever comes first.  Using <code class="docutils literal notranslate"><span class="pre">wait_for_signal</span></code> is better than just using <code class="docutils literal notranslate"><span class="pre">await</span> <span class="pre">my_obj.my_signal</span></code> since tests will continue to run if the signal is never emitted.</p>
+<p>This method returns <code class="docutils literal notranslate"><span class="pre">true</span></code> if the signal was emitted before timing out, <code class="docutils literal notranslate"><span class="pre">false</span></code> if not.</p>
+<p>The optional <code class="docutils literal notranslate"><span class="pre">msg</span></code> parameter is logged so you know why test execution is paused.</p>
+<div class="highlight-gdscript notranslate"><div class="highlight"><pre><span></span><span class="o">...</span>
+<span class="c1"># wait for my_object to emit the signal &#39;my_signal&#39;</span>
+<span class="c1"># or 5 seconds, whichever comes first.</span>
+<span class="n">await</span><span class="w"> </span><span class="n">wait_for_signal</span><span class="p">(</span><span class="n">my_object</span><span class="o">.</span><span class="n">my_signal</span><span class="p">,</span><span class="w"> </span><span class="mi">5</span><span class="p">)</span>
+<span class="n">assert_signal_emitted</span><span class="p">(</span><span class="n">my_object</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;my_signal&#39;</span><span class="p">,</span><span class="w"> </span>\
+<span class="w">                     </span><span class="s1">&#39;Maybe it did, maybe it didnt, but we still got here.&#39;</span><span class="p">)</span>
+
+<span class="c1"># You can also use the return value directly in an assert</span>
+<span class="n">assert_true</span><span class="p">(</span><span class="n">await</span><span class="w"> </span><span class="n">wait_for_signal</span><span class="p">(</span><span class="n">my_object</span><span class="o">.</span><span class="n">my_signal</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">),</span>
+<span class="w">	</span><span class="s2">&quot;The signal should have been emitted before timeout&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>As a bonus, <code class="docutils literal notranslate"><span class="pre">wait_for_signal</span></code> internally calls <a href="class_ref/class_guttest.html#class-guttest-method-watch-signals">watch_signals</a> for the object, so you can skip that step when asserting signals have been emitted.</p>
+</section>
+<section id="wait-until">
+<h2>wait_until<a class="headerlink" href="Awaiting.html#wait-until" title="Permalink to this heading"></a></h2>
+<p><a href="class_ref/class_guttest.html#class-guttest-method-wait-until">GutTest.wait_until</a></p>
+<div class="highlight-gdscript notranslate"><div class="highlight"><pre><span></span><span class="n">wait_until</span><span class="p">(</span><span class="n">callable</span><span class="p">,</span><span class="w"> </span><span class="n">max_wait</span><span class="p">,</span><span class="w"> </span><span class="n">p3</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span><span class="w"> </span><span class="n">p4</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">):</span>
+</pre></div>
+</div>
+<p>This method takes a <code class="docutils literal notranslate"><span class="pre">Callable</span></code> predicate method that will be called every frame.  The wait will end when the <code class="docutils literal notranslate"><span class="pre">Callable</span></code> returns <code class="docutils literal notranslate"><span class="pre">true</span></code> or when <code class="docutils literal notranslate"><span class="pre">max_wait</span></code> seconds has expired.  This requires the method to explicity return <code class="docutils literal notranslate"><span class="pre">true</span></code> and not a truthy value.</p>
+<p>This will return <code class="docutils literal notranslate"><span class="pre">true</span></code> if the method returned <code class="docutils literal notranslate"><span class="pre">true</span></code> before the timeout, <code class="docutils literal notranslate"><span class="pre">false</span></code> if otherwise.  You can optionally specify an amount of time to wait between calling the <code class="docutils literal notranslate"><span class="pre">Callable</span></code>.</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">p3</span></code> can be the optional message or an amount of time to wait between tests.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">p4</span></code> is the optional message if you have specified an amount of time to wait between tests.</p></li>
+</ul>
+<div class="highlight-gdscript notranslate"><div class="highlight"><pre><span></span><span class="k">var</span><span class="w"> </span><span class="n">everything_is_ok</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">func</span><span class="p">():</span>
+<span class="w">	</span><span class="k">return</span><span class="w"> </span><span class="bp">true</span>
+
+<span class="c1"># Call everything_is_ok every frame until it returns true or 5 seconds elapses</span>
+<span class="n">await</span><span class="w"> </span><span class="n">wait_until</span><span class="p">(</span><span class="n">everything_is_ok</span><span class="p">,</span><span class="w"> </span><span class="mi">5</span><span class="p">)</span>
+
+<span class="c1"># Same as above but we get the result to use later and provide a message to</span>
+<span class="c1"># display when the await starts.</span>
+<span class="k">var</span><span class="w"> </span><span class="n">result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">await</span><span class="w"> </span><span class="n">wait_until</span><span class="p">(</span><span class="n">everything_is_ok</span><span class="p">,</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Show this message&#39;</span><span class="p">)</span>
+
+<span class="c1"># Calls everything_is_ok every second until it returns true and asserts</span>
+<span class="c1"># on the returned value</span>
+<span class="n">assert_true</span><span class="p">(</span><span class="n">await</span><span class="w"> </span><span class="n">wait_until</span><span class="p">(</span><span class="n">everything_is_ok</span><span class="p">,</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">),</span>
+<span class="w">	</span><span class="s2">&quot;Everything should be ok in 10 seconds&quot;</span><span class="p">)</span><span class="o">.</span>
+</pre></div>
+</div>
+</section>
+<section id="wait-while">
+<h2>wait_while<a class="headerlink" href="Awaiting.html#wait-while" title="Permalink to this heading"></a></h2>
+<p><a href="class_ref/class_guttest.html#class-guttest-method-wait-while">GutTest.wait_while</a>
+This is the inverse of <code class="docutils literal notranslate"><span class="pre">wait_until</span></code>.  Use the link above for more information.</p>
+</section>
+<section id="pause-before-teardown">
+<h2>pause_before_teardown<a class="headerlink" href="Awaiting.html#pause-before-teardown" title="Permalink to this heading"></a></h2>
+<p><a href="class_ref/class_guttest.html#class-guttest-method-pause-before-teardown">GutTest.pause_before_teardown</a></p>
+<p>Sometimes, as you are developing your tests you may want to verify something before the any of the teardown methods are called or just look at things a bit.  If you call <code class="docutils literal notranslate"><span class="pre">pause_before_teardown()</span></code> anywhere in your test then GUT will pause execution until you press the “Continue” button in the GUT GUI.  You can also specify an option to ignore all calls to <code class="docutils literal notranslate"><span class="pre">pause_before_teardown</span></code> through the GUT Panel, command line, or <code class="docutils literal notranslate"><span class="pre">.gutconfig</span></code> in case you get lazy and don’t want to remove them.  You should always remove them, but I know you won’t because I didn’t, so I made that an option.</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="Creating-Tests.html" class="btn btn-neutral float-left" title="Creating Tests" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="Inner-Test-Classes.html" class="btn btn-neutral float-right" title="Inner Test Classes" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, Butch Wesley.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

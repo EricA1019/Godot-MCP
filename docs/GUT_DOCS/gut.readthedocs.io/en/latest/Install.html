@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Install &mdash; GUT 9.4.0 documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/gut_custom.css" type="text/css" />
+      <link rel="stylesheet" href="_static/dark_mode_css/general.css" type="text/css" />
+      <link rel="stylesheet" href="_static/dark_mode_css/dark.css" type="text/css" />
+    <link rel="shortcut icon" href="_static/favicon.ico"/>
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="_static/jquery.js%3Fv=5d32c60e"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js%3Fv=2cd50e6c"></script>
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js%3Fv=354d2d61"></script>
+        <script src="_static/doctools.js%3Fv=888ff710"></script>
+        <script src="_static/sphinx_highlight.js%3Fv=4825356b"></script>
+        <script src="_static/dark_mode_js/default_dark.js%3Fv=fd565c74"></script>
+        <script src="_static/dark_mode_js/theme_switcher.js%3Fv=358d3910"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Quick Start" href="Quick-Start.html" />
+    <link rel="prev" title="Gut 9.4.0 (Godot 4.4)" href="index.html" /> 
+<script async type="text/javascript" src="../../_/static/javascript/readthedocs-addons.js"></script><meta name="readthedocs-project-slug" content="gut" /><meta name="readthedocs-version-slug" content="latest" /><meta name="readthedocs-resolver-filename" content="/Install.html" /><meta name="readthedocs-http-status" content="200" /></head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            GUT
+              <img src="_static/GutDocsLogo.png" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                9.4.0 for Godot-4
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Getting Started</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="Install.html#">Install</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="Install.html#installing-from-in-editor-godot-asset-lib">Installing from in-editor Godot Asset Lib</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Install.html#download-and-install">Download and install</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Install.html#installing-from-this-repository">Installing from this repository</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Install.html#setup">Setup</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="Install.html#activate">Activate</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Install.html#setup-directories-for-tests">Setup directories for tests</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="Install.html#running-tests">Running Tests</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="Install.html#run-tests-from-the-gut-panel">Run tests from the GUT Panel</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Install.html#run-tests-from-the-command-line">Run tests from the command line</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Install.html#run-tests-through-vscode">Run tests through VSCode</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="Install.html#where-to-next">Where to next?</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="Quick-Start.html">Quick Start</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Command-Line.html">Command Line</a></li>
+<li class="toctree-l1"><a class="reference internal" href="New-For-Godot-4.html">Godot 4 Changes</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Test Scripts</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="class_ref/class_guttest.html">GutTest</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Creating-Tests.html">Creating Tests</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Awaiting.html">Awaiting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Inner-Test-Classes.html">Inner Test Classes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Parameterized-Tests.html">Parameterized Tests</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Simulate.html">Simulate</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Comparing-Things.html">Comparing Things</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Doubling</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="Doubles.html">Doubles</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Partial-Doubles.html">Partial Doubles</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Double-Strategy.html">Doubling Strategy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Stubbing.html">Stubbing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Spies.html">Spies</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Other</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="Contributing.html">Contributing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="GDScript-Warnings.html">GDScript Warnings</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Export-Test-Results.html">Export Test Results</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Hooks.html">Hooks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Memory-Management.html">Memory Management</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Mocking-Input.html">Mocking Input</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Orphans.html">Orphans</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Running-On-Devices.html">Running on Devices</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Tutorials.html">Tutorials</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Class Reference</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="Class-Ref.html">About Class Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="class_ref/class_addons_gut_cli_optparse.html">addons/gut/cli/optparse.gd</a></li>
+<li class="toctree-l1"><a class="reference internal" href="class_ref/class_addons_gut_junit_xml_export.html">addons/gut/junit_xml_export.gd</a></li>
+<li class="toctree-l1"><a class="reference internal" href="class_ref/class_addons_gut_parameter_factory.html">addons/gut/parameter_factory.gd</a></li>
+<li class="toctree-l1"><a class="reference internal" href="class_ref/class_guthookscript.html">GutHookScript</a></li>
+<li class="toctree-l1"><a class="reference internal" href="class_ref/class_gutinputfactory.html">GutInputFactory</a></li>
+<li class="toctree-l1"><a class="reference internal" href="class_ref/class_gutinputsender.html">GutInputSender</a></li>
+<li class="toctree-l1"><a class="reference internal" href="class_ref/class_gutmain.html">GutMain</a></li>
+<li class="toctree-l1"><a class="reference internal" href="class_ref/class_guttest.html">GutTest</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">GUT</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Install</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/Install.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="install">
+<h1>Install<a class="headerlink" href="Install.html#install" title="Permalink to this heading"></a></h1>
+<p>GUT is a Godot Plugin.  You can download it directly or install it from the Asset Lib in the Godot Editor.</p>
+<section id="installing-from-in-editor-godot-asset-lib">
+<h2>Installing from in-editor Godot Asset Lib<a class="headerlink" href="Install.html#installing-from-in-editor-godot-asset-lib" title="Permalink to this heading"></a></h2>
+<ol class="arabic simple">
+<li><p>Click the AssetLib button at the top of the editor</p></li>
+<li><p>Search for “Gut”</p></li>
+<li><p>Click it.</p></li>
+<li><p>Click “Install”.  This will kick off the download.</p></li>
+<li><p>Click the 2nd “Install” button that appears when the download finishes.  It will be in a little dialog at the bottom of the AssetLib window.</p></li>
+<li><p>Click the 3rd “Install” button.</p></li>
+<li><p>You did it!</p></li>
+</ol>
+<p>Finish the install by following the instructions in <a class="reference internal" href="Install.html#setup"><span class="xref myst">Setup</span></a> below.</p>
+</section>
+<section id="download-and-install">
+<h2>Download and install<a class="headerlink" href="Install.html#download-and-install" title="Permalink to this heading"></a></h2>
+<p>Download the zip from the <a class="reference external" href="https://github.com/bitwes/gut/releases">releases</a> or from the <a class="reference external" href="https://godotengine.org/asset-library/asset/54">Godot Asset Library</a>.</p>
+<p>Extract the zip and place the <code class="docutils literal notranslate"><span class="pre">gut</span></code> directory into your <code class="docutils literal notranslate"><span class="pre">addons</span></code> directory in your project.  If you don’t have an <code class="docutils literal notranslate"><span class="pre">addons</span></code> folder at the root of your project, then make one and THEN put the <code class="docutils literal notranslate"><span class="pre">gut</span></code> directory in there.</p>
+<p>Finish the install by following the instructions in Setup below.</p>
+</section>
+<section id="installing-from-this-repository">
+<h2>Installing from this repository<a class="headerlink" href="Install.html#installing-from-this-repository" title="Permalink to this heading"></a></h2>
+<p>GUT’s file structure is not organized to be used as a Git submodule.  If you would like to have GUT as a submodule of your project you could:</p>
+<ol class="arabic simple">
+<li><p>Add GUT as a submodule at <code class="docutils literal notranslate"><span class="pre">&lt;path</span> <span class="pre">to</span> <span class="pre">gut&gt;/gut</span></code></p></li>
+<li><p>Symlink <code class="docutils literal notranslate"><span class="pre">&lt;path</span> <span class="pre">to</span> <span class="pre">gut&gt;/gut/addons/gut</span></code> to <code class="docutils literal notranslate"><span class="pre">addons/gut</span></code></p></li>
+</ol>
+<p>This will clone the entire GUT repository, including all of its documentation and tests (which are unnecessary).  It may be better to clone GUT outside your project and symlink to it from there instead (contributors must all have a copy of GUT at the same location for the symlink to work).</p>
+</section>
+<section id="setup">
+<h2>Setup<a class="headerlink" href="Install.html#setup" title="Permalink to this heading"></a></h2>
+<section id="activate">
+<h3>Activate<a class="headerlink" href="Install.html#activate" title="Permalink to this heading"></a></h3>
+<ol class="arabic simple">
+<li><p>From the menu choose Project-&gt;Project Settings, click the Plugins tab and activate Gut.  Once activated, the GUT Panel will appear at the bottom of your editor:</p></li>
+</ol>
+<p><img alt="Gut Panel Location" src="_images/gut_panel_where.png" /></p>
+</section>
+<section id="setup-directories-for-tests">
+<h3>Setup directories for tests<a class="headerlink" href="Install.html#setup-directories-for-tests" title="Permalink to this heading"></a></h3>
+<p>The next few steps cover the suggested configuration.  Feel free to deviate where you see fit.</p>
+<ol class="arabic simple">
+<li><p>Create directories to store your tests and test related code (suggested config)</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">res://test</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">res://test/unit</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">res://test/integration</span></code></p></li>
+</ul>
+</li>
+</ol>
+</section>
+</section>
+<section id="running-tests">
+<h2>Running Tests<a class="headerlink" href="Install.html#running-tests" title="Permalink to this heading"></a></h2>
+<section id="run-tests-from-the-gut-panel">
+<h3>Run tests from the GUT Panel<a class="headerlink" href="Install.html#run-tests-from-the-gut-panel" title="Permalink to this heading"></a></h3>
+<p>Set the test directories in the settings subpanel (below) and click “Run All”.  That’s all there is to it.</p>
+<p><img alt="Gut Panel" src="_images/gut_panel.png" /></p>
+</section>
+<section id="run-tests-from-the-command-line">
+<h3>Run tests from the command line<a class="headerlink" href="Install.html#run-tests-from-the-command-line" title="Permalink to this heading"></a></h3>
+<p>GUT comes with a command line interface, more info can be found on the <a class="reference internal" href="Command-Line.html"><span class="doc std std-doc">Command Line</span></a> page.</p>
+</section>
+<section id="run-tests-through-vscode">
+<h3>Run tests through VSCode<a class="headerlink" href="Install.html#run-tests-through-vscode" title="Permalink to this heading"></a></h3>
+<p>There is also a VSCode plugin that you can use to run tests directly from VSCode.  You can find the plugin and related documentation <a class="reference external" href="https://github.com/bitwes/gut-extension">here</a>.</p>
+</section>
+</section>
+<section id="where-to-next">
+<h2>Where to next?<a class="headerlink" href="Install.html#where-to-next" title="Permalink to this heading"></a></h2>
+<ul class="simple">
+<li><p><a class="reference internal" href="Quick-Start.html"><span class="doc std std-doc">Quick Start</span></a></p></li>
+<li><p><a class="reference internal" href="Creating-Tests.html"><span class="doc std std-doc">Creating Tests</span></a></p></li>
+<li><p><a class="reference internal" href="Command-Line.html"><span class="doc std std-doc">Command Line</span></a></p></li>
+</ul>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="index.html" class="btn btn-neutral float-left" title="Gut 9.4.0 (Godot 4.4)" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="Quick-Start.html" class="btn btn-neutral float-right" title="Quick Start" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, Butch Wesley.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

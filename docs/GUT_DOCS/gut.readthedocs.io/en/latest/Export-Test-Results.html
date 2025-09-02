@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Export Test Results &mdash; GUT 9.4.0 documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/gut_custom.css" type="text/css" />
+      <link rel="stylesheet" href="_static/dark_mode_css/general.css" type="text/css" />
+      <link rel="stylesheet" href="_static/dark_mode_css/dark.css" type="text/css" />
+    <link rel="shortcut icon" href="_static/favicon.ico"/>
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="_static/jquery.js%3Fv=5d32c60e"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js%3Fv=2cd50e6c"></script>
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js%3Fv=354d2d61"></script>
+        <script src="_static/doctools.js%3Fv=888ff710"></script>
+        <script src="_static/sphinx_highlight.js%3Fv=4825356b"></script>
+        <script src="_static/dark_mode_js/default_dark.js%3Fv=fd565c74"></script>
+        <script src="_static/dark_mode_js/theme_switcher.js%3Fv=358d3910"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Hooks" href="Hooks.html" />
+    <link rel="prev" title="GDScript Warnings" href="GDScript-Warnings.html" /> 
+<script async type="text/javascript" src="../../_/static/javascript/readthedocs-addons.js"></script><meta name="readthedocs-project-slug" content="gut" /><meta name="readthedocs-version-slug" content="latest" /><meta name="readthedocs-resolver-filename" content="/Export-Test-Results.html" /><meta name="readthedocs-http-status" content="200" /></head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            GUT
+              <img src="_static/GutDocsLogo.png" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                9.4.0 for Godot-4
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Getting Started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="Install.html">Install</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Quick-Start.html">Quick Start</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Command-Line.html">Command Line</a></li>
+<li class="toctree-l1"><a class="reference internal" href="New-For-Godot-4.html">Godot 4 Changes</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Test Scripts</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="class_ref/class_guttest.html">GutTest</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Creating-Tests.html">Creating Tests</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Awaiting.html">Awaiting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Inner-Test-Classes.html">Inner Test Classes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Parameterized-Tests.html">Parameterized Tests</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Simulate.html">Simulate</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Comparing-Things.html">Comparing Things</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Doubling</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="Doubles.html">Doubles</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Partial-Doubles.html">Partial Doubles</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Double-Strategy.html">Doubling Strategy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Stubbing.html">Stubbing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Spies.html">Spies</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Other</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="Contributing.html">Contributing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="GDScript-Warnings.html">GDScript Warnings</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="Export-Test-Results.html#">Export Test Results</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="Export-Test-Results.html#setting-the-export-file">Setting the export file</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Export-Test-Results.html#example-output">Example Output</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Export-Test-Results.html#exporting-results-in-post-run-hook">Exporting results in post-run Hook</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="Hooks.html">Hooks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Memory-Management.html">Memory Management</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Mocking-Input.html">Mocking Input</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Orphans.html">Orphans</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Running-On-Devices.html">Running on Devices</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Tutorials.html">Tutorials</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Class Reference</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="Class-Ref.html">About Class Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="class_ref/class_addons_gut_cli_optparse.html">addons/gut/cli/optparse.gd</a></li>
+<li class="toctree-l1"><a class="reference internal" href="class_ref/class_addons_gut_junit_xml_export.html">addons/gut/junit_xml_export.gd</a></li>
+<li class="toctree-l1"><a class="reference internal" href="class_ref/class_addons_gut_parameter_factory.html">addons/gut/parameter_factory.gd</a></li>
+<li class="toctree-l1"><a class="reference internal" href="class_ref/class_guthookscript.html">GutHookScript</a></li>
+<li class="toctree-l1"><a class="reference internal" href="class_ref/class_gutinputfactory.html">GutInputFactory</a></li>
+<li class="toctree-l1"><a class="reference internal" href="class_ref/class_gutinputsender.html">GutInputSender</a></li>
+<li class="toctree-l1"><a class="reference internal" href="class_ref/class_gutmain.html">GutMain</a></li>
+<li class="toctree-l1"><a class="reference internal" href="class_ref/class_guttest.html">GutTest</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">GUT</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Export Test Results</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/Export-Test-Results.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="export-test-results">
+<h1>Export Test Results<a class="headerlink" href="Export-Test-Results.html#export-test-results" title="Permalink to this heading"></a></h1>
+<p>You can export test results in the JUnit XML format specified <a class="reference external" href="https://llg.cubic.org/docs/junit/">here</a>.  You can specify a file name to export to, or kick off an export in a <a class="reference internal" href="Hooks.html"><span class="doc std std-doc">post-run hook</span></a>.</p>
+<section id="setting-the-export-file">
+<h2>Setting the export file<a class="headerlink" href="Export-Test-Results.html#setting-the-export-file" title="Permalink to this heading"></a></h2>
+<p>There are two settings, the file name and a flag to include an epoch timestamp in the filename.  The epoch timestamp will prevent runs from overwriting the last run’s file.</p>
+<ul class="simple">
+<li><p>Gut Panel</p>
+<ul>
+<li><p>Set <code class="docutils literal notranslate"><span class="pre">Output</span> <span class="pre">Path</span></code> in the XML Output section in the Gut Panel</p></li>
+<li><p>Check <code class="docutils literal notranslate"><span class="pre">Include</span> <span class="pre">Timestamp</span></code> if you want the timestamp to be included.</p></li>
+</ul>
+</li>
+<li><p>Command Line</p>
+<ul>
+<li><p>Set <code class="docutils literal notranslate"><span class="pre">-gjunit_xml_file</span></code> to the path.</p></li>
+<li><p>Add option <code class="docutils literal notranslate"><span class="pre">-gjunit_xml_timestamp</span></code> to include the timestamp.</p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">.gutconfig.json</span></code> File</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">&quot;junit_xml_file&quot;:&quot;user://results.xml&quot;</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">&quot;junit_xml_timestamp&quot;:false</span></code></p></li>
+</ul>
+</li>
+<li><p>Inspector</p>
+<ul>
+<li><p>Set <code class="docutils literal notranslate"><span class="pre">Junit</span> <span class="pre">Xml</span> <span class="pre">File</span></code> to the path.</p></li>
+<li><p>Check <code class="docutils literal notranslate"><span class="pre">Junit</span> <span class="pre">Xml</span> <span class="pre">Timestamp</span></code> if you want the timestamp to be included.</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="example-output">
+<h2>Example Output<a class="headerlink" href="Export-Test-Results.html#example-output" title="Permalink to this heading"></a></h2>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="cp">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span>
+<span class="nt">&lt;testsuites</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;GutTests&quot;</span><span class="w"> </span><span class="na">failures=</span><span class="s">&quot;7&quot;</span><span class="w"> </span><span class="na">tests=</span><span class="s">&quot;17&quot;</span><span class="nt">&gt;</span>
+<span class="w">      </span><span class="nt">&lt;testsuite</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;res://test/resources/exporter_test_files/test_simple_2.gd&quot;</span><span class="w"> </span><span class="na">tests=</span><span class="s">&quot;3&quot;</span><span class="w"> </span><span class="na">failures=</span><span class="s">&quot;1&quot;</span><span class="w"> </span><span class="na">skipped=</span><span class="s">&quot;1&quot;</span><span class="nt">&gt;</span>
+<span class="w">            </span><span class="nt">&lt;testcase</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;test_pass&quot;</span><span class="w"> </span><span class="na">assertions=</span><span class="s">&quot;1&quot;</span><span class="w"> </span><span class="na">status=</span><span class="s">&quot;pass&quot;</span><span class="w"> </span><span class="na">classname=</span><span class="s">&quot;res://test/resources/exporter_test_files/test_simple_2.gd&quot;</span><span class="nt">&gt;&lt;/testcase&gt;</span>
+<span class="w">            </span><span class="nt">&lt;testcase</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;test_fail&quot;</span><span class="w"> </span><span class="na">assertions=</span><span class="s">&quot;1&quot;</span><span class="w"> </span><span class="na">status=</span><span class="s">&quot;fail&quot;</span><span class="w"> </span><span class="na">classname=</span><span class="s">&quot;res://test/resources/exporter_test_files/test_simple_2.gd&quot;</span><span class="nt">&gt;</span>
+<span class="w">                  </span><span class="nt">&lt;failure</span><span class="w"> </span><span class="na">message=</span><span class="s">&quot;failed&quot;</span><span class="nt">&gt;</span>Cannot<span class="w"> </span>compare<span class="w"> </span>Int[1]<span class="w"> </span>to<span class="w"> </span>String[&quot;two&quot;].
+<span class="w">            </span>at<span class="w"> </span>line<span class="w"> </span>7<span class="nt">&lt;/failure&gt;</span>
+<span class="w">            </span><span class="nt">&lt;/testcase&gt;</span>
+<span class="w">            </span><span class="nt">&lt;testcase</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;test_pending&quot;</span><span class="w"> </span><span class="na">assertions=</span><span class="s">&quot;0&quot;</span><span class="w"> </span><span class="na">status=</span><span class="s">&quot;pending&quot;</span><span class="w"> </span><span class="na">classname=</span><span class="s">&quot;res://test/resources/exporter_test_files/test_simple_2.gd&quot;</span><span class="nt">&gt;</span>
+<span class="w">                  </span><span class="nt">&lt;skipped</span><span class="w"> </span><span class="na">message=</span><span class="s">&quot;pending&quot;</span><span class="nt">&gt;</span>this<span class="w"> </span>has<span class="w"> </span>text<span class="nt">&lt;/skipped&gt;</span>
+<span class="w">            </span><span class="nt">&lt;/testcase&gt;</span>
+<span class="w">      </span><span class="nt">&lt;/testsuite&gt;</span>
+<span class="w">      </span><span class="nt">&lt;testsuite</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;res://test/resources/exporter_test_files/test_simple.gd&quot;</span><span class="w"> </span><span class="na">tests=</span><span class="s">&quot;8&quot;</span><span class="w"> </span><span class="na">failures=</span><span class="s">&quot;4&quot;</span><span class="w"> </span><span class="na">skipped=</span><span class="s">&quot;2&quot;</span><span class="nt">&gt;</span>
+<span class="w">            </span><span class="nt">&lt;testcase</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;test_pending_with_text&quot;</span><span class="w"> </span><span class="na">assertions=</span><span class="s">&quot;0&quot;</span><span class="w"> </span><span class="na">status=</span><span class="s">&quot;pending&quot;</span><span class="w"> </span><span class="na">classname=</span><span class="s">&quot;res://test/resources/exporter_test_files/test_simple.gd&quot;</span><span class="nt">&gt;</span>
+<span class="w">                  </span><span class="nt">&lt;skipped</span><span class="w"> </span><span class="na">message=</span><span class="s">&quot;pending&quot;</span><span class="nt">&gt;</span>this<span class="w"> </span>has<span class="w"> </span>text<span class="nt">&lt;/skipped&gt;</span>
+<span class="w">            </span><span class="nt">&lt;/testcase&gt;</span>
+<span class="w">            </span><span class="nt">&lt;testcase</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;test_parameterized_passing&quot;</span><span class="w"> </span><span class="na">assertions=</span><span class="s">&quot;4&quot;</span><span class="w"> </span><span class="na">status=</span><span class="s">&quot;pass&quot;</span><span class="w"> </span><span class="na">classname=</span><span class="s">&quot;res://test/resources/exporter_test_files/test_simple.gd&quot;</span><span class="nt">&gt;&lt;/testcase&gt;</span>
+<span class="w">            </span><span class="nt">&lt;testcase</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;test_parameterized_failing&quot;</span><span class="w"> </span><span class="na">assertions=</span><span class="s">&quot;2&quot;</span><span class="w"> </span><span class="na">status=</span><span class="s">&quot;fail&quot;</span><span class="w"> </span><span class="na">classname=</span><span class="s">&quot;res://test/resources/exporter_test_files/test_simple.gd&quot;</span><span class="nt">&gt;</span>
+<span class="w">                  </span><span class="nt">&lt;failure</span><span class="w"> </span><span class="na">message=</span><span class="s">&quot;failed&quot;</span><span class="nt">&gt;</span>(call<span class="w"> </span>#1)<span class="w"> </span>[1]<span class="w"> </span>expected<span class="w"> </span>to<span class="w"> </span>equal<span class="w"> </span>[2]:
+<span class="w">            </span>at<span class="w"> </span>line<span class="w"> </span>25<span class="nt">&lt;/failure&gt;</span>
+<span class="w">            </span><span class="nt">&lt;/testcase&gt;</span>
+<span class="w">            </span><span class="nt">&lt;testcase</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;test_fail_2&quot;</span><span class="w"> </span><span class="na">assertions=</span><span class="s">&quot;1&quot;</span><span class="w"> </span><span class="na">status=</span><span class="s">&quot;fail&quot;</span><span class="w"> </span><span class="na">classname=</span><span class="s">&quot;res://test/resources/exporter_test_files/test_simple.gd&quot;</span><span class="nt">&gt;</span>
+<span class="w">                  </span><span class="nt">&lt;failure</span><span class="w"> </span><span class="na">message=</span><span class="s">&quot;failed&quot;</span><span class="nt">&gt;</span>Cannot<span class="w"> </span>compare<span class="w"> </span>String[&quot;two&quot;]<span class="w"> </span>to<span class="w"> </span>Int[2].
+<span class="w">            </span>at<span class="w"> </span>line<span class="w"> </span>13<span class="nt">&lt;/failure&gt;</span>
+<span class="w">            </span><span class="nt">&lt;/testcase&gt;</span>
+<span class="w">            </span><span class="nt">&lt;testcase</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;test_pending_no_text&quot;</span><span class="w"> </span><span class="na">assertions=</span><span class="s">&quot;0&quot;</span><span class="w"> </span><span class="na">status=</span><span class="s">&quot;pending&quot;</span><span class="w"> </span><span class="na">classname=</span><span class="s">&quot;res://test/resources/exporter_test_files/test_simple.gd&quot;</span><span class="nt">&gt;</span>
+<span class="w">                  </span><span class="nt">&lt;skipped</span><span class="w"> </span><span class="na">message=</span><span class="s">&quot;pending&quot;</span><span class="nt">&gt;&lt;/skipped&gt;</span>
+<span class="w">            </span><span class="nt">&lt;/testcase&gt;</span>
+<span class="w">            </span><span class="nt">&lt;testcase</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;test_pass_1&quot;</span><span class="w"> </span><span class="na">assertions=</span><span class="s">&quot;1&quot;</span><span class="w"> </span><span class="na">status=</span><span class="s">&quot;pass&quot;</span><span class="w"> </span><span class="na">classname=</span><span class="s">&quot;res://test/resources/exporter_test_files/test_simple.gd&quot;</span><span class="nt">&gt;&lt;/testcase&gt;</span>
+<span class="w">            </span><span class="nt">&lt;testcase</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;test_pass_2&quot;</span><span class="w"> </span><span class="na">assertions=</span><span class="s">&quot;1&quot;</span><span class="w"> </span><span class="na">status=</span><span class="s">&quot;pass&quot;</span><span class="w"> </span><span class="na">classname=</span><span class="s">&quot;res://test/resources/exporter_test_files/test_simple.gd&quot;</span><span class="nt">&gt;&lt;/testcase&gt;</span>
+<span class="w">            </span><span class="nt">&lt;testcase</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;test_fail_1&quot;</span><span class="w"> </span><span class="na">assertions=</span><span class="s">&quot;1&quot;</span><span class="w"> </span><span class="na">status=</span><span class="s">&quot;fail&quot;</span><span class="w"> </span><span class="na">classname=</span><span class="s">&quot;res://test/resources/exporter_test_files/test_simple.gd&quot;</span><span class="nt">&gt;</span>
+<span class="w">                  </span><span class="nt">&lt;failure</span><span class="w"> </span><span class="na">message=</span><span class="s">&quot;failed&quot;</span><span class="nt">&gt;</span>Cannot<span class="w"> </span>compare<span class="w"> </span>Int[1]<span class="w"> </span>to<span class="w"> </span>String[&quot;two&quot;].
+<span class="w">            </span>at<span class="w"> </span>line<span class="w"> </span>10<span class="nt">&lt;/failure&gt;</span>
+<span class="w">            </span><span class="nt">&lt;/testcase&gt;</span>
+<span class="w">      </span><span class="nt">&lt;/testsuite&gt;</span>
+<span class="w">      </span><span class="nt">&lt;testsuite</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;res://test/resources/exporter_test_files/test_with_inner_classes.gd&quot;</span><span class="w"> </span><span class="na">tests=</span><span class="s">&quot;0&quot;</span><span class="w"> </span><span class="na">failures=</span><span class="s">&quot;0&quot;</span><span class="w"> </span><span class="na">skipped=</span><span class="s">&quot;0&quot;</span><span class="nt">&gt;&lt;/testsuite&gt;</span>
+<span class="w">      </span><span class="nt">&lt;testsuite</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;res://test/resources/exporter_test_files/test_with_inner_classes.gd.TestClassOne&quot;</span><span class="w"> </span><span class="na">tests=</span><span class="s">&quot;3&quot;</span><span class="w"> </span><span class="na">failures=</span><span class="s">&quot;1&quot;</span><span class="w"> </span><span class="na">skipped=</span><span class="s">&quot;1&quot;</span><span class="nt">&gt;</span>
+<span class="w">            </span><span class="nt">&lt;testcase</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;test_pending_with_text&quot;</span><span class="w"> </span><span class="na">assertions=</span><span class="s">&quot;0&quot;</span><span class="w"> </span><span class="na">status=</span><span class="s">&quot;pending&quot;</span><span class="w"> </span><span class="na">classname=</span><span class="s">&quot;res://test/resources/exporter_test_files/test_with_inner_classes.gd.TestClassOne&quot;</span><span class="nt">&gt;</span>
+<span class="w">                  </span><span class="nt">&lt;skipped</span><span class="w"> </span><span class="na">message=</span><span class="s">&quot;pending&quot;</span><span class="nt">&gt;</span>this<span class="w"> </span>has<span class="w"> </span>text<span class="nt">&lt;/skipped&gt;</span>
+<span class="w">            </span><span class="nt">&lt;/testcase&gt;</span>
+<span class="w">            </span><span class="nt">&lt;testcase</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;test_fail_1&quot;</span><span class="w"> </span><span class="na">assertions=</span><span class="s">&quot;1&quot;</span><span class="w"> </span><span class="na">status=</span><span class="s">&quot;fail&quot;</span><span class="w"> </span><span class="na">classname=</span><span class="s">&quot;res://test/resources/exporter_test_files/test_with_inner_classes.gd.TestClassOne&quot;</span><span class="nt">&gt;</span>
+<span class="w">                  </span><span class="nt">&lt;failure</span><span class="w"> </span><span class="na">message=</span><span class="s">&quot;failed&quot;</span><span class="nt">&gt;</span>Cannot<span class="w"> </span>compare<span class="w"> </span>Int[1]<span class="w"> </span>to<span class="w"> </span>String[&quot;two&quot;].
+<span class="w">            </span>at<span class="w"> </span>line<span class="w"> </span>11<span class="nt">&lt;/failure&gt;</span>
+<span class="w">            </span><span class="nt">&lt;/testcase&gt;</span>
+<span class="w">            </span><span class="nt">&lt;testcase</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;test_pass_1&quot;</span><span class="w"> </span><span class="na">assertions=</span><span class="s">&quot;1&quot;</span><span class="w"> </span><span class="na">status=</span><span class="s">&quot;pass&quot;</span><span class="w"> </span><span class="na">classname=</span><span class="s">&quot;res://test/resources/exporter_test_files/test_with_inner_classes.gd.TestClassOne&quot;</span><span class="nt">&gt;&lt;/testcase&gt;</span>
+<span class="w">      </span><span class="nt">&lt;/testsuite&gt;</span>
+<span class="w">      </span><span class="nt">&lt;testsuite</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;res://test/resources/exporter_test_files/test_with_inner_classes.gd.TestClassTwo&quot;</span><span class="w"> </span><span class="na">tests=</span><span class="s">&quot;3&quot;</span><span class="w"> </span><span class="na">failures=</span><span class="s">&quot;1&quot;</span><span class="w"> </span><span class="na">skipped=</span><span class="s">&quot;1&quot;</span><span class="nt">&gt;</span>
+<span class="w">            </span><span class="nt">&lt;testcase</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;test_pending_with_text&quot;</span><span class="w"> </span><span class="na">assertions=</span><span class="s">&quot;0&quot;</span><span class="w"> </span><span class="na">status=</span><span class="s">&quot;pending&quot;</span><span class="w"> </span><span class="na">classname=</span><span class="s">&quot;res://test/resources/exporter_test_files/test_with_inner_classes.gd.TestClassTwo&quot;</span><span class="nt">&gt;</span>
+<span class="w">                  </span><span class="nt">&lt;skipped</span><span class="w"> </span><span class="na">message=</span><span class="s">&quot;pending&quot;</span><span class="nt">&gt;</span>this<span class="w"> </span>has<span class="w"> </span>text<span class="nt">&lt;/skipped&gt;</span>
+<span class="w">            </span><span class="nt">&lt;/testcase&gt;</span>
+<span class="w">            </span><span class="nt">&lt;testcase</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;test_fail_1&quot;</span><span class="w"> </span><span class="na">assertions=</span><span class="s">&quot;1&quot;</span><span class="w"> </span><span class="na">status=</span><span class="s">&quot;fail&quot;</span><span class="w"> </span><span class="na">classname=</span><span class="s">&quot;res://test/resources/exporter_test_files/test_with_inner_classes.gd.TestClassTwo&quot;</span><span class="nt">&gt;</span>
+<span class="w">                  </span><span class="nt">&lt;failure</span><span class="w"> </span><span class="na">message=</span><span class="s">&quot;failed&quot;</span><span class="nt">&gt;</span>Cannot<span class="w"> </span>compare<span class="w"> </span>Int[1]<span class="w"> </span>to<span class="w"> </span>String[&quot;two&quot;].
+<span class="w">            </span>at<span class="w"> </span>line<span class="w"> </span>26<span class="nt">&lt;/failure&gt;</span>
+<span class="w">            </span><span class="nt">&lt;/testcase&gt;</span>
+<span class="w">            </span><span class="nt">&lt;testcase</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;test_pass_1&quot;</span><span class="w"> </span><span class="na">assertions=</span><span class="s">&quot;1&quot;</span><span class="w"> </span><span class="na">status=</span><span class="s">&quot;pass&quot;</span><span class="w"> </span><span class="na">classname=</span><span class="s">&quot;res://test/resources/exporter_test_files/test_with_inner_classes.gd.TestClassTwo&quot;</span><span class="nt">&gt;&lt;/testcase&gt;</span>
+<span class="w">      </span><span class="nt">&lt;/testsuite&gt;</span>
+<span class="nt">&lt;/testsuites&gt;</span>
+</pre></div>
+</div>
+</section>
+<section id="exporting-results-in-post-run-hook">
+<h2>Exporting results in post-run Hook<a class="headerlink" href="Export-Test-Results.html#exporting-results-in-post-run-hook" title="Permalink to this heading"></a></h2>
+<p>If you would like more control over exporting the results you can do so manually in a post-run hook.  See <a class="reference internal" href="Hooks.html"><span class="doc std std-doc">Hooks</span></a> for more information about setting up a post-run script.</p>
+<p>Note that <code class="docutils literal notranslate"><span class="pre">JunitXmlExport</span></code> and <code class="docutils literal notranslate"><span class="pre">gut</span></code> are defined by the parent script <code class="docutils literal notranslate"><span class="pre">res://addons/gut/hook_script.gd</span></code></p>
+<div class="highlight-gdscript notranslate"><div class="highlight"><pre><span></span><span class="k">extends</span><span class="w"> </span><span class="n">GutHookScript</span>
+
+<span class="k">func</span><span class="w"> </span><span class="n">run</span><span class="p">()</span><span class="w"> </span><span class="c1"># called automatically by Gut</span>
+<span class="w">	</span><span class="k">var</span><span class="w"> </span><span class="n">exporter</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">JunitXmlExport</span><span class="o">.</span><span class="n">new</span><span class="p">()</span>
+<span class="w">    </span><span class="k">var</span><span class="w"> </span><span class="n">filename</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;user://my_post_hook_results.xml&#39;</span>
+<span class="w">	</span><span class="k">var</span><span class="w"> </span><span class="n">f_result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">exporter</span><span class="o">.</span><span class="n">write_file</span><span class="p">(</span><span class="n">gut</span><span class="p">,</span><span class="w"> </span><span class="n">filename</span><span class="p">)</span>
+<span class="w">	</span><span class="k">if</span><span class="p">(</span><span class="n">f_result</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">OK</span><span class="p">):</span>
+<span class="w">		</span><span class="n">gut</span><span class="o">.</span><span class="n">p</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="s2">&quot;Results saved to &quot;</span><span class="p">,</span><span class="w"> </span><span class="n">filename</span><span class="p">))</span>
+</pre></div>
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="GDScript-Warnings.html" class="btn btn-neutral float-left" title="GDScript Warnings" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="Hooks.html" class="btn btn-neutral float-right" title="Hooks" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, Butch Wesley.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

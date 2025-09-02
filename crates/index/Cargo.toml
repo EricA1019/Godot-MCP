@@ -1,0 +1,29 @@
+[package]
+name = "index"
+version = "0.1.0"
+edition = "2021"
+
+[lib]
+name = "index"
+path = "src/lib.rs"
+
+[[bin]]
+name = "index-cli"
+path = "src/bin/index.rs"
+
+[dependencies]
+anyhow = "1"
+tantivy = "0.22"
+walkdir = "2"
+notify = { version = "6" }
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+tracing = "0.1"
+tracing-subscriber = { version = "0.3", features = ["env-filter", "fmt"] }
+time = { version = "0.3", features = ["formatting"] }
+xxhash-rust = { version = "0.8", features = ["xxh3"] }
+
+[dev-dependencies]
+tempfile = "3"
+
+#EOF

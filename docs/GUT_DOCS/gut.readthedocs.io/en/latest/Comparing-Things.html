@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Comparing Things &mdash; GUT 9.4.0 documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/gut_custom.css" type="text/css" />
+      <link rel="stylesheet" href="_static/dark_mode_css/general.css" type="text/css" />
+      <link rel="stylesheet" href="_static/dark_mode_css/dark.css" type="text/css" />
+    <link rel="shortcut icon" href="_static/favicon.ico"/>
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="_static/jquery.js%3Fv=5d32c60e"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js%3Fv=2cd50e6c"></script>
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js%3Fv=354d2d61"></script>
+        <script src="_static/doctools.js%3Fv=888ff710"></script>
+        <script src="_static/sphinx_highlight.js%3Fv=4825356b"></script>
+        <script src="_static/dark_mode_js/default_dark.js%3Fv=fd565c74"></script>
+        <script src="_static/dark_mode_js/theme_switcher.js%3Fv=358d3910"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Doubles" href="Doubles.html" />
+    <link rel="prev" title="Simulate" href="Simulate.html" /> 
+<script async type="text/javascript" src="../../_/static/javascript/readthedocs-addons.js"></script><meta name="readthedocs-project-slug" content="gut" /><meta name="readthedocs-version-slug" content="latest" /><meta name="readthedocs-resolver-filename" content="/Comparing-Things.html" /><meta name="readthedocs-http-status" content="200" /></head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            GUT
+              <img src="_static/GutDocsLogo.png" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                9.4.0 for Godot-4
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Getting Started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="Install.html">Install</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Quick-Start.html">Quick Start</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Command-Line.html">Command Line</a></li>
+<li class="toctree-l1"><a class="reference internal" href="New-For-Godot-4.html">Godot 4 Changes</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Test Scripts</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="class_ref/class_guttest.html">GutTest</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Creating-Tests.html">Creating Tests</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Awaiting.html">Awaiting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Inner-Test-Classes.html">Inner Test Classes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Parameterized-Tests.html">Parameterized Tests</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Simulate.html">Simulate</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="Comparing-Things.html#">Comparing Things</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="Comparing-Things.html#compareresult">CompareResult</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="Comparing-Things.html#properties">Properties</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="Comparing-Things.html#examples">Examples</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="Comparing-Things.html#deep-array-compare">Deep array compare:</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Comparing-Things.html#deep-dictionary-compare">Deep Dictionary Compare</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Comparing-Things.html#mix-bag-of-differences">Mix Bag of Differences</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Doubling</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="Doubles.html">Doubles</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Partial-Doubles.html">Partial Doubles</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Double-Strategy.html">Doubling Strategy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Stubbing.html">Stubbing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Spies.html">Spies</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Other</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="Contributing.html">Contributing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="GDScript-Warnings.html">GDScript Warnings</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Export-Test-Results.html">Export Test Results</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Hooks.html">Hooks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Memory-Management.html">Memory Management</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Mocking-Input.html">Mocking Input</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Orphans.html">Orphans</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Running-On-Devices.html">Running on Devices</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Tutorials.html">Tutorials</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Class Reference</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="Class-Ref.html">About Class Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="class_ref/class_addons_gut_cli_optparse.html">addons/gut/cli/optparse.gd</a></li>
+<li class="toctree-l1"><a class="reference internal" href="class_ref/class_addons_gut_junit_xml_export.html">addons/gut/junit_xml_export.gd</a></li>
+<li class="toctree-l1"><a class="reference internal" href="class_ref/class_addons_gut_parameter_factory.html">addons/gut/parameter_factory.gd</a></li>
+<li class="toctree-l1"><a class="reference internal" href="class_ref/class_guthookscript.html">GutHookScript</a></li>
+<li class="toctree-l1"><a class="reference internal" href="class_ref/class_gutinputfactory.html">GutInputFactory</a></li>
+<li class="toctree-l1"><a class="reference internal" href="class_ref/class_gutinputsender.html">GutInputSender</a></li>
+<li class="toctree-l1"><a class="reference internal" href="class_ref/class_gutmain.html">GutMain</a></li>
+<li class="toctree-l1"><a class="reference internal" href="class_ref/class_guttest.html">GutTest</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">GUT</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Comparing Things</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/Comparing-Things.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="comparing-things">
+<h1>Comparing Things<a class="headerlink" href="Comparing-Things.html#comparing-things" title="Permalink to this heading"></a></h1>
+<p>Comparing things isn’t always as obvious as you would think.  It can get a little tricky when comparing the contents of dictionaries and arrays.  GUT has some utilities to help out.</p>
+<p>In Godot 3.x dictionaries were compared by reference and arrays were compared by value. In 4.0 both are compared by value. Godot 4.0 introduces the <code class="docutils literal notranslate"><span class="pre">is_same</span></code> method which (amongst other things) will compare dictionaries and arrays by reference.  GUT now has <code class="docutils literal notranslate"><span class="pre">assert_same</span></code> and <code class="docutils literal notranslate"><span class="pre">assert_not_same</span></code>.</p>
+<p>For more information about the changes to Dictionaries and Arrays and how they affect GUT see <a class="reference internal" href="New-For-Godot-4.html"><span class="doc std std-doc">Godot 4 Changes</span></a>.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">assert_eq</span></code> and <code class="docutils literal notranslate"><span class="pre">assert_ne</span></code> methods use Godot’s default comparision logic, meaning arrays and dictionaries are compared by value.  Godot uses a hashing function to compare the values.  This is fast, but does not give you any insight into what is actually different when your tests fail.  GUT has some “deep” comparison methods that will show the differences in the two values.</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">compare_deep</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">assert_eq_deep</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">assert_ne_deep</span></code></p></li>
+</ul>
+<p>A deep compare will recursively compare all values in the dictionary/array and all sub-dictionaries and sub-arrays.  Floats and Integers are never equal.  See <code class="docutils literal notranslate"><span class="pre">assert_eq_deep</span></code> in <a class="reference internal" href="class_ref/class_guttest.html#class-guttest"><span class="std std-ref">GutTest</span></a> for examples.</p>
+<section id="compareresult">
+<h2>CompareResult<a class="headerlink" href="Comparing-Things.html#compareresult" title="Permalink to this heading"></a></h2>
+<p>A <code class="docutils literal notranslate"><span class="pre">CompareResult</span></code> object is returned from <code class="docutils literal notranslate"><span class="pre">compare_deep</span></code>.  You can use this object to further inspect the differences or adjust the output.</p>
+<section id="properties">
+<h3>Properties<a class="headerlink" href="Comparing-Things.html#properties" title="Permalink to this heading"></a></h3>
+<ul class="simple">
+<li><p><strong>are_equal</strong><br> <code class="docutils literal notranslate"><span class="pre">true</span></code>/<code class="docutils literal notranslate"><span class="pre">false</span></code> if all keys/values in the two objects are equal.</p></li>
+<li><p><strong>summary</strong><br> returns a string of all the differences found.  This will display <code class="docutils literal notranslate"><span class="pre">max_differences</span></code> differences per each entry and per each sub-array/sub-dictionary. This is returned if you use <code class="docutils literal notranslate"><span class="pre">str</span></code> on a <code class="docutils literal notranslate"><span class="pre">CompareResult</span></code>.</p></li>
+<li><p><strong>max_differences</strong><br>  The number of differences to display.  This only affects output, all differences are accessible from the <code class="docutils literal notranslate"><span class="pre">differences</span></code> property.  Set this to -1 to show the maximum number of differences (10,000)</p></li>
+<li><p><strong>differences</strong><br>  This is a dictionary of all the keys/indexes that are different between the compared items.  The key is the key/index that is different.  Keys/indexes that are missing from one of the compared objects are included.  The value of each index is a <code class="docutils literal notranslate"><span class="pre">CompareResult</span></code>.
+<br><br>
+<code class="docutils literal notranslate"><span class="pre">CompareResult</span></code>s for sub-arrays/sub-dictionaries <code class="docutils literal notranslate"><span class="pre">differences</span></code> will contain all their differences.  You can use  the <code class="docutils literal notranslate"><span class="pre">differences</span></code> property for that key to dig deeper into the differences.  <code class="docutils literal notranslate"><span class="pre">differences</span></code> will be an empty dictionary for any element that is not an array or dictionary.</p></li>
+</ul>
+</section>
+</section>
+<section id="examples">
+<h2>Examples<a class="headerlink" href="Comparing-Things.html#examples" title="Permalink to this heading"></a></h2>
+<section id="deep-array-compare">
+<h3>Deep array compare:<a class="headerlink" href="Comparing-Things.html#deep-array-compare" title="Permalink to this heading"></a></h3>
+<div class="highlight-gdscript notranslate"><div class="highlight"><pre><span></span><span class="k">var</span><span class="w"> </span><span class="n">a1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span>
+<span class="w">    </span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="mi">4</span><span class="p">],</span>
+<span class="w">    </span><span class="p">[[</span><span class="mi">4</span><span class="p">,</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w"> </span><span class="mi">6</span><span class="p">],</span><span class="w"> </span><span class="p">[</span><span class="s1">&#39;same&#39;</span><span class="p">],</span><span class="w"> </span><span class="p">[</span><span class="mi">7</span><span class="p">,</span><span class="w"> </span><span class="mi">8</span><span class="p">,</span><span class="w"> </span><span class="mi">9</span><span class="p">]]</span>
+<span class="p">]</span>
+<span class="k">var</span><span class="w"> </span><span class="n">a2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span>
+<span class="w">    </span><span class="p">[</span><span class="s2">&quot;1&quot;</span><span class="p">,</span><span class="w"> </span><span class="mf">2.0</span><span class="p">,</span><span class="w"> </span><span class="mi">13</span><span class="p">],</span>
+<span class="w">    </span><span class="p">[[</span><span class="mi">14</span><span class="p">,</span><span class="w"> </span><span class="mi">15</span><span class="p">,</span><span class="w"> </span><span class="mi">16</span><span class="p">],</span><span class="w"> </span><span class="p">[</span><span class="s1">&#39;same&#39;</span><span class="p">],</span><span class="w"> </span><span class="p">[</span><span class="mi">17</span><span class="p">,</span><span class="w"> </span><span class="mi">18</span><span class="p">,</span><span class="w"> </span><span class="mi">19</span><span class="p">]]</span>
+<span class="p">]</span>
+<span class="k">var</span><span class="w"> </span><span class="n">result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">compare_deep</span><span class="p">(</span><span class="n">a1</span><span class="p">,</span><span class="w"> </span><span class="n">a2</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">result</span><span class="o">.</span><span class="n">summary</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Traversing differences:&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">result</span><span class="o">.</span><span class="n">differences</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">differences</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">differences</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+</pre></div>
+</div>
+<p>Output</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">],</span> <span class="p">[[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">],</span> <span class="p">[</span><span class="n">same</span><span class="p">],</span> <span class="p">[</span><span class="mi">7</span><span class="p">,</span> <span class="mf">8.</span><span class="o">.</span><span class="mf">.7</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">9</span><span class="p">]]]</span> <span class="o">!=</span> <span class="p">[[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">13</span><span class="p">],</span> <span class="p">[[</span><span class="mi">14</span><span class="p">,</span> <span class="mi">15</span><span class="p">,</span> <span class="mi">16</span><span class="p">],</span> <span class="p">[</span><span class="n">same</span><span class="p">],</span> <span class="p">[</span><span class="mi">17</span><span class="p">,</span><span class="o">...</span> <span class="mi">18</span><span class="p">,</span> <span class="mi">19</span><span class="p">]]]</span>  <span class="mi">2</span> <span class="n">of</span> <span class="mi">2</span> <span class="n">indexes</span> <span class="n">do</span> <span class="ow">not</span> <span class="n">match</span><span class="o">.</span>
+    <span class="p">[</span>
+        <span class="mi">0</span><span class="p">:</span>  <span class="p">[</span>
+            <span class="mi">0</span><span class="p">:</span>  <span class="mi">1</span> <span class="o">!=</span> <span class="s2">&quot;1&quot;</span><span class="o">.</span>  <span class="n">Cannot</span> <span class="n">compare</span> <span class="n">Int</span> <span class="k">with</span> <span class="n">String</span><span class="o">.</span>
+            <span class="mi">1</span><span class="p">:</span>  <span class="mi">2</span> <span class="o">!=</span> <span class="mf">2.0</span><span class="o">.</span>  <span class="n">Cannot</span> <span class="n">compare</span> <span class="n">Int</span> <span class="k">with</span> <span class="n">Float</span><span class="o">/</span><span class="n">Real</span><span class="o">.</span>
+            <span class="mi">2</span><span class="p">:</span>  <span class="mi">3</span> <span class="o">!=</span> <span class="mi">13</span>
+            <span class="mi">3</span><span class="p">:</span>  <span class="mi">4</span> <span class="o">!=</span> <span class="o">&lt;</span><span class="n">missing</span> <span class="n">index</span><span class="o">&gt;</span>
+        <span class="p">]</span>
+        <span class="mi">1</span><span class="p">:</span>  <span class="p">[</span>
+            <span class="mi">0</span><span class="p">:</span>  <span class="p">[</span>
+                <span class="mi">0</span><span class="p">:</span>  <span class="mi">4</span> <span class="o">!=</span> <span class="mi">14</span>
+                <span class="mi">1</span><span class="p">:</span>  <span class="mi">5</span> <span class="o">!=</span> <span class="mi">15</span>
+                <span class="mi">2</span><span class="p">:</span>  <span class="mi">6</span> <span class="o">!=</span> <span class="mi">16</span>
+            <span class="p">]</span>
+            <span class="mi">2</span><span class="p">:</span>  <span class="p">[</span>
+                <span class="mi">0</span><span class="p">:</span>  <span class="mi">7</span> <span class="o">!=</span> <span class="mi">17</span>
+                <span class="mi">1</span><span class="p">:</span>  <span class="mi">8</span> <span class="o">!=</span> <span class="mi">18</span>
+                <span class="mi">2</span><span class="p">:</span>  <span class="mi">9</span> <span class="o">!=</span> <span class="mi">19</span>
+            <span class="p">]</span>
+        <span class="p">]</span>
+    <span class="p">]</span>
+<span class="n">Traversing</span> <span class="n">differences</span><span class="p">:</span>
+<span class="mi">7</span> <span class="o">!=</span> <span class="mi">17</span>
+</pre></div>
+</div>
+</section>
+<section id="deep-dictionary-compare">
+<h3>Deep Dictionary Compare<a class="headerlink" href="Comparing-Things.html#deep-dictionary-compare" title="Permalink to this heading"></a></h3>
+<div class="highlight-gdscript notranslate"><div class="highlight"><pre><span></span><span class="k">var</span><span class="w"> </span><span class="n">v1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="s1">&#39;a&#39;</span><span class="p">:{</span><span class="s1">&#39;b&#39;</span><span class="p">:{</span><span class="s1">&#39;c&#39;</span><span class="p">:{</span><span class="s1">&#39;d&#39;</span><span class="p">:</span><span class="mi">1</span><span class="p">}}}}</span>
+<span class="k">var</span><span class="w"> </span><span class="n">v2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="s1">&#39;a&#39;</span><span class="p">:{</span><span class="s1">&#39;b&#39;</span><span class="p">:{</span><span class="s1">&#39;c&#39;</span><span class="p">:{</span><span class="s1">&#39;d&#39;</span><span class="p">:</span><span class="mi">2</span><span class="p">}}}}</span>
+<span class="k">var</span><span class="w"> </span><span class="n">result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">compare_deep</span><span class="p">(</span><span class="n">v1</span><span class="p">,</span><span class="w"> </span><span class="n">v2</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">result</span><span class="o">.</span><span class="n">summary</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Traversing differences:&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">result</span><span class="o">.</span><span class="n">differences</span><span class="p">[</span><span class="s1">&#39;a&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">differences</span><span class="p">[</span><span class="s1">&#39;b&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">differences</span><span class="p">[</span><span class="s1">&#39;c&#39;</span><span class="p">])</span>
+</pre></div>
+</div>
+<p>Output</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="n">a</span><span class="p">:{</span><span class="n">b</span><span class="p">:{</span><span class="n">c</span><span class="p">:{</span><span class="n">d</span><span class="p">:</span><span class="mi">1</span><span class="p">}}}}</span> <span class="o">!=</span> <span class="p">{</span><span class="n">a</span><span class="p">:{</span><span class="n">b</span><span class="p">:{</span><span class="n">c</span><span class="p">:{</span><span class="n">d</span><span class="p">:</span><span class="mi">2</span><span class="p">}}}}</span>  <span class="mi">1</span> <span class="n">of</span> <span class="mi">1</span> <span class="n">keys</span> <span class="n">do</span> <span class="ow">not</span> <span class="n">match</span><span class="o">.</span>
+    <span class="p">{</span>
+        <span class="n">a</span><span class="p">:</span>  <span class="p">{</span>
+            <span class="n">b</span><span class="p">:</span>  <span class="p">{</span>
+                <span class="n">c</span><span class="p">:</span>  <span class="p">{</span>
+                    <span class="n">d</span><span class="p">:</span>  <span class="mi">1</span> <span class="o">!=</span> <span class="mi">2</span>
+                <span class="p">}</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="n">Traversing</span> <span class="n">differences</span><span class="p">:</span>
+<span class="p">{</span><span class="n">d</span><span class="p">:</span><span class="mi">1</span><span class="p">}</span> <span class="o">!=</span> <span class="p">{</span><span class="n">d</span><span class="p">:</span><span class="mi">2</span><span class="p">}</span>  <span class="mi">1</span> <span class="n">of</span> <span class="mi">1</span> <span class="n">keys</span> <span class="n">do</span> <span class="ow">not</span> <span class="n">match</span><span class="o">.</span>
+    <span class="p">{</span>
+        <span class="n">d</span><span class="p">:</span>  <span class="mi">1</span> <span class="o">!=</span> <span class="mi">2</span>
+    <span class="p">}</span>
+</pre></div>
+</div>
+</section>
+<section id="mix-bag-of-differences">
+<h3>Mix Bag of Differences<a class="headerlink" href="Comparing-Things.html#mix-bag-of-differences" title="Permalink to this heading"></a></h3>
+<div class="highlight-gdscript notranslate"><div class="highlight"><pre><span></span><span class="k">var</span><span class="w"> </span><span class="n">a1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span>
+<span class="w">    </span><span class="s1">&#39;a&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;b&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;c&#39;</span><span class="p">,</span>
+<span class="w">    </span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="mi">4</span><span class="p">],</span>
+<span class="w">    </span><span class="p">{</span><span class="s1">&#39;a&#39;</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;b&#39;</span><span class="p">:</span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;c&#39;</span><span class="p">:</span><span class="mi">3</span><span class="p">},</span>
+<span class="w">    </span><span class="p">[{</span><span class="s1">&#39;a&#39;</span><span class="p">:</span><span class="mi">1</span><span class="p">},</span><span class="w"> </span><span class="p">{</span><span class="s1">&#39;b&#39;</span><span class="p">:</span><span class="mi">2</span><span class="p">}]</span>
+<span class="p">]</span>
+<span class="k">var</span><span class="w"> </span><span class="n">a2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span>
+<span class="w">    </span><span class="s1">&#39;a&#39;</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;c&#39;</span><span class="p">,</span>
+<span class="w">    </span><span class="p">[</span><span class="s1">&#39;a&#39;</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;d&#39;</span><span class="p">],</span>
+<span class="w">    </span><span class="p">{</span><span class="s1">&#39;a&#39;</span><span class="p">:</span><span class="mi">11</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;b&#39;</span><span class="p">:</span><span class="mi">12</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;c&#39;</span><span class="p">:</span><span class="mi">13</span><span class="p">},</span>
+<span class="w">    </span><span class="p">[{</span><span class="s1">&#39;a&#39;</span><span class="p">:</span><span class="s1">&#39;diff&#39;</span><span class="p">},</span><span class="w"> </span><span class="p">{</span><span class="s1">&#39;b&#39;</span><span class="p">:</span><span class="mi">2</span><span class="p">}]</span>
+<span class="p">]</span>
+<span class="k">var</span><span class="w"> </span><span class="n">result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">compare_deep</span><span class="p">(</span><span class="n">a1</span><span class="p">,</span><span class="w"> </span><span class="n">a2</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">result</span><span class="o">.</span><span class="n">summary</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Traversing differences:&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">result</span><span class="o">.</span><span class="n">differences</span><span class="p">[</span><span class="mi">5</span><span class="p">]</span><span class="o">.</span><span class="n">differences</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">differences</span><span class="p">[</span><span class="s1">&#39;a&#39;</span><span class="p">])</span>
+</pre></div>
+</div>
+<p>Output</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">c</span><span class="p">,</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">],</span> <span class="p">{</span><span class="n">a</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span> <span class="n">b</span><span class="p">:</span><span class="mi">2</span><span class="p">,</span> <span class="n">c</span><span class="p">:</span><span class="mi">3</span><span class="p">},</span><span class="o">...</span><span class="p">},</span> <span class="p">{</span><span class="n">b</span><span class="p">:</span><span class="mi">2</span><span class="p">}]]</span> <span class="o">!=</span> <span class="p">[</span><span class="n">a</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">c</span><span class="p">,</span> <span class="p">[</span><span class="n">a</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="n">d</span><span class="p">],</span> <span class="p">{</span><span class="n">a</span><span class="p">:</span><span class="mi">11</span><span class="p">,</span> <span class="n">b</span><span class="p">:</span><span class="mi">12</span><span class="p">,</span> <span class="n">c</span><span class="p">:</span><span class="mf">1.</span><span class="o">..</span><span class="p">},</span> <span class="p">{</span><span class="n">b</span><span class="p">:</span><span class="mi">2</span><span class="p">}]]</span>  <span class="mi">4</span> <span class="n">of</span> <span class="mi">6</span> <span class="n">indexes</span> <span class="n">do</span> <span class="ow">not</span> <span class="n">match</span><span class="o">.</span>
+    <span class="p">[</span>
+        <span class="mi">1</span><span class="p">:</span>  <span class="s2">&quot;b&quot;</span> <span class="o">!=</span> <span class="mf">2.</span>  <span class="n">Cannot</span> <span class="n">compare</span> <span class="n">String</span> <span class="k">with</span> <span class="n">Int</span><span class="o">.</span>
+        <span class="mi">3</span><span class="p">:</span>  <span class="p">[</span>
+            <span class="mi">0</span><span class="p">:</span>  <span class="mi">1</span> <span class="o">!=</span> <span class="s2">&quot;a&quot;</span><span class="o">.</span>  <span class="n">Cannot</span> <span class="n">compare</span> <span class="n">Int</span> <span class="k">with</span> <span class="n">String</span><span class="o">.</span>
+            <span class="mi">3</span><span class="p">:</span>  <span class="mi">4</span> <span class="o">!=</span> <span class="s2">&quot;d&quot;</span><span class="o">.</span>  <span class="n">Cannot</span> <span class="n">compare</span> <span class="n">Int</span> <span class="k">with</span> <span class="n">String</span><span class="o">.</span>
+        <span class="p">]</span>
+        <span class="mi">4</span><span class="p">:</span>  <span class="p">{</span>
+            <span class="n">a</span><span class="p">:</span>  <span class="mi">1</span> <span class="o">!=</span> <span class="mi">11</span>
+            <span class="n">b</span><span class="p">:</span>  <span class="mi">2</span> <span class="o">!=</span> <span class="mi">12</span>
+            <span class="n">c</span><span class="p">:</span>  <span class="mi">3</span> <span class="o">!=</span> <span class="mi">13</span>
+        <span class="p">}</span>
+        <span class="mi">5</span><span class="p">:</span>  <span class="p">[</span>
+            <span class="mi">0</span><span class="p">:</span>  <span class="p">{</span>
+                <span class="n">a</span><span class="p">:</span>  <span class="mi">1</span> <span class="o">!=</span> <span class="s2">&quot;diff&quot;</span><span class="o">.</span>  <span class="n">Cannot</span> <span class="n">compare</span> <span class="n">Int</span> <span class="k">with</span> <span class="n">String</span><span class="o">.</span>
+            <span class="p">}</span>
+        <span class="p">]</span>
+    <span class="p">]</span>
+    <span class="n">Traversing</span> <span class="n">differences</span><span class="p">:</span>
+    <span class="mi">1</span> <span class="o">!=</span> <span class="s2">&quot;diff&quot;</span><span class="o">.</span>  <span class="n">Cannot</span> <span class="n">compare</span> <span class="n">Int</span> <span class="k">with</span> <span class="n">String</span><span class="o">.</span>
+</pre></div>
+</div>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="Simulate.html" class="btn btn-neutral float-left" title="Simulate" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="Doubles.html" class="btn btn-neutral float-right" title="Doubles" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, Butch Wesley.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
