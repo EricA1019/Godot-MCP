@@ -142,6 +142,12 @@ const PROJECT_INDEX_TEMPLATE: &str = r#"# Project Index
 - Inventory of code, tools, docs.
 <!-- AUTODOC:END main -->
 
+## Cleanup candidates
+
+<!-- METATAGGER:BEGIN cleanup -->
+None yet.
+<!-- METATAGGER:END cleanup -->
+
 "#;
 
 const WORKFLOW_PROJECT_TEMPLATE: &str = r#"# Project Workflow
