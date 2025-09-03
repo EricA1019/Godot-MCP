@@ -6,7 +6,7 @@ use std::path::{Path, PathBuf};
 use walkdir::WalkDir;
 
 pub mod scene_validate;
-pub mod structure_fix;
+pub mod signal_validate;
 
 #[derive(Debug, Clone, Serialize, Deserialize, PartialEq, Eq, Default)]
 pub struct GodotProjectReport {
@@ -118,6 +118,27 @@ pub fn analyze_project(root: &Path) -> Result<GodotProjectReport> {
     report.issues.sort_by(|a, b| a.severity.cmp(&b.severity).then(a.message.cmp(&b.message)));
 
     Ok(report)
+}
+
+/// Run signal validation across .tscn files and convert to Issue entries.
+pub fn signal_issues_as_report(root: &Path) -> Vec<Issue> {
+    let mut out = Vec::new();
+    for entry in WalkDir::new(root).into_iter().flatten() {
+        let path = entry.path();
+        if !entry.file_type().is_file() { continue; }
+        let is_scene = matches!(path.extension().and_then(|s| s.to_str()), Some("tscn"));
+        if !is_scene { continue; }
+        let rel = path.strip_prefix(root).unwrap_or(path);
+        let sig_issues = signal_validate::validate_scene_signals(root, rel);
+        for si in sig_issues {
+            let mut msg = si.message.clone();
+            if let Some(np) = si.node_path.as_ref() {
+                msg = format!("{} [node: {}]", msg, np);
+            }
+            out.push(Issue::error(msg, Some(rel.to_path_buf())));
+        }
+    }
+    out
 }
 
 /// Run scene validation across .tscn files and convert to Issue entries.
@@ -279,7 +300,8 @@ pub fn to_sarif(report: &GodotProjectReport) -> serde_json::Value {
                 "name": "godot-analyzer",
                 "rules": [
                     {"id": "godot-analyzer", "name": "godot-analyzer", "shortDescription": {"text": "Godot project configuration checks"}},
-                    {"id": "scene-validator", "name": "scene-validator", "shortDescription": {"text": "Godot scene (.tscn) validation checks"}}
+                    {"id": "scene-validator", "name": "scene-validator", "shortDescription": {"text": "Godot scene (.tscn) validation checks"}},
+                    {"id": "signal-validator", "name": "signal-validator", "shortDescription": {"text": "Godot scene signal connection checks"}}
                 ]
             }},
             "results": results
@@ -299,6 +321,11 @@ fn classify_rule_id(i: &Issue) -> &'static str {
     || msg.starts_with("Load missing file:")
     {
         "scene-validator"
+    } else if msg.starts_with("Unknown connection '")
+        || msg.starts_with("Connection missing ")
+        || msg.starts_with("Duplicate connection:")
+    {
+        "signal-validator"
     } else {
         // Default to the core analyzer
         "godot-analyzer"
@@ -311,7 +338,7 @@ pub fn to_junit(report: &GodotProjectReport) -> String {
     s.push_str(&format!("<testsuite name=\"godot-analyzer\" tests=\"{}\">\n", report.issues.len()));
     for i in &report.issues {
         let name = format!("{}", i.message);
-    let class_name = match classify_rule_id(i) { "scene-validator" => "scene-validator", _ => "godot-analyzer" };
+    let class_name = match classify_rule_id(i) { "scene-validator" => "scene-validator", "signal-validator" => "signal-validator", _ => "godot-analyzer" };
     s.push_str(&format!("  <testcase name=\"{}\" classname=\"{}\">\n", xml_escape(&name), class_name));
         s.push_str(&format!("    <failure message=\"{:?}\">{}</failure>\n", i.severity, xml_escape(&i.file.as_ref().map(|p| p.display().to_string()).unwrap_or_default())));
         s.push_str("  </testcase>\n");

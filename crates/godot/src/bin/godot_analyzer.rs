@@ -1,7 +1,6 @@
 use clap::Parser;
 use std::path::PathBuf;
-use godot_analyzer::{analyze_project, GodotProjectReport, Severity, to_junit, to_sarif, scene_issues_as_report_with, SceneCheckOptions};
-use godot_analyzer::structure_fix::{propose_plan, apply_plan, rollback_plan, PlanV1};
+use godot_analyzer::{analyze_project, GodotProjectReport, Severity, to_junit, to_sarif, scene_issues_as_report_with, SceneCheckOptions, signal_issues_as_report};
 
 #[derive(Parser, Debug)]
 #[command(name = "godot-analyzer", version, about = "Analyze a Godot project for configuration and addon health", long_about = None)]
@@ -25,49 +24,21 @@ struct Args {
     /// Validate scenes (.tscn) and include findings in outputs
     #[arg(long)]
     validate_scenes: bool,
+    /// Validate signal connections in scenes and include findings in outputs
+    #[arg(long)]
+    validate_signals: bool,
     /// Optionally write scene findings as a standalone JSON file
     #[arg(long)]
     scene_json_out: Option<PathBuf>,
     /// Select which scene checks to run (repeatable). Options: script,properties,subresource,preload,load.
     #[arg(long = "scene-check")] 
     scene_checks: Vec<String>,
-
-    // Structure auto-fix flags (Hop 9)
-    /// Propose a project structure normalization plan (dry-run) and print JSON plan to stdout
-    #[arg(long)]
-    structure_fix_dry_run: bool,
-    /// Apply a JSON plan file; prints rollback plan JSON to stdout
-    #[arg(long)]
-    structure_fix_apply: Option<PathBuf>,
-    /// Roll back using a rollback plan JSON file
-    #[arg(long)]
-    structure_fix_rollback: Option<PathBuf>,
 }
 
 fn main() {
     let args = Args::parse();
     let root = args.root.unwrap_or_else(|| std::env::current_dir().unwrap());
     let mut report = analyze_project(&root).expect("analyze");
-
-    // Structure fix commands short-circuit normal output
-    if args.structure_fix_dry_run {
-        let plan = propose_plan(&root).expect("propose plan");
-        println!("{}", serde_json::to_string_pretty(&plan).unwrap());
-        return;
-    }
-    if let Some(plan_path) = args.structure_fix_apply.as_ref() {
-        let data = std::fs::read_to_string(plan_path).expect("read plan file");
-        let plan: PlanV1 = serde_json::from_str(&data).expect("parse plan json");
-        let rollback = apply_plan(&root, &plan).expect("apply plan");
-        println!("{}", serde_json::to_string_pretty(&rollback).unwrap());
-        return;
-    }
-    if let Some(rb_path) = args.structure_fix_rollback.as_ref() {
-        let data = std::fs::read_to_string(rb_path).expect("read rollback file");
-        let rollback: PlanV1 = serde_json::from_str(&data).expect("parse rollback json");
-        rollback_plan(&root, &rollback).expect("rollback plan");
-        return;
-    }
 
     if args.validate_scenes {
         let mut opts = SceneCheckOptions::default();
@@ -92,6 +63,12 @@ fn main() {
     report.issues.extend(scene_issues);
     // Keep deterministic ordering after merge
     report.issues.sort_by(|a, b| a.severity.cmp(&b.severity).then(a.message.cmp(&b.message)));
+    }
+
+    if args.validate_signals {
+        let sig_issues = signal_issues_as_report(&root);
+        report.issues.extend(sig_issues);
+        report.issues.sort_by(|a, b| a.severity.cmp(&b.severity).then(a.message.cmp(&b.message)));
     }
 
     // Optional filtering by minimum severity for outputs

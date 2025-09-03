@@ -131,23 +131,24 @@ Living roadmap of tiny, runnable hops with crisp acceptance criteria. Each hop m
   - Detects missing files referenced via scripts, ext_resources, SubResource ids, and preload/load
   - No panics on malformed but parseable scenes; graceful degradation
 
-### Hop 8: Signal Validator + Trace [PLANNED] (M)
+### Hop 8: Signal Validator + Trace [IN-PROGRESS] (M)
 - Goal: Analyze signal definitions and connections
-- Deliverables: crates/godot/signal_validate.rs
-- Tests: orphaned, duplicate, slow handlers
-- Acceptance: emits DOT graph and quick fixes
-
-### Hop 9: Structure Auto-Fix [IN-PROGRESS] (M)
-- Goal: Propose+apply safe moves/renames to conventions
 - Deliverables:
-  - crates/godot/src/structure_fix.rs (propose_plan, apply_plan, rollback_plan) with JSON plan v1
-  - godot-analyzer CLI flags: --structure_fix_dry_run, --structure_fix_apply, --structure_fix_rollback
-  - Docs: STRUCTURE_FIX.md; VS Code task "structure fix (dry-run)"
+  - crates/godot/signal_validate.rs: parse [connection] entries; verify from/to nodes exist; require signal/method; detect duplicates
+  - CLI: godot-analyzer --validate_signals; merged outputs with SARIF ruleId "signal-validator" and JUnit classname="signal-validator"
+  - Future: emit DOT graph and quick-fix suggestions
 - Tests:
-  - Roundtrip: propose → apply → rollback restores original layout
-  - Plan ordering deterministic
+  - Flags unknown 'to' node and duplicate connection
+  - Future: orphaned and slow handlers
 - Acceptance:
-  - Dry-run produces a deterministic plan; apply emits rollback JSON; rollback restores state
+  - Deterministic, CI-friendly outputs; no panics on malformed scenes
+  - Basic connection integrity validated; future trace planned
+
+### Hop 9: Structure Auto-Fix [PLANNED] (M)
+- Goal: Propose+apply safe moves/renames to conventions
+- Deliverables: crates/godot/structure_fix.rs (dry-run + apply)
+- Tests: dry-run diff stable; apply reversible
+- Acceptance: rollback plan generated before apply
 
 ### Hop 10: GDScript Lint [PLANNED] (M)
 - Goal: Lint with Godot best-practice ruleset
