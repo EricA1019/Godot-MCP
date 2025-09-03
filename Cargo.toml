@@ -4,6 +4,7 @@ members = [
     "crates/common",
     "crates/index",
     "crates/context",
+    "crates/tools",
 ]
 resolver = "2"
 

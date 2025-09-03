@@ -24,6 +24,13 @@ Context Bundler (Hop 3)
 - Bundles top relevant snippets for a query using deterministic ordering (score then path), with a light recency boost.
 - Default size cap: 64KB (override via cap_bytes).
  - Optional kind filter; dedupes by file family to avoid redundant near-duplicates.
+
+Hop 4 — Auto-Documentation (tools/autodoc)
+- Ensures CTS docs exist (DEV_LOG.md, PROJECT_INDEX.md, WORKFLOW_PROJECT.md)
+- Run from repo root:
+	- VS Code Task: "tools autodoc"
+	- Or via CLI: cargo run -p tools --bin autodoc -- /path/to/workspace
+ - Idempotent: existing non-empty docs are verified, not overwritten
 <div align="center">
 	<img src="icon.svg" alt="Logo" width="160" height="160">
 
