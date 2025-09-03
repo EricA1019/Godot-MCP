@@ -35,5 +35,9 @@ jobs:
       - name: Test
         run: cargo test --workspace --all-targets --locked
 
+      - name: Autodoc check (non-blocking)
+        run: cargo run --locked -p tools --bin autodoc -- --check --json --root .
+        continue-on-error: true
+
       - name: Clippy
         run: cargo clippy --workspace --all-targets -- -D warnings

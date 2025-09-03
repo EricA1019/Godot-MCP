@@ -51,13 +51,21 @@ Living roadmap of tiny, runnable hops with crisp acceptance criteria. Each hop m
 - Docs: DEV_LOG.md update
 - Acceptance: bundle ≤ 64KB, ranked by recency+relevance; server exposes /context/bundle; tests green
 
-### Hop 4: Auto-Documentation v1 [PLANNED] (S)
-- Goal: Verify/create CTS docs from templates
+### Hop 4: Auto-Documentation v1 [IN-PROGRESS] (S)
+- Goal: Verify/create CTS docs from templates with safe, idempotent updates
 - Deliverables:
-  - crates/tools/autodoc.rs + templates/
-- Tests: unit for creation/skip when exists
-- Docs: README section
-- Acceptance: creates missing docs; idempotent
+  - crates/tools (autodoc lib + CLI with clap): ensure DEV_LOG.md, PROJECT_INDEX.md, WORKFLOW_PROJECT.md
+  - Region markers for managed blocks; atomic writes; JSON report
+  - VS Code task; README usage
+- Tests:
+  - Smoke: creates or updates docs in temp dir
+  - Idempotence: second run yields verified with no changes
+- CI:
+  - Non-blocking job to run `autodoc --check --json` and upload report (follow-up: make blocking)
+- Acceptance:
+  - CLI supports --root, --dry-run, --check, --json
+  - Managed regions updated without clobbering custom content
+  - Exit code 2 when --check finds changes
 
 ### Hop 5: Meta-Tagger v1 [PLANNED] (S)
 - Goal: Scan repo, classify files, update PROJECT_INDEX.md cleanup section

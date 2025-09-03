@@ -29,8 +29,10 @@ Hop 4 — Auto-Documentation (tools/autodoc)
 - Ensures CTS docs exist (DEV_LOG.md, PROJECT_INDEX.md, WORKFLOW_PROJECT.md)
 - Run from repo root:
 	- VS Code Task: "tools autodoc"
-	- Or via CLI: cargo run -p tools --bin autodoc -- /path/to/workspace
- - Idempotent: existing non-empty docs are verified, not overwritten
+	- Or via CLI:
+		- cargo run -p tools --bin autodoc -- --root /path
+		- Flags: --dry-run, --check (non-zero exit if changes needed), --json
+ - Idempotent: updates managed regions only, preserves custom edits
 <div align="center">
 	<img src="icon.svg" alt="Logo" width="160" height="160">
 
