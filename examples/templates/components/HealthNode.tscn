@@ -1,0 +1,16 @@
+[gd_scene load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://addons/ninetailsrabbit.indie_blueprint_rpg/src/health/health.gd" id="1_health"]
+
+[node name="Health" type="Node"]
+script = ExtResource("1_health")
+
+# Default exported values can be tweaked in the inspector after instancing this scene.
+# max_health = 100
+# health_overflow_percentage = 0.0
+# health_regen = 0
+# health_regen_tick_time = 1.0
+# is_invulnerable = false
+# invulnerability_time = 1.5
+
+#EOF

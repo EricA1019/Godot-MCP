@@ -1,0 +1,32 @@
+[gd_scene load_steps=4 format=3]
+
+[ext_resource type="Script" path="res://examples/templates/ui/hud.gd" id="1_hud"]
+
+[node name="HUD" type="CanvasLayer"]
+script = ExtResource("1_hud")
+
+[node name="Root" type="Control" parent="."]
+layout_mode = 3
+
+[node name="VBox" type="VBoxContainer" parent="Root"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Health" type="HBoxContainer" parent="Root/VBox"]
+
+[node name="HealthLabel" type="Label" parent="Root/VBox/Health"]
+text = "Health:"
+
+[node name="HealthBar" type="TextureProgressBar" parent="Root/VBox/Health"]
+min_value = 0.0
+max_value = 100.0
+value = 100.0
+
+[node name="Messages" type="RichTextLabel" parent="Root/VBox"]
+bbcode_enabled = true
+text = "[b]Welcome[/b]"
+
+#EOF

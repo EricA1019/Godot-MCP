@@ -1,0 +1,35 @@
+[gd_scene load_steps=5 format=3]
+
+[ext_resource type="Script" path="res://addons/ninetailsrabbit.indie_blueprint_rpg/src/turns/turnity_manager.gd" id="1_mgr"]
+[ext_resource type="Script" path="res://addons/ninetailsrabbit.indie_blueprint_rpg/src/turns/turnity_socket.gd" id="2_sock"]
+[ext_resource type="PackedScene" path="res://examples/templates/components/HealthNode.tscn" id="3_health"]
+[ext_resource type="PackedScene" path="res://examples/templates/ui/HUD.tscn" id="4_hud"]
+
+[node name="World" type="Node"]
+
+[node name="TurnManager" type="Node" parent="World"]
+script = ExtResource("1_mgr")
+
+[node name="Player" type="Node" parent="World"]
+
+[node name="PlayerHealth" parent="World/Player" instance=ExtResource("3_health")]
+
+[node name="Enemy" type="Node" parent="World"]
+
+[node name="EnemyHealth" parent="World/Enemy" instance=ExtResource("3_health")]
+
+[node name="PlayerSocket" type="Node" parent="World"]
+script = ExtResource("2_sock")
+actor = NodePath("../Player")
+default_action_points = 4
+max_action_points = 8
+
+[node name="EnemySocket" type="Node" parent="World"]
+script = ExtResource("2_sock")
+actor = NodePath("../Enemy")
+default_action_points = 4
+max_action_points = 8
+
+[node name="HUD" parent="World" instance=ExtResource("4_hud")]
+
+#EOF
