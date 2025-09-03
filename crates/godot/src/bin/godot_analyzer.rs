@@ -16,13 +16,10 @@ fn main() {
     if args.json {
         println!("{}", serde_json::to_string_pretty(&report).unwrap());
     } else {
-        println!(
-            "Godot project at {}\nversion: {:?}\naddons: {}\nexport presets: {}\nwarnings: {}",
-            root.display(),
-            report.engine_version,
-            report.addons.join(", "),
-            report.export_presets,
-            if report.warnings.is_empty() { "none".into() } else { report.warnings.join(" | ") }
-        );
+        println!("Godot project at {}", root.display());
+        println!("project_format_version: {:?}", report.project_format_version);
+        println!("addons: {}", if report.addons.is_empty() { "none".into() } else { report.addons.join(", ") });
+        println!("export presets: {}", if report.export_presets.is_empty() { "none".into() } else { report.export_presets.iter().map(|p| format!("{} ({})", p.name, p.platform)).collect::<Vec<_>>().join(", ") });
+        println!("issues: {}", report.issues.len());
     }
 }
