@@ -37,3 +37,36 @@ script="res://scripts/exists.gd"
     let issues = godot_analyzer::scene_validate::validate_scene(root, std::path::Path::new("main.tscn"));
     assert!(issues.is_empty(), "expected no issues, got: {issues:?}");
 }
+
+#[test]
+fn ext_resource_missing_file_is_reported() {
+    let tmp = tempfile::tempdir().unwrap();
+    let root = tmp.path();
+    fs::write(root.join("project.godot"), "[application]\nconfig_version=5\n").unwrap();
+    let scene = r#"[gd_scene load_steps=2 format=2]
+
+[ext_resource type="Script" path="res://scripts/missing.gd" id=1]
+
+[node name="Root" type="Node" path="/root"]
+script = ExtResource("1")
+"#;
+    fs::write(root.join("main.tscn"), scene).unwrap();
+    let issues = godot_analyzer::scene_validate::validate_scene(root, std::path::Path::new("main.tscn"));
+    assert!(issues.iter().any(|i| i.message.contains("Missing ext_resource path: res://scripts/missing.gd")));
+    assert!(issues.iter().any(|i| i.message.contains("Script ExtResource(1) missing file res://scripts/missing.gd")));
+}
+
+#[test]
+fn unknown_ext_resource_id_is_reported() {
+    let tmp = tempfile::tempdir().unwrap();
+    let root = tmp.path();
+    fs::write(root.join("project.godot"), "[application]\nconfig_version=5\n").unwrap();
+    let scene = r#"[gd_scene load_steps=2 format=2]
+
+[node name="Root" type="Node" path="/root"]
+script = ExtResource("99")
+"#;
+    fs::write(root.join("main.tscn"), scene).unwrap();
+    let issues = godot_analyzer::scene_validate::validate_scene(root, std::path::Path::new("main.tscn"));
+    assert!(issues.iter().any(|i| i.message.contains("Unknown ExtResource id: 99")));
+}

@@ -9,6 +9,9 @@ on:
 jobs:
   build-test:
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      security-events: write
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -54,10 +57,10 @@ jobs:
           name: metatagger-report
           path: metatagger-report.json
 
-      - name: Run godot analyzer (non-blocking) and save JSON + SARIF
+      - name: Run godot analyzer (non-blocking) incl. scene validation and save JSON + SARIF
         run: |
-          cargo run --locked -p godot --bin godot-analyzer -- --json --root . > godot-analyzer-report.json || true
-          cargo run --locked -p godot --bin godot-analyzer -- --root . --sarif-out godot-analyzer.sarif || true
+          cargo run --locked -p godot --bin godot-analyzer -- --json --root . --validate-scenes --scene-json-out scene-findings.json > godot-analyzer-report.json || true
+          cargo run --locked -p godot --bin godot-analyzer -- --root . --validate-scenes --sarif-out godot-analyzer.sarif || true
         continue-on-error: true
 
       - name: Upload godot analyzer reports
@@ -68,3 +71,10 @@ jobs:
           path: |
             godot-analyzer-report.json
             godot-analyzer.sarif
+            scene-findings.json
+
+      - name: Upload SARIF to GitHub Code Scanning (optional)
+        uses: github/codeql-action/upload-sarif@v3
+        if: always()
+        with:
+          sarif_file: godot-analyzer.sarif

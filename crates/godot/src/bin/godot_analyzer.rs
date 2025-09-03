@@ -1,6 +1,6 @@
 use clap::Parser;
 use std::path::PathBuf;
-use godot_analyzer::{analyze_project, GodotProjectReport, Severity, to_junit, to_sarif};
+use godot_analyzer::{analyze_project, GodotProjectReport, Severity, to_junit, to_sarif, scene_issues_as_report};
 
 #[derive(Parser, Debug)]
 #[command(name = "godot-analyzer", version, about = "Analyze a Godot project for configuration and addon health", long_about = None)]
@@ -21,12 +21,28 @@ struct Args {
     /// Exit with code 2 if any issue meets or exceeds this severity (info|warn|error)
     #[arg(long)]
     fail_on: Option<String>,
+    /// Validate scenes (.tscn) and include findings in outputs
+    #[arg(long)]
+    validate_scenes: bool,
+    /// Optionally write scene findings as a standalone JSON file
+    #[arg(long)]
+    scene_json_out: Option<PathBuf>,
 }
 
 fn main() {
     let args = Args::parse();
     let root = args.root.unwrap_or_else(|| std::env::current_dir().unwrap());
-    let report = analyze_project(&root).expect("analyze");
+    let mut report = analyze_project(&root).expect("analyze");
+
+    if args.validate_scenes {
+        let scene_issues = scene_issues_as_report(&root);
+        if let Some(p) = args.scene_json_out.as_ref() {
+            std::fs::write(p, serde_json::to_vec_pretty(&scene_issues).unwrap()).expect("write scene json");
+        }
+    report.issues.extend(scene_issues);
+    // Keep deterministic ordering after merge
+    report.issues.sort_by(|a, b| a.severity.cmp(&b.severity).then(a.message.cmp(&b.message)));
+    }
 
     // Optional filtering by minimum severity for outputs
     let mut filtered: Option<GodotProjectReport> = None;

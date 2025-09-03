@@ -220,7 +220,13 @@ pub fn to_sarif(report: &GodotProjectReport) -> serde_json::Value {
         "$schema": "https://schemastore.azurewebsites.net/schemas/json/sarif-2.1.0.json",
         "version": "2.1.0",
         "runs": [{
-            "tool": {"driver": {"name": "godot-analyzer"}},
+            "tool": {"driver": {
+                "name": "godot-analyzer",
+                "rules": [
+                    {"id": "godot-analyzer", "name": "godot-analyzer", "shortDescription": {"text": "Godot project configuration checks"}},
+                    {"id": "scene-validator", "name": "scene-validator", "shortDescription": {"text": "Godot scene (.tscn) validation checks"}}
+                ]
+            }},
             "results": results
         }]
     })
@@ -233,6 +239,8 @@ fn classify_rule_id(i: &Issue) -> &'static str {
         || msg.starts_with("Script ExtResource(")
     || msg.starts_with("Unknown ExtResource id:")
     || msg.starts_with("Property '")
+    || msg.starts_with("Unknown SubResource id:")
+    || msg.starts_with("Preload missing file:")
     {
         "scene-validator"
     } else {

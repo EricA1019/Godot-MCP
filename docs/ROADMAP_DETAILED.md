@@ -117,6 +117,7 @@ Living roadmap of tiny, runnable hops with crisp acceptance criteria. Each hop m
   - Outputs: SARIF uses ruleId "scene-validator" for validator findings; JUnit uses classname="scene-validator"; analyzer stays "godot-analyzer"
   - Deterministic ordering preserved after merging scene findings
   - Extend library incrementally for node/resource integrity
+  - Optional polish: include SARIF driver rules metadata for both ruleIds
 - Tests:
   - Unit tests for missing script presence and OK path
   - Tests for ext_resource declared path missing, unknown id, and ExtResource("id") mapping
