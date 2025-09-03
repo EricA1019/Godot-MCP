@@ -24,6 +24,8 @@ fn targets() -> Vec<(PathBuf, &'static str)> {
         (PathBuf::from("docs/DEV_LOG.md"), DEV_LOG_TEMPLATE),
         (PathBuf::from("docs/PROJECT_INDEX.md"), PROJECT_INDEX_TEMPLATE),
         (PathBuf::from("docs/WORKFLOW_PROJECT.md"), WORKFLOW_PROJECT_TEMPLATE),
+    (PathBuf::from("CHANGELOG.md"), CHANGELOG_TEMPLATE),
+    (PathBuf::from("CONTRIBUTING.md"), CONTRIBUTING_TEMPLATE),
     ]
 }
 
@@ -73,11 +75,10 @@ const BEGIN: &str = "<!-- AUTODOC:BEGIN main -->";
 const END: &str = "<!-- AUTODOC:END main -->";
 
 fn merge_with_region(existing: &str, template: &str) -> String {
-    // If existing has region markers, only replace the region, else return template
+    // If existing has region markers, only replace the region; otherwise, append a managed region block non-destructively.
     if let (Some(b), Some(e)) = (existing.find(BEGIN), existing.find(END)) {
         let prefix = &existing[..b + BEGIN.len()];
         let suffix = &existing[e..];
-        // Extract region from template, else fall back to whole template
         let (tb, te) = (template.find(BEGIN), template.find(END));
         let region = if let (Some(tb), Some(te)) = (tb, te) {
             &template[tb + BEGIN.len()..te]
@@ -86,7 +87,26 @@ fn merge_with_region(existing: &str, template: &str) -> String {
         };
         format!("{prefix}{region}{suffix}")
     } else {
-        template.to_string()
+        // Append the region block from template (including markers) to preserve existing content.
+        if let (Some(tb), Some(te)) = (template.find(BEGIN), template.find(END)) {
+            let region_block = &template[tb..te + END.len()];
+            let mut out = String::new();
+            out.push_str(existing);
+            if !existing.ends_with('\n') { out.push('\n'); }
+            out.push('\n');
+            out.push_str(region_block);
+            out.push('\n');
+            out
+        } else {
+            // No markers in template; be conservative and append the whole template with spacing.
+            let mut out = String::new();
+            out.push_str(existing);
+            if !existing.ends_with('\n') { out.push('\n'); }
+            out.push('\n');
+            out.push_str(template);
+            if !template.ends_with('\n') { out.push('\n'); }
+            out
+        }
     }
 }
 
@@ -126,6 +146,29 @@ const WORKFLOW_PROJECT_TEMPLATE: &str = r#"# Project Workflow
 
 <!-- AUTODOC:BEGIN main -->
 - Close-to-Shore: tiny hops, green builds, clear acceptance.
+<!-- AUTODOC:END main -->
+
+"#;
+
+const CHANGELOG_TEMPLATE: &str = r#"# Changelog
+
+All notable changes to this project will be documented in this file.
+
+<!-- AUTODOC:BEGIN main -->
+## [Unreleased]
+- Start listing your changes here following Keep a Changelog style.
+<!-- AUTODOC:END main -->
+
+"#;
+
+const CONTRIBUTING_TEMPLATE: &str = r#"# Contributing
+
+Thanks for your interest in contributing!
+
+<!-- AUTODOC:BEGIN main -->
+- Use small, reviewable PRs. Keep builds green and add tests when changing behavior.
+- Follow the CTS workflow: tiny hops, deterministic outcomes, and clear acceptance.
+- Run `cargo test` and `cargo clippy -D warnings` locally before pushing.
 <!-- AUTODOC:END main -->
 
 "#;
