@@ -104,6 +104,31 @@ pub fn analyze_project(root: &Path) -> Result<GodotProjectReport> {
     Ok(report)
 }
 
+/// Run scene validation across .tscn files and convert to Issue entries.
+/// Skips generic ext_resource path issues to avoid duplication with scan_broken_ext_resources.
+pub fn scene_issues_as_report(root: &Path) -> Vec<Issue> {
+    let mut out = Vec::new();
+    for entry in WalkDir::new(root).into_iter().flatten() {
+        let path = entry.path();
+        if !entry.file_type().is_file() { continue; }
+        let is_scene = matches!(path.extension().and_then(|s| s.to_str()), Some("tscn"));
+        if !is_scene { continue; }
+        let rel = path.strip_prefix(root).unwrap_or(path);
+        let scene_issues = scene_validate::validate_scene(root, rel);
+        for si in scene_issues {
+            // Avoid duplicating the broad ext_resource missing messages already emitted by scan_broken_ext_resources
+            if si.message.starts_with("Missing ext_resource path:") { continue; }
+            let mut msg = si.message.clone();
+            if let Some(np) = si.node_path.as_ref() {
+                msg = format!("{} [node: {}]", msg, np);
+            }
+            // Map all scene validator findings to Error for now
+            out.push(Issue::error(msg, Some(rel.to_path_buf())));
+        }
+    }
+    out
+}
+
 #[derive(Debug, Clone, Serialize, Deserialize, PartialEq, Eq, Default)]
 pub struct ExportPreset { pub name: String, pub platform: String, pub export_path: Option<String> }
 
@@ -183,8 +208,9 @@ fn find_ini_kv(contents: &str, key: &str) -> Option<String> {
 pub fn to_sarif(report: &GodotProjectReport) -> serde_json::Value {
     let results: Vec<serde_json::Value> = report.issues.iter().map(|i| {
         let level = match i.severity { Severity::Info => "note", Severity::Warn => "warning", Severity::Error => "error" };
+        let rule_id = classify_rule_id(i);
         serde_json::json!({
-            "ruleId": "godot-analyzer",
+            "ruleId": rule_id,
             "level": level,
             "message": {"text": i.message},
             "locations": [{ "physicalLocation": { "artifactLocation": { "uri": i.file.as_ref().map(|p| p.to_string_lossy().to_string()).unwrap_or_default() } } }]
@@ -200,13 +226,29 @@ pub fn to_sarif(report: &GodotProjectReport) -> serde_json::Value {
     })
 }
 
+fn classify_rule_id(i: &Issue) -> &'static str {
+    // Heuristic mapping: known scene validator signatures get a distinct rule id
+    let msg = i.message.as_str();
+    if msg.starts_with("Missing script:")
+        || msg.starts_with("Script ExtResource(")
+    || msg.starts_with("Unknown ExtResource id:")
+    || msg.starts_with("Property '")
+    {
+        "scene-validator"
+    } else {
+        // Default to the core analyzer
+        "godot-analyzer"
+    }
+}
+
 pub fn to_junit(report: &GodotProjectReport) -> String {
     let mut s = String::new();
     s.push_str("<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n");
     s.push_str(&format!("<testsuite name=\"godot-analyzer\" tests=\"{}\">\n", report.issues.len()));
     for i in &report.issues {
         let name = format!("{}", i.message);
-        s.push_str(&format!("  <testcase name=\"{}\">\n", xml_escape(&name)));
+    let class_name = match classify_rule_id(i) { "scene-validator" => "scene-validator", _ => "godot-analyzer" };
+    s.push_str(&format!("  <testcase name=\"{}\" classname=\"{}\">\n", xml_escape(&name), class_name));
         s.push_str(&format!("    <failure message=\"{:?}\">{}</failure>\n", i.severity, xml_escape(&i.file.as_ref().map(|p| p.display().to_string()).unwrap_or_default())));
         s.push_str("  </testcase>\n");
     }
