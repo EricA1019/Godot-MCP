@@ -10,6 +10,7 @@ use serde::Serialize;
 use std::path::Path;
 
 use index::{SearchIndex, IndexPaths};
+use std::time::{SystemTime, UNIX_EPOCH};
 
 /// Max bundle size in bytes; default for v1.
 pub const DEFAULT_BUNDLE_CAP: usize = 64 * 1024; // 64KB
@@ -51,7 +52,7 @@ pub fn bundle_query(
     let hits = idx.query_filtered(query, None, limit, true)?;
 
     // Map to items, keep snippet as content for brevity
-    let mut items: Vec<BundleItem> = hits
+    let items: Vec<BundleItem> = hits
         .into_iter()
         .map(|(score, path, kind, snippet)| BundleItem {
             path,
@@ -61,13 +62,34 @@ pub fn bundle_query(
         })
         .collect();
 
-    // Sort by score desc then path asc
-    items.sort_by(|a, b| b.score.cmp(&a.score).then_with(|| a.path.cmp(&b.path)));
+    // Apply a light recency boost: if scores tie within 5 points, prefer newer mtime
+    let scored_with_time: Vec<(BundleItem, u64)> = items
+        .into_iter()
+        .map(|it| {
+            let abs = idx.absolutize_path(&it.path);
+            let mtime = abs.metadata().and_then(|m| m.modified())
+                .unwrap_or(SystemTime::UNIX_EPOCH)
+                .duration_since(UNIX_EPOCH).unwrap_or_default().as_secs();
+            (it, mtime)
+        })
+        .collect();
+
+    let mut items: Vec<(BundleItem, u64)> = scored_with_time;
+    items.sort_by(|(a, ta), (b, tb)| {
+        let score_cmp = b.score.cmp(&a.score);
+        if score_cmp == std::cmp::Ordering::Equal {
+            // If within 5 points, prefer newer mtime
+            if (a.score - b.score).abs() <= 5 {
+                return tb.cmp(ta).then_with(|| a.path.cmp(&b.path));
+            }
+        }
+        score_cmp.then_with(|| a.path.cmp(&b.path))
+    });
 
     // Enforce size cap
     let mut acc: Vec<BundleItem> = Vec::new();
     let mut total = 0usize;
-    for mut it in items.into_iter() {
+    for (mut it, _t) in items.into_iter() {
         // Truncate content if single item exceeds cap
         if it.content.len() > cap {
             it.content.truncate(cap);

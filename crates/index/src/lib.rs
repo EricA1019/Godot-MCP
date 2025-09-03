@@ -98,6 +98,18 @@ impl SearchIndex {
         }
     }
 
+    /// Convert a normalized index path (e.g., "./rel/path") back to an absolute PathBuf using the index root.
+    pub fn absolutize_path(&self, normalized: &str) -> PathBuf {
+        let p = std::path::Path::new(normalized);
+    if let Some(stripped) = normalized.strip_prefix("./") {
+            return self.root.join(stripped);
+        }
+        if p.is_relative() {
+            return self.root.join(p);
+        }
+        p.to_path_buf()
+    }
+
     pub fn scan_and_index(&mut self, root: &Path) -> Result<usize> {
         let mut count = 0usize;
         for entry in WalkDir::new(root).into_iter().filter_map(|e| e.ok()) {

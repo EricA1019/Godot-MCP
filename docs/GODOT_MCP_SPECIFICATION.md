@@ -343,7 +343,7 @@ pub struct MasterIndexSystem {
 }
 ```
 
-### HTTP API (Hop 2)
+### HTTP API (Hop 2 / Hop 3)
 - GET /health → { status }
 - POST /index/scan { path?: string } → { indexed: number }
 - GET/POST /index/query { q: string, limit?: number } → { hits: [{ score, path }] }
@@ -351,6 +351,8 @@ pub struct MasterIndexSystem {
 - GET /index/health → { docs, segments }
 - POST /index/watch/start → { status: "started"|"already_running" }
 - POST /index/watch/stop → { status: "stopped"|"not_running" }
+// Hop 3
+- POST /context/bundle { q: string, limit?: number, cap_bytes?: number } → { query, items: [{ path, kind, score, content }], size_bytes }
 
 ### Index schema
 - path: STRING | STORED (normalized as ./relative)
@@ -359,6 +361,10 @@ pub struct MasterIndexSystem {
 - hash: STRING | STORED
 
 ### Configuration
+### Context Bundler (Hop 3)
+- Uses Master Index to select relevant content snippets.
+- Deterministic ordering (quantized score desc, then path asc) with a small recency preference for ties.
+- Default size cap 64KB; override via cap_bytes in request.
 - File: config/default.yaml
   - server.host: string
   - server.port: number

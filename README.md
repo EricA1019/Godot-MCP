@@ -9,6 +9,8 @@ Endpoints
 - POST /index/query/advanced { q, kind?, limit?, snippet? } → list of hits
 - GET /index/health → { docs, segments }
 - POST /index/watch/start|stop → { status }
+// Hop 3 adds:
+- POST /context/bundle { q, limit?, cap_bytes? } → { query, items: [{ path, kind, score, content }], size_bytes }
 
 Config
 - config/default.yaml → server.host, server.port, server.auto_start_watchers (default true)
@@ -17,6 +19,10 @@ Config
 Notes
 - Paths are normalized to ./relative under the workspace root.
 - Updates use delete-then-add in a single operation to ensure fresh queries.
+
+Context Bundler (Hop 3)
+- Bundles top relevant snippets for a query using deterministic ordering (score then path), with a light recency boost.
+- Default size cap: 64KB (override via cap_bytes).
 <div align="center">
 	<img src="icon.svg" alt="Logo" width="160" height="160">
 
