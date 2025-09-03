@@ -28,6 +28,7 @@ impl Default for Severity { fn default() -> Self { Severity::Warn } }
 
 #[derive(Debug, Clone, Serialize, Deserialize, PartialEq, Eq, Default)]
 pub struct Report {
+    pub schema_version: String,
     pub findings: Vec<Finding>,
     pub updated: Option<PathBuf>,
 }
@@ -52,11 +53,29 @@ fn load_ignores(root: &Path) -> Result<IgnoreConfig> {
     Ok(IgnoreConfig { set: None })
 }
 
+#[derive(Debug, Clone, Serialize, Deserialize, PartialEq, Eq, Default)]
+pub struct BaselineEntry { pub kind: String, pub path: PathBuf }
+
+fn load_baseline(root: &Path) -> Result<Vec<BaselineEntry>> {
+    let path = root.join(".metatagger.baseline.json");
+    if !path.exists() { return Ok(Vec::new()); }
+    let s = fs::read_to_string(path)?;
+    let v: Vec<BaselineEntry> = serde_json::from_str(&s).unwrap_or_default();
+    Ok(v)
+}
+
 pub fn run(root: &Path) -> Result<Report> {
     let cfg = load_ignores(root)?;
-    let findings = classify(root, &cfg)?;
+    let mut findings = classify(root, &cfg)?;
+    // Apply baseline suppression if present
+    let baseline = load_baseline(root)?;
+    if !baseline.is_empty() {
+        let mut allow: BTreeSet<(String, PathBuf)> = BTreeSet::new();
+        for b in baseline { allow.insert((b.kind, b.path)); }
+        findings.retain(|f| !allow.contains(&(f.kind.clone(), f.path.clone())));
+    }
     let updated = update_project_index(root, &findings)?;
-    Ok(Report { findings, updated })
+    Ok(Report { schema_version: "1.1".into(), findings, updated })
 }
 
 pub fn classify(root: &Path, ignores: &IgnoreConfig) -> Result<Vec<Finding>> {
@@ -228,4 +247,51 @@ fn atomic_write(path: &Path, bytes: &[u8]) -> Result<()> {
     }
     fs::rename(&tmp, path)?;
     Ok(())
+}
+
+// --- Output helpers ---
+
+pub fn to_sarif(report: &Report) -> serde_json::Value {
+    // Minimal SARIF v2.1.0
+    let runs_tool = serde_json::json!({
+        "driver": {
+            "name": "metatagger",
+            "informationUri": "https://github.com/EricA1019/Godot-MCP",
+        }
+    });
+    let results: Vec<serde_json::Value> = report.findings.iter().map(|f| {
+        let level = match f.severity { Severity::Info => "note", Severity::Warn => "warning", Severity::Error => "error" };
+        serde_json::json!({
+            "ruleId": f.kind,
+            "level": level,
+            "message": {"text": f.reason},
+            "locations": [{
+                "physicalLocation": {"artifactLocation": {"uri": f.path.to_string_lossy()},}
+            }],
+        })
+    }).collect();
+    serde_json::json!({
+        "$schema": "https://schemastore.azurewebsites.net/schemas/json/sarif-2.1.0.json",
+        "version": "2.1.0",
+        "runs": [ { "tool": runs_tool, "results": results } ]
+    })
+}
+
+pub fn to_junit(report: &Report) -> String {
+    // Minimal JUnit XML (single suite, testcase per finding)
+    let mut s = String::new();
+    s.push_str("<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n");
+    s.push_str(&format!("<testsuite name=\"metatagger\" tests=\"{}\">\n", report.findings.len()));
+    for f in &report.findings {
+        let name = format!("{}:{}", f.kind, f.path.display());
+        s.push_str(&format!("  <testcase name=\"{}\">\n", xml_escape(&name)));
+        s.push_str(&format!("    <failure message=\"{}\">{}</failure>\n", xml_escape(&format!("{:?}", f.severity)), xml_escape(&f.reason)));
+        s.push_str("  </testcase>\n");
+    }
+    s.push_str("</testsuite>\n");
+    s
+}
+
+fn xml_escape(input: &str) -> String {
+    input.replace('&', "&amp;").replace('<', "&lt;").replace('>', "&gt;")
 }

@@ -15,6 +15,18 @@ struct Args {
     /// Minimum severity to include (info, warn, error)
     #[arg(long, value_name = "LEVEL", default_value = "info")]
     min_severity: String,
+
+    /// Emit SARIF to the given file path
+    #[arg(long, value_name = "FILE")]
+    sarif_out: Option<PathBuf>,
+
+    /// Emit JUnit XML to the given file path
+    #[arg(long, value_name = "FILE")]
+    junit_out: Option<PathBuf>,
+
+    /// Fail the process if any finding has severity >= LEVEL
+    #[arg(long, value_name = "LEVEL")]
+    fail_on: Option<String>,
 }
 
 fn main() {
@@ -29,6 +41,10 @@ fn main() {
     };
     report.findings.retain(|f| f.severity >= min);
 
+    // Optional outputs
+    if let Some(p) = &args.sarif_out { std::fs::write(p, serde_json::to_string_pretty(&tools::metatagger::to_sarif(&report)).unwrap()).expect("write sarif"); }
+    if let Some(p) = &args.junit_out { std::fs::write(p, tools::metatagger::to_junit(&report)).expect("write junit"); }
+
     if args.json {
         println!("{}", serde_json::to_string_pretty(&report).unwrap());
     } else {
@@ -41,5 +57,13 @@ fn main() {
                 .map(|p| format!("; updated {}", p.display()))
                 .unwrap_or_default()
         );
+    }
+
+    // CI gating
+    if let Some(level) = args.fail_on.as_deref() {
+        let gate = match level { "error" => tools::metatagger::Severity::Error, "warn" => tools::metatagger::Severity::Warn, _ => tools::metatagger::Severity::Info };
+        if report.findings.iter().any(|f| f.severity >= gate) {
+            std::process::exit(2);
+        }
     }
 }
