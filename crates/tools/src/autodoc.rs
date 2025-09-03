@@ -26,6 +26,8 @@ fn targets() -> Vec<(PathBuf, &'static str)> {
         (PathBuf::from("docs/WORKFLOW_PROJECT.md"), WORKFLOW_PROJECT_TEMPLATE),
     (PathBuf::from("CHANGELOG.md"), CHANGELOG_TEMPLATE),
     (PathBuf::from("CONTRIBUTING.md"), CONTRIBUTING_TEMPLATE),
+    (PathBuf::from("SECURITY.md"), SECURITY_TEMPLATE),
+    (PathBuf::from("LICENSE.md"), LICENSE_TEMPLATE),
     ]
 }
 
@@ -169,6 +171,22 @@ Thanks for your interest in contributing!
 - Use small, reviewable PRs. Keep builds green and add tests when changing behavior.
 - Follow the CTS workflow: tiny hops, deterministic outcomes, and clear acceptance.
 - Run `cargo test` and `cargo clippy -D warnings` locally before pushing.
+<!-- AUTODOC:END main -->
+
+"#;
+
+const SECURITY_TEMPLATE: &str = r#"# Security Policy
+
+<!-- AUTODOC:BEGIN main -->
+If you discover a security issue, please email us privately rather than filing a public issue. We’ll work with you to assess and fix.
+<!-- AUTODOC:END main -->
+
+"#;
+
+const LICENSE_TEMPLATE: &str = r#"# License
+
+<!-- AUTODOC:BEGIN main -->
+This project is licensed under the MIT License. See the `LICENSE` file for details.
 <!-- AUTODOC:END main -->
 
 "#;

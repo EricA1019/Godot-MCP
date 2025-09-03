@@ -8,4 +8,7 @@ members = [
 ]
 resolver = "2"
 
+# Workspace license mirrors repository license
+# Individual crates declare `license = "MIT"`.
+
 #EOF
