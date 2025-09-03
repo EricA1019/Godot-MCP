@@ -28,6 +28,7 @@ pub fn validate_scene(root: &Path, scene_rel: &Path) -> Vec<SceneIssue> {
     let re_prop_sub = Regex::new(r#"(?P<prop>[A-Za-z0-9_]+)\s*=\s*SubResource\(\"?(?P<id>\d+)\"?\)"#).unwrap();
     let re_any_sub = Regex::new(r#"SubResource\(\"?(?P<id>\d+)\"?\)"#).unwrap();
     let re_preload = Regex::new(r#"preload\(\"(res://[^\"]+)\"\)"#).unwrap();
+    let re_load = Regex::new(r#"\bload\(\"(res://[^\"]+)\"\)"#).unwrap();
     let mut ext_map: HashMap<String, (String, usize)> = HashMap::new();
     let mut sub_ids: HashMap<String, usize> = HashMap::new();
     for (i, line) in text.lines().enumerate() {
@@ -137,6 +138,18 @@ pub fn validate_scene(root: &Path, scene_rel: &Path) -> Vec<SceneIssue> {
                     let target = root.join(res);
                     if !target.exists() {
                         out.push(SceneIssue { file: scene_rel.to_path_buf(), line: lno, node_path: None, message: format!("Preload missing file: {}", path_str) });
+                    }
+                }
+            }
+        }
+
+        // load("res://...") occurrences
+        if let Some(caps) = re_load.captures(line) {
+            if let Some(path_str) = caps.get(1).map(|m| m.as_str()) {
+                if let Some(res) = path_str.strip_prefix("res://") {
+                    let target = root.join(res);
+                    if !target.exists() {
+                        out.push(SceneIssue { file: scene_rel.to_path_buf(), line: lno, node_path: None, message: format!("Load missing file: {}", path_str) });
                     }
                 }
             }

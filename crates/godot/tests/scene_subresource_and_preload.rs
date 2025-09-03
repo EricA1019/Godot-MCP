@@ -37,3 +37,19 @@ _some_prop = preload("res://not_found/thing.tscn")
     let issues = godot_analyzer::scene_validate::validate_scene(root, std::path::Path::new("main.tscn"));
     assert!(issues.iter().any(|i| i.message.contains("Preload missing file: res://not_found/thing.tscn")), "issues: {issues:?}");
 }
+
+#[test]
+fn load_missing_file_is_reported() {
+    let tmp = tempfile::tempdir().unwrap();
+    let root = tmp.path();
+    fs::write(root.join("project.godot"), "[application]\nconfig_version=5\n").unwrap();
+
+    let scene = r#"[gd_scene load_steps=2 format=2]
+
+[node name="Root" type="Node" path="/root"]
+_some_prop = load("res://not_found/thing2.tscn")
+"#;
+    fs::write(root.join("main.tscn"), scene).unwrap();
+    let issues = godot_analyzer::scene_validate::validate_scene(root, std::path::Path::new("main.tscn"));
+    assert!(issues.iter().any(|i| i.message.contains("Load missing file: res://not_found/thing2.tscn")), "issues: {issues:?}");
+}

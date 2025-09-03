@@ -241,6 +241,7 @@ fn classify_rule_id(i: &Issue) -> &'static str {
     || msg.starts_with("Property '")
     || msg.starts_with("Unknown SubResource id:")
     || msg.starts_with("Preload missing file:")
+    || msg.starts_with("Load missing file:")
     {
         "scene-validator"
     } else {
