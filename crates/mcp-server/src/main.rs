@@ -14,6 +14,7 @@ use index::{IndexPaths, SearchIndex};
 use tokio::sync::Mutex;
 use tokio::task::JoinHandle;
 use serde::Deserialize;
+use context as ctx;
 use std::sync::atomic::{AtomicBool, Ordering};
 
 #[derive(Serialize)]
@@ -79,6 +80,12 @@ async fn main() -> anyhow::Result<()> {
     struct ScanResponse { indexed: usize }
     #[derive(Serialize)]
     struct WatchResponse { status: &'static str }
+    #[derive(Deserialize)]
+    struct BundleRequest { q: String, limit: Option<usize>, cap_bytes: Option<usize> }
+    #[derive(Serialize)]
+    struct BundleItemDto { path: String, kind: String, score: i32, content: String }
+    #[derive(Serialize)]
+    struct BundleResponse { query: String, items: Vec<BundleItemDto>, size_bytes: usize }
 
     // Build routes
     let app = Router::new()
@@ -202,6 +209,20 @@ async fn main() -> anyhow::Result<()> {
                     let guard = shared_index.lock().await;
                     let (docs, segments) = guard.health().unwrap_or((0,0));
                     Json(HealthResponse { docs, segments })
+                }
+            }
+        }))
+        .route("/context/bundle", post({
+            let shared_index = shared_index.clone();
+            move |State(_): State<Arc<Mutex<SearchIndex>>>, Json(req): Json<BundleRequest>| {
+                let shared_index = shared_index.clone();
+                async move {
+                    let guard = shared_index.lock().await;
+                    let limit = req.limit.unwrap_or(10).min(100).max(1);
+                    let cap = req.cap_bytes.or(Some(ctx::DEFAULT_BUNDLE_CAP));
+                    let b = ctx::bundle_query(&*guard, &req.q, limit, cap).unwrap_or_else(|_| ctx::Bundle { query: req.q, items: vec![], size_bytes: 0 });
+                    let items = b.items.into_iter().map(|it| BundleItemDto { path: it.path, kind: it.kind, score: it.score, content: it.content }).collect();
+                    Json(BundleResponse { query: b.query, items, size_bytes: b.size_bytes })
                 }
             }
         }))
