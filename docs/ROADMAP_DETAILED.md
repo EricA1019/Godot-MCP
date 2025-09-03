@@ -51,7 +51,7 @@ Living roadmap of tiny, runnable hops with crisp acceptance criteria. Each hop m
 - Docs: DEV_LOG.md update
 - Acceptance: bundle ≤ 64KB, ranked by recency+relevance; server exposes /context/bundle; tests green
 
-### Hop 4: Auto-Documentation v1 [IN-PROGRESS] (S)
+### Hop 4: Auto-Documentation v1 [DONE] (S)
 - Goal: Verify/create CTS docs from templates with safe, idempotent updates
 - Deliverables:
   - crates/tools (autodoc lib + CLI with clap): ensure DEV_LOG.md, PROJECT_INDEX.md, WORKFLOW_PROJECT.md
@@ -66,12 +66,19 @@ Living roadmap of tiny, runnable hops with crisp acceptance criteria. Each hop m
   - CLI supports --root, --dry-run, --check, --json
   - Managed regions updated without clobbering custom content
   - Exit code 2 when --check finds changes
+  - CI runs a non-blocking autodoc check
 
-### Hop 5: Meta-Tagger v1 [PLANNED] (S)
+### Hop 5: Meta-Tagger v1 [IN-PROGRESS] (S)
 - Goal: Scan repo, classify files, update PROJECT_INDEX.md cleanup section
-- Deliverables: crates/tools/metatagger.rs
-- Tests: classification unit tests; index update integration
-- Acceptance: shows cleanup candidates deterministically
+- Deliverables:
+  - crates/tools/metatagger.rs + CLI (tools/bin/metatagger.rs)
+  - PROJECT_INDEX.md adds a METATAGGER-managed cleanup region
+- Tests:
+  - Smoke: temp dir classification produces ≥1 finding for seeded temp files
+  - Integration: PROJECT_INDEX cleanup region updated deterministically
+- Acceptance:
+  - CLI prints JSON or summary; report sorted by kind then path for determinism
+  - Running metatagger appends or replaces the cleanup region only
 
 ---
 
