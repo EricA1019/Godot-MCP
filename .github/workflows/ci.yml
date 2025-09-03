@@ -41,3 +41,15 @@ jobs:
 
       - name: Clippy
         run: cargo clippy --workspace --all-targets -- -D warnings
+
+      - name: Run metatagger (non-blocking) and save JSON
+        run: |
+          cargo run --locked -p tools --bin metatagger -- --json --root . > metatagger-report.json || true
+        continue-on-error: true
+
+      - name: Upload metatagger report
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: metatagger-report
+          path: metatagger-report.json

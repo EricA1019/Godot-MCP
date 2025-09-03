@@ -68,17 +68,24 @@ Living roadmap of tiny, runnable hops with crisp acceptance criteria. Each hop m
   - Exit code 2 when --check finds changes
   - CI runs a non-blocking autodoc check
 
-### Hop 5: Meta-Tagger v1 [IN-PROGRESS] (S)
-- Goal: Scan repo, classify files, update PROJECT_INDEX.md cleanup section
+### Hop 5: Meta-Tagger v1 [IN-PROGRESS] (M)
+- Goal: Scan repo, classify files, update PROJECT_INDEX.md cleanup section; add severities, ignore patterns, and CI artifact
 - Deliverables:
   - crates/tools/metatagger.rs + CLI (tools/bin/metatagger.rs)
-  - PROJECT_INDEX.md adds a METATAGGER-managed cleanup region
+  - Classifiers: temp files, orphan .import, large files, unused images, duplicate assets, stale export presets
+  - Severity levels (info|warn|error) with CLI --min-severity filter
+  - Ignore patterns via .metataggerignore (globset)
+  - PROJECT_INDEX.md METATAGGER-managed cleanup region with severity tags
+  - CI: optional step to publish JSON report as artifact
 - Tests:
   - Smoke: temp dir classification produces ≥1 finding for seeded temp files
-  - Integration: PROJECT_INDEX cleanup region updated deterministically
+  - Duplicate detection: identical content across two files flagged deterministically
+  - Ignore patterns: files matched by .metataggerignore are excluded
+  - Integration: PROJECT_INDEX cleanup region updated deterministically with severities
 - Acceptance:
-  - CLI prints JSON or summary; report sorted by kind then path for determinism
-  - Running metatagger appends or replaces the cleanup region only
+  - CLI prints JSON or summary; findings sorted by severity, kind, then path
+  - .metataggerignore respected; --min-severity filters output
+  - CI uploads metatagger.json on push/PR (non-blocking)
 
 ---
 
