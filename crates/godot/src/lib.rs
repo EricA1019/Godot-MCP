@@ -57,6 +57,11 @@ pub fn analyze_project(root: &Path) -> Result<GodotProjectReport> {
             if entry.file_type().is_dir() && entry.path() != addons_dir {
                 if let Some(name) = entry.file_name().to_str() {
                     report.addons.push(name.to_string());
+                    // addon health: plugin.cfg presence
+                    let plugin_cfg = entry.path().join("plugin.cfg");
+                    if !plugin_cfg.exists() {
+                        report.issues.push(Issue::warn(format!("Addon '{}' missing plugin.cfg", name), Some(plugin_cfg.strip_prefix(root).unwrap_or(&plugin_cfg).to_path_buf())));
+                    }
                 }
             }
         }
