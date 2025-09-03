@@ -5,6 +5,8 @@ use std::fs;
 use std::path::{Path, PathBuf};
 use walkdir::WalkDir;
 
+pub mod scene_validate;
+
 #[derive(Debug, Clone, Serialize, Deserialize, PartialEq, Eq, Default)]
 pub struct GodotProjectReport {
     pub project_path: PathBuf,

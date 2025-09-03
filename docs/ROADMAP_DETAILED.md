@@ -93,21 +93,31 @@ Living roadmap of tiny, runnable hops with crisp acceptance criteria. Each hop m
 
 ## Phase 2 — Godot Core Tools (Weeks 3–4)
 
-### Hop 6: Godot Project Analyzer [IN-PROGRESS] (M)
-- Goal: Parse project.godot, addons/, export_presets.cfg
+### Hop 6: Godot Project Analyzer [DONE] (M)
+- Goal: Parse project.godot, addons/, export_presets.cfg; emit CI-friendly outputs
 - Deliverables:
-  - crates/godot: library + CLI (godot-analyzer) with JSON output
-  - Reports engine version (heuristic), addons list, export preset presence, basic warnings
+  - crates/godot: library + CLI (godot-analyzer) with JSON/ SARIF/ JUnit outputs
+  - Reports engine format version, addons list, export presets (name/platform/export_path)
+  - Checks: missing application icon (config/icon), missing main scene (run/main_scene), addon plugin.cfg presence, broken ext_resource paths, export_path parent dirs
 - Tests:
   - Smoke test resolves repo root and detects addons
+  - Unit tests for icon/main_scene warnings, SARIF/JUnit generation, missing ext_resource detection
 - Acceptance:
-  - JSON report; deterministic fields; handles missing files gracefully; more checks to follow
+  - Deterministic JSON fields and ordering; handles missing files gracefully
+  - CLI supports --min-severity filtering and --fail-on gating; CI uploads analyzer artifacts (JSON/SARIF)
+  - Optional: SARIF uploaded to GitHub Code Scanning when available
 
-### Hop 7: Scene Validator [PLANNED] (M)
+### Hop 7: Scene Validator [IN-PROGRESS] (M)
 - Goal: Validate .tscn hierarchy, scripts, resources
-- Deliverables: crates/godot/scene_validate.rs
-- Tests: fixtures covering bad/missing nodes, scripts
-- Acceptance: report maps to file:line and node paths
+- Deliverables:
+  - crates/godot/scene_validate.rs: initial validator (missing script detection with file:line and node path)
+  - Extend library incrementally for node/resource integrity
+- Tests:
+  - Unit tests for missing script presence and OK path
+  - Future: fixtures covering bad/missing nodes, scripts
+- Acceptance:
+  - Issues include file:line and node path context; deterministic ordering
+  - No panics on malformed but parseable scenes; graceful degradation
 
 ### Hop 8: Signal Validator + Trace [PLANNED] (M)
 - Goal: Analyze signal definitions and connections
