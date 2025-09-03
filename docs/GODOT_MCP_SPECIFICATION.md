@@ -352,7 +352,7 @@ pub struct MasterIndexSystem {
 - POST /index/watch/start → { status: "started"|"already_running" }
 - POST /index/watch/stop → { status: "stopped"|"not_running" }
 // Hop 3
-- POST /context/bundle { q: string, limit?: number, cap_bytes?: number } → { query, items: [{ path, kind, score, content }], size_bytes }
+- POST /context/bundle { q: string, limit?: number, cap_bytes?: number, kind?: string } → { query, items: [{ path, kind, score, content }], size_bytes }
 
 ### Index schema
 - path: STRING | STORED (normalized as ./relative)
@@ -365,6 +365,7 @@ pub struct MasterIndexSystem {
 - Uses Master Index to select relevant content snippets.
 - Deterministic ordering (quantized score desc, then path asc) with a small recency preference for ties.
 - Default size cap 64KB; override via cap_bytes in request.
+ - Optional kind filter; deduplicates by file family (parent + stem) to reduce redundancy.
 - File: config/default.yaml
   - server.host: string
   - server.port: number

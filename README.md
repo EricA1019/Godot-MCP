@@ -10,7 +10,7 @@ Endpoints
 - GET /index/health → { docs, segments }
 - POST /index/watch/start|stop → { status }
 // Hop 3 adds:
-- POST /context/bundle { q, limit?, cap_bytes? } → { query, items: [{ path, kind, score, content }], size_bytes }
+- POST /context/bundle { q, limit?, cap_bytes?, kind? } → { query, items: [{ path, kind, score, content }], size_bytes }
 
 Config
 - config/default.yaml → server.host, server.port, server.auto_start_watchers (default true)
@@ -23,6 +23,7 @@ Notes
 Context Bundler (Hop 3)
 - Bundles top relevant snippets for a query using deterministic ordering (score then path), with a light recency boost.
 - Default size cap: 64KB (override via cap_bytes).
+ - Optional kind filter; dedupes by file family to avoid redundant near-duplicates.
 <div align="center">
 	<img src="icon.svg" alt="Logo" width="160" height="160">
 

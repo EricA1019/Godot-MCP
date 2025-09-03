@@ -47,12 +47,13 @@ pub fn bundle_query(
     query: &str,
     limit: usize,
     cap_bytes: Option<usize>,
+    kind: Option<&str>,
 ) -> Result<Bundle> {
     let cap = cap_bytes.unwrap_or(DEFAULT_BUNDLE_CAP);
-    let hits = idx.query_filtered(query, None, limit, true)?;
+    let hits = idx.query_filtered(query, kind, limit, true)?;
 
     // Map to items, keep snippet as content for brevity
-    let items: Vec<BundleItem> = hits
+    let items_raw: Vec<BundleItem> = hits
         .into_iter()
         .map(|(score, path, kind, snippet)| BundleItem {
             path,
@@ -61,6 +62,37 @@ pub fn bundle_query(
             content: snippet.unwrap_or_default(),
         })
         .collect();
+
+    // Dedupe by file family: same parent + stem. Prefer kind priority then score
+    fn kind_priority(kind: &str, path: &str) -> i32 {
+        match kind {
+            "gdscript" => 100,
+            "rust" => 90,
+            "godot" => if path.ends_with(".tscn") { 85 } else { 80 },
+            "docs" => 50,
+            "config" => 40,
+            _ => 10,
+        }
+    }
+    use std::collections::HashMap;
+    let mut by_family: HashMap<String, BundleItem> = HashMap::new();
+    for it in items_raw.into_iter() {
+        let p = std::path::Path::new(&it.path);
+        let parent = p.parent().and_then(|pp| pp.to_str()).unwrap_or("");
+        let stem = p.file_stem().and_then(|s| s.to_str()).unwrap_or(&it.path);
+        let key = format!("{}/{}", parent, stem);
+        let pri = kind_priority(&it.kind, &it.path);
+        match by_family.get(&key) {
+            None => { by_family.insert(key, it); }
+            Some(existing) => {
+                let pri_existing = kind_priority(&existing.kind, &existing.path);
+                if pri > pri_existing || (pri == pri_existing && it.score > existing.score) {
+                    by_family.insert(key, it);
+                }
+            }
+        }
+    }
+    let items: Vec<BundleItem> = by_family.into_values().collect();
 
     // Apply a light recency boost: if scores tie within 5 points, prefer newer mtime
     let scored_with_time: Vec<(BundleItem, u64)> = items
@@ -110,7 +142,7 @@ pub fn bundle_from_root(root: &Path, data_dir: &Path, query: &str, limit: usize,
     let paths = IndexPaths { root: root.to_path_buf(), data_dir: data_dir.to_path_buf() };
     let mut idx = SearchIndex::open(&paths)?;
     let _ = idx.scan_and_index(root)?;
-    let bundle = bundle_query(&idx, query, limit, cap_bytes)?;
+    let bundle = bundle_query(&idx, query, limit, cap_bytes, None)?;
     Ok(bundle)
 }
 
