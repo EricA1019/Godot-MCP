@@ -108,4 +108,7 @@ tests/
 - Performance regression detection
 - Test coverage reporting
 
+### Analyzer Artifacts
+- Scene Validator emits SARIF (ruleId: `scene-validator`) and JUnit (classname: `scene-validator`) suitable for CI upload and code scanning dashboards.
+
 #EOF

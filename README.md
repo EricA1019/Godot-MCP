@@ -1,3 +1,23 @@
+# Godot MCP Server — Status and Quick Start (Hop 7 DONE)
+
+This workspace provides a Rust-first MCP server plus Godot tooling. Hop 7 adds a Scene Validator to catch broken scripts/resources in .tscn files and emits CI-friendly outputs (JSON, SARIF, JUnit).
+
+Quick start
+- Build and test: use VS Code tasks “cargo build” and “cargo test”.
+- Run server: task “run mcp-server” (background) or `cargo run -p mcp-server`.
+- Analyze Godot project:
+	- Validate scenes and write reports:
+		- JSON: `cargo run -p godot --bin godot-analyzer -- --root . --validate_scenes --json`
+		- SARIF/JUnit: add `--sarif-out godot.sarif --junit-out godot.junit.xml`
+	- Select scene checks (optional, defaults to all):
+		- `--scene-check script` | `properties` | `subresource` | `preload` | `load`
+		- Example: `--scene-check preload --scene-check load`
+
+Outputs
+- SARIF ruleId: scene-validator for scene findings; godot-analyzer for others. Driver rules metadata included.
+- JUnit classname: scene-validator for scene findings.
+- Deterministic ordering for stable CI.
+
 # Hop 2 — Master Index overview
 
 The MCP server now integrates a Tantivy-based Master Index with endpoints to scan, query, and watch the project.

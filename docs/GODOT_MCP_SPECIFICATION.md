@@ -70,12 +70,14 @@ Create a robust, expert-level Model Context Protocol (MCP) server specifically d
 #### **godot_scene_validate**
 - **Purpose**: Scene file integrity and best practice validation
 - **Features**:
-  - Node hierarchy validation
-  - Script attachment verification
-  - Resource reference checking
-  - Performance impact analysis
-  - UI layout consistency validation
-- **Integration**: Real-time validation during scene editing
+  - Node path capture and script attachment verification
+  - [ext_resource] parsing; ExtResource("id") for script and generic properties
+  - Unknown ExtResource id detection; missing file checks
+  - [sub_resource] id tracking; Unknown SubResource("id") detection
+  - preload("res://…") and load("res://…") missing file detection
+  - Deterministic, CI-friendly outputs (JSON, SARIF, JUnit)
+  - **CLI**: `godot-analyzer --root . --validate_scenes [--scene-check script|properties|subresource|preload|load] [--sarif-out f.sarif --junit-out f.xml]`
+  - **Integration**: Real-time validation during scene editing (future)
 
 #### **godot_signal_trace**
 - **Purpose**: Complete signal connection mapping and validation

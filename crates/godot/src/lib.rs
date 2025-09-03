@@ -16,6 +16,21 @@ pub struct GodotProjectReport {
     pub issues: Vec<Issue>,
 }
 
+#[derive(Debug, Clone, Copy, PartialEq, Eq)]
+pub struct SceneCheckOptions {
+    pub script: bool,
+    pub properties: bool,
+    pub subresource: bool,
+    pub preload: bool,
+    pub load: bool,
+}
+
+impl Default for SceneCheckOptions {
+    fn default() -> Self {
+        Self { script: true, properties: true, subresource: true, preload: true, load: true }
+    }
+}
+
 pub fn analyze_project(root: &Path) -> Result<GodotProjectReport> {
     let mut report = GodotProjectReport::default();
     report.project_path = root.to_path_buf();
@@ -107,6 +122,11 @@ pub fn analyze_project(root: &Path) -> Result<GodotProjectReport> {
 /// Run scene validation across .tscn files and convert to Issue entries.
 /// Skips generic ext_resource path issues to avoid duplication with scan_broken_ext_resources.
 pub fn scene_issues_as_report(root: &Path) -> Vec<Issue> {
+    scene_issues_as_report_with(root, &SceneCheckOptions::default())
+}
+
+/// Same as scene_issues_as_report but allows selecting which checks to keep.
+pub fn scene_issues_as_report_with(root: &Path, opts: &SceneCheckOptions) -> Vec<Issue> {
     let mut out = Vec::new();
     for entry in WalkDir::new(root).into_iter().flatten() {
         let path = entry.path();
@@ -118,6 +138,26 @@ pub fn scene_issues_as_report(root: &Path) -> Vec<Issue> {
         for si in scene_issues {
             // Avoid duplicating the broad ext_resource missing messages already emitted by scan_broken_ext_resources
             if si.message.starts_with("Missing ext_resource path:") { continue; }
+
+            // Filter by selected checks
+            match scene_issue_kind(&si.message) {
+                SceneIssueKind::MissingScript | SceneIssueKind::ScriptExtResourceMissing | SceneIssueKind::UnknownExtResource => {
+                    if !opts.script { continue; }
+                }
+                SceneIssueKind::PropertyExtMissing => {
+                    if !opts.properties { continue; }
+                }
+                SceneIssueKind::UnknownSubResource => {
+                    if !opts.subresource { continue; }
+                }
+                SceneIssueKind::PreloadMissing => {
+                    if !opts.preload { continue; }
+                }
+                SceneIssueKind::LoadMissing => {
+                    if !opts.load { continue; }
+                }
+                SceneIssueKind::Other => {}
+            }
             let mut msg = si.message.clone();
             if let Some(np) = si.node_path.as_ref() {
                 msg = format!("{} [node: {}]", msg, np);
@@ -127,6 +167,20 @@ pub fn scene_issues_as_report(root: &Path) -> Vec<Issue> {
         }
     }
     out
+}
+
+#[derive(Debug, Clone, Copy, PartialEq, Eq)]
+enum SceneIssueKind { MissingScript, ScriptExtResourceMissing, UnknownExtResource, PropertyExtMissing, UnknownSubResource, PreloadMissing, LoadMissing, Other }
+
+fn scene_issue_kind(msg: &str) -> SceneIssueKind {
+    if msg.starts_with("Missing script:") { return SceneIssueKind::MissingScript; }
+    if msg.starts_with("Script ExtResource(") { return SceneIssueKind::ScriptExtResourceMissing; }
+    if msg.starts_with("Unknown ExtResource id:") { return SceneIssueKind::UnknownExtResource; }
+    if msg.starts_with("Property '") { return SceneIssueKind::PropertyExtMissing; }
+    if msg.starts_with("Unknown SubResource id:") { return SceneIssueKind::UnknownSubResource; }
+    if msg.starts_with("Preload missing file:") { return SceneIssueKind::PreloadMissing; }
+    if msg.starts_with("Load missing file:") { return SceneIssueKind::LoadMissing; }
+    SceneIssueKind::Other
 }
 
 #[derive(Debug, Clone, Serialize, Deserialize, PartialEq, Eq, Default)]

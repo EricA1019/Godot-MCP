@@ -16,6 +16,8 @@
 <br>
 <br>
 
+- Project status: Hop 7 (Scene Validator) is DONE. Use `godot-analyzer --validate_scenes` to detect missing scripts/resources in .tscn files. Add `--sarif-out` and `--junit-out` for CI.
+
 - [Installation 📦](#installation-)
 - [Probability](#probability)
   - [Dice roller 🎲](#dice-roller-)

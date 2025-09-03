@@ -1,6 +1,6 @@
 use clap::Parser;
 use std::path::PathBuf;
-use godot_analyzer::{analyze_project, GodotProjectReport, Severity, to_junit, to_sarif, scene_issues_as_report};
+use godot_analyzer::{analyze_project, GodotProjectReport, Severity, to_junit, to_sarif, scene_issues_as_report_with, SceneCheckOptions};
 
 #[derive(Parser, Debug)]
 #[command(name = "godot-analyzer", version, about = "Analyze a Godot project for configuration and addon health", long_about = None)]
@@ -27,6 +27,9 @@ struct Args {
     /// Optionally write scene findings as a standalone JSON file
     #[arg(long)]
     scene_json_out: Option<PathBuf>,
+    /// Select which scene checks to run (repeatable). Options: script,properties,subresource,preload,load.
+    #[arg(long = "scene-check")] 
+    scene_checks: Vec<String>,
 }
 
 fn main() {
@@ -35,7 +38,22 @@ fn main() {
     let mut report = analyze_project(&root).expect("analyze");
 
     if args.validate_scenes {
-        let scene_issues = scene_issues_as_report(&root);
+        let mut opts = SceneCheckOptions::default();
+        if !args.scene_checks.is_empty() {
+            // Disable all, then enable selected
+            opts = SceneCheckOptions { script: false, properties: false, subresource: false, preload: false, load: false };
+            for c in &args.scene_checks {
+                match c.as_str() {
+                    "script" => opts.script = true,
+                    "properties" => opts.properties = true,
+                    "subresource" => opts.subresource = true,
+                    "preload" => opts.preload = true,
+                    "load" => opts.load = true,
+                    _ => {}
+                }
+            }
+        }
+        let scene_issues = scene_issues_as_report_with(&root, &opts);
         if let Some(p) = args.scene_json_out.as_ref() {
             std::fs::write(p, serde_json::to_vec_pretty(&scene_issues).unwrap()).expect("write scene json");
         }

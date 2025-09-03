@@ -107,26 +107,28 @@ Living roadmap of tiny, runnable hops with crisp acceptance criteria. Each hop m
   - CLI supports --min-severity filtering and --fail-on gating; CI uploads analyzer artifacts (JSON/SARIF)
   - Optional: SARIF uploaded to GitHub Code Scanning when available
 
-### Hop 7: Scene Validator [IN-PROGRESS] (M)
+### Hop 7: Scene Validator [DONE] (M)
 - Goal: Validate .tscn hierarchy, scripts, resources
 - Deliverables:
-  - crates/godot/scene_validate.rs: validator parses [node] paths, script attributes, [ext_resource] declarations; supports script = ExtResource("id") mapping
+  - crates/godot/scene_validate.rs: validator parses [node] paths, script attributes, and [ext_resource] declarations; supports script = ExtResource("id") mapping
   - Generic property ExtResource("id") handling (e.g., texture = ExtResource("1")) with file existence checks
-  - scene_issues_as_report helper to convert findings into Issues (dedup generic ext_resource messages)
-  - CLI: godot-analyzer --validate_scenes with optional --scene-json-out
-  - Outputs: SARIF uses ruleId "scene-validator" for validator findings; JUnit uses classname="scene-validator"; analyzer stays "godot-analyzer"
+  - Tracks [sub_resource] ids and flags unknown SubResource("id") references anywhere on a line
+  - Detects preload("res://…") and load("res://…") missing file paths
+  - scene_issues_as_report and scene_issues_as_report_with with SceneCheckOptions to enable/disable categories
+  - CLI: godot-analyzer --validate_scenes with optional --scene-json-out and repeatable --scene-check <script|properties|subresource|preload|load>
+  - Outputs: SARIF uses ruleId "scene-validator" for validator findings; JUnit uses classname="scene-validator"; analyzer stays "godot-analyzer"; SARIF driver rules metadata included for both
   - Deterministic ordering preserved after merging scene findings
-  - Extend library incrementally for node/resource integrity
-  - Optional polish: include SARIF driver rules metadata for both ruleIds
 - Tests:
   - Unit tests for missing script presence and OK path
   - Tests for ext_resource declared path missing, unknown id, and ExtResource("id") mapping
   - Test for property ExtResource("id") reporting and SARIF ruleId separation
+  - Tests for unknown SubResource id detection and preload/load missing file detection
   - Future: fixtures covering bad/missing nodes, scripts
 - Acceptance:
   - Issues include file:line and node path context; deterministic ordering
-  - CLI flag produces merged report and optional standalone JSON
-  - SARIF/JUnit reflect separate rule/class for scene validator
+  - CLI flag produces merged report and optional standalone JSON; --scene-check filters which categories run
+  - SARIF/JUnit reflect separate rule/class for scene validator; driver rules metadata present
+  - Detects missing files referenced via scripts, ext_resources, SubResource ids, and preload/load
   - No panics on malformed but parseable scenes; graceful degradation
 
 ### Hop 8: Signal Validator + Trace [PLANNED] (M)
