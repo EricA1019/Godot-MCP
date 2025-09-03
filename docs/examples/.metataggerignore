@@ -1,0 +1,5 @@
+# Ignore generated or local caches
+target/**
+.godot/**
+.cache/**
+ignored/**
