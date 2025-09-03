@@ -41,7 +41,7 @@ Living roadmap of tiny, runnable hops with crisp acceptance criteria. Each hop m
   - Update/delete test passes; queries reflect latest commit
   - Initial perf sanity: apply_batch per file < 250ms in CI env
 
-### Hop 3: Context Bundler v1 [PLANNED] (S)
+### Hop 3: Context Bundler v1 [IN-PROGRESS] (S)
 - Goal: Bundle top N relevant docs/code for a query using Master Index
 - Deliverables:
   - crates/context: bundler.rs (rank, cap size, dedupe)

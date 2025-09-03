@@ -261,6 +261,18 @@ dependencies = [
 ]
 
 [[package]]
+name = "context"
+version = "0.1.0"
+dependencies = [
+ "anyhow",
+ "index",
+ "serde",
+ "serde_json",
+ "tempfile",
+ "tracing",
+]
+
+[[package]]
 name = "crc32fast"
 version = "1.5.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"

@@ -3,6 +3,7 @@ members = [
     "crates/mcp-server",
     "crates/common",
     "crates/index",
+    "crates/context",
 ]
 resolver = "2"
 
