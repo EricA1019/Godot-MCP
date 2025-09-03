@@ -27,6 +27,25 @@ pub fn analyze_project(root: &Path) -> Result<GodotProjectReport> {
                 if let Ok(n) = v.parse::<i32>() { report.project_format_version = Some(n); }
             }
         }
+        // Application icon and main scene checks (heuristic INI parsing)
+        let icon = find_ini_kv(&s, "config/icon");
+        if let Some(v) = icon {
+            if let Some(p) = v.strip_prefix("res://") {
+                let t = root.join(p);
+                if !t.exists() { report.issues.push(Issue::warn(format!("Missing application icon: {}", v), Some(proj.strip_prefix(root).unwrap_or(&proj).to_path_buf()))); }
+            }
+        } else {
+            report.issues.push(Issue::info("No application icon configured (config/icon)", Some(proj.strip_prefix(root).unwrap_or(&proj).to_path_buf())));
+        }
+        let main_scene = find_ini_kv(&s, "run/main_scene");
+        if let Some(v) = main_scene {
+            if let Some(p) = v.strip_prefix("res://") {
+                let t = root.join(p);
+                if !t.exists() { report.issues.push(Issue::warn(format!("Missing main scene: {}", v), Some(proj.strip_prefix(root).unwrap_or(&proj).to_path_buf()))); }
+            }
+        } else {
+            report.issues.push(Issue::info("No main scene configured (run/main_scene)", Some(proj.strip_prefix(root).unwrap_or(&proj).to_path_buf())));
+        }
     } else {
         report.issues.push(Issue::warn("Missing project.godot", Some(proj.strip_prefix(root).unwrap_or(&proj).to_path_buf())));
     }
@@ -52,6 +71,17 @@ pub fn analyze_project(root: &Path) -> Result<GodotProjectReport> {
         if report.export_presets.is_empty() {
             report.issues.push(Issue::warn("export_presets.cfg present but no presets found", Some(presets_path.strip_prefix(root).unwrap_or(&presets_path).to_path_buf())));
         }
+        // Validate export_path parent directories exist (heuristic)
+        for p in &report.export_presets {
+            if let Some(path) = &p.export_path {
+                let joined = if Path::new(path).is_absolute() { PathBuf::from(path) } else { root.join(path) };
+                if let Some(parent) = joined.parent() {
+                    if !parent.exists() {
+                        report.issues.push(Issue::info(format!("Export path parent directory does not exist: {}", parent.display()), Some(presets_path.strip_prefix(root).unwrap_or(&presets_path).to_path_buf())));
+                    }
+                }
+            }
+        }
     } else {
         report.issues.push(Issue::info("Missing export_presets.cfg", Some(presets_path.strip_prefix(root).unwrap_or(&presets_path).to_path_buf())));
     }
@@ -68,7 +98,7 @@ pub fn analyze_project(root: &Path) -> Result<GodotProjectReport> {
 }
 
 #[derive(Debug, Clone, Serialize, Deserialize, PartialEq, Eq, Default)]
-pub struct ExportPreset { pub name: String, pub platform: String }
+pub struct ExportPreset { pub name: String, pub platform: String, pub export_path: Option<String> }
 
 #[derive(Debug, Clone, Copy, Serialize, Deserialize, PartialEq, Eq, PartialOrd, Ord)]
 #[serde(rename_all = "lowercase")]
@@ -88,18 +118,20 @@ fn parse_export_presets(path: &Path) -> Result<Vec<ExportPreset>> {
     let mut out = Vec::new();
     let mut cur_name: Option<String> = None;
     let mut cur_platform: Option<String> = None;
+    let mut cur_export_path: Option<String> = None;
     for line in s.lines() {
         let line = line.trim();
         if line.starts_with('[') { // new section
             if let (Some(n), Some(p)) = (cur_name.take(), cur_platform.take()) {
-                out.push(ExportPreset { name: n, platform: p });
+                out.push(ExportPreset { name: n, platform: p, export_path: cur_export_path.take() });
             }
             continue;
         }
         if let Some(v) = line.strip_prefix("name=") { cur_name = Some(trim_value(v)); }
         if let Some(v) = line.strip_prefix("platform=") { cur_platform = Some(trim_value(v)); }
+        if let Some(v) = line.strip_prefix("export_path=") { cur_export_path = Some(trim_value(v)); }
     }
-    if let (Some(n), Some(p)) = (cur_name.take(), cur_platform.take()) { out.push(ExportPreset { name: n, platform: p }); }
+    if let (Some(n), Some(p)) = (cur_name.take(), cur_platform.take()) { out.push(ExportPreset { name: n, platform: p, export_path: cur_export_path.take() }); }
     Ok(out)
 }
 
@@ -130,3 +162,49 @@ fn scan_broken_ext_resources(root: &Path) -> Result<Vec<Issue>> {
     }
     Ok(out)
 }
+
+fn find_ini_kv(contents: &str, key: &str) -> Option<String> {
+    // Search for lines like key="res://..." possibly with section headers above
+    for line in contents.lines() {
+        let line = line.trim();
+        if let Some(v) = line.strip_prefix(&format!("{key}=")) { return Some(trim_value(v)); }
+    }
+    None
+}
+
+// --- Outputs ---
+pub fn to_sarif(report: &GodotProjectReport) -> serde_json::Value {
+    let results: Vec<serde_json::Value> = report.issues.iter().map(|i| {
+        let level = match i.severity { Severity::Info => "note", Severity::Warn => "warning", Severity::Error => "error" };
+        serde_json::json!({
+            "ruleId": "godot-analyzer",
+            "level": level,
+            "message": {"text": i.message},
+            "locations": [{ "physicalLocation": { "artifactLocation": { "uri": i.file.as_ref().map(|p| p.to_string_lossy().to_string()).unwrap_or_default() } } }]
+        })
+    }).collect();
+    serde_json::json!({
+        "$schema": "https://schemastore.azurewebsites.net/schemas/json/sarif-2.1.0.json",
+        "version": "2.1.0",
+        "runs": [{
+            "tool": {"driver": {"name": "godot-analyzer"}},
+            "results": results
+        }]
+    })
+}
+
+pub fn to_junit(report: &GodotProjectReport) -> String {
+    let mut s = String::new();
+    s.push_str("<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n");
+    s.push_str(&format!("<testsuite name=\"godot-analyzer\" tests=\"{}\">\n", report.issues.len()));
+    for i in &report.issues {
+        let name = format!("{}", i.message);
+        s.push_str(&format!("  <testcase name=\"{}\">\n", xml_escape(&name)));
+        s.push_str(&format!("    <failure message=\"{:?}\">{}</failure>\n", i.severity, xml_escape(&i.file.as_ref().map(|p| p.display().to_string()).unwrap_or_default())));
+        s.push_str("  </testcase>\n");
+    }
+    s.push_str("</testsuite>\n");
+    s
+}
+
+fn xml_escape(input: &str) -> String { input.replace('&', "&amp;").replace('<', "&lt;").replace('>', "&gt;") }

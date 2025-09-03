@@ -53,3 +53,18 @@ jobs:
         with:
           name: metatagger-report
           path: metatagger-report.json
+
+      - name: Run godot analyzer (non-blocking) and save JSON + SARIF
+        run: |
+          cargo run --locked -p godot --bin godot-analyzer -- --json --root . > godot-analyzer-report.json || true
+          cargo run --locked -p godot --bin godot-analyzer -- --root . --sarif-out godot-analyzer.sarif || true
+        continue-on-error: true
+
+      - name: Upload godot analyzer reports
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: godot-analyzer-reports
+          path: |
+            godot-analyzer-report.json
+            godot-analyzer.sarif
