@@ -18,6 +18,8 @@ Outputs
 - JUnit classname: scene-validator for scene findings.
 - Deterministic ordering for stable CI.
 
+See also: docs/SCENE_VALIDATOR.md
+
 # Hop 2 — Master Index overview
 
 The MCP server now integrates a Tantivy-based Master Index with endpoints to scan, query, and watch the project.
