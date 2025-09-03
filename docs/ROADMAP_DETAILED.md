@@ -93,11 +93,15 @@ Living roadmap of tiny, runnable hops with crisp acceptance criteria. Each hop m
 
 ## Phase 2 — Godot Core Tools (Weeks 3–4)
 
-### Hop 6: Godot Project Analyzer [PLANNED] (M)
+### Hop 6: Godot Project Analyzer [IN-PROGRESS] (M)
 - Goal: Parse project.godot, addons/, export_presets.cfg
-- Deliverables: crates/godot/analyzer.rs
-- Tests: fixture projects with expected reports
-- Acceptance: JSON report with warnings+fixups
+- Deliverables:
+  - crates/godot: library + CLI (godot-analyzer) with JSON output
+  - Reports engine version (heuristic), addons list, export preset presence, basic warnings
+- Tests:
+  - Smoke test resolves repo root and detects addons
+- Acceptance:
+  - JSON report; deterministic fields; handles missing files gracefully; more checks to follow
 
 ### Hop 7: Scene Validator [PLANNED] (M)
 - Goal: Validate .tscn hierarchy, scripts, resources

@@ -1,0 +1,29 @@
+[package]
+name = "godot"
+version = "0.1.0"
+edition = "2021"
+license = "MIT"
+
+[lib]
+name = "godot_analyzer"
+path = "src/lib.rs"
+
+[[bin]]
+name = "godot-analyzer"
+path = "src/bin/godot_analyzer.rs"
+
+[dependencies]
+anyhow = "1"
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+serde_yaml = "0.9"
+walkdir = "2"
+regex = "1"
+thiserror = "1"
+tracing = "0.1"
+clap = { version = "4", features = ["derive"] }
+
+common = { path = "../common" }
+
+[dev-dependencies]
+tempfile = "3"
