@@ -12,6 +12,7 @@ Quick start
 	- Select scene checks (optional, defaults to all):
 		- `--scene-check script` | `properties` | `subresource` | `preload` | `load`
 		- Example: `--scene-check preload --scene-check load`
+	- VS Code tasks: “scene validate (JSON)” and “scene validate (SARIF+JUnit)”
 
 Outputs
 - SARIF ruleId: scene-validator for scene findings; godot-analyzer for others. Driver rules metadata included.
