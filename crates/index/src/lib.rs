@@ -399,6 +399,7 @@ impl SearchIndex {
         Ok(())
     }
 
+    #[allow(dead_code)]
     fn rescan(&mut self, root: &Path) -> Result<()> {
         // Create a new writer (simple approach) and rescan
         self.writer.rollback()?;

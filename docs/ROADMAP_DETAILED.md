@@ -41,15 +41,15 @@ Living roadmap of tiny, runnable hops with crisp acceptance criteria. Each hop m
   - Update/delete test passes; queries reflect latest commit
   - Initial perf sanity: apply_batch per file < 250ms in CI env
 
-### Hop 3: Context Bundler v1 [IN-PROGRESS] (S)
+### Hop 3: Context Bundler v1 [DONE] (S)
 - Goal: Bundle top N relevant docs/code for a query using Master Index
 - Deliverables:
   - crates/context: bundler.rs (rank, cap size, dedupe)
 - Tests:
   - Unit: relevance ranking deterministic
-  - Integration: returns bounded bundle size
+  - Integration: /context/bundle endpoint smoke + kind filter + deterministic ordering + cap enforcement
 - Docs: DEV_LOG.md update
-- Acceptance: bundle ≤ 64KB, ranked by recency+relevance
+- Acceptance: bundle ≤ 64KB, ranked by recency+relevance; server exposes /context/bundle; tests green
 
 ### Hop 4: Auto-Documentation v1 [PLANNED] (S)
 - Goal: Verify/create CTS docs from templates
