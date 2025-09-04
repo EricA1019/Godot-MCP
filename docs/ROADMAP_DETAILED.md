@@ -131,7 +131,6 @@ Living roadmap of tiny, runnable hops with crisp acceptance criteria. Each hop m
   - Detects missing files referenced via scripts, ext_resources, SubResource ids, and preload/load
   - No panics on malformed but parseable scenes; graceful degradation
 
-### Hop 8: Signal Validator + Trace [IN-PROGRESS] (M)
 ### Hop 8: Signal Validator + Trace [DONE] (M)
  Goal: Analyze signal definitions and connections
  Deliverables:

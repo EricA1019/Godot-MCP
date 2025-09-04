@@ -1,7 +1,7 @@
 use clap::Parser;
 use std::path::PathBuf;
 use godot_analyzer::{
-    analyze_project, scene_issues_as_report_with, signal_graph_dot, signal_issues_as_report, GodotProjectReport, SceneCheckOptions, Severity, to_junit, to_sarif,
+    analyze_project, scene_issues_as_report_with, signal_graph_dot, signal_issues_as_report, structure_fix, GodotProjectReport, SceneCheckOptions, Severity, to_junit, to_sarif,
 };
 
 #[derive(Parser, Debug)]
@@ -38,12 +38,38 @@ struct Args {
     /// Optionally write a DOT graph of signal connections across scenes
     #[arg(long)]
     signal_dot_out: Option<PathBuf>,
+    /// Structure fix: plan (dry-run) only; prints JSON to stdout unless --json-out provided
+    #[arg(long)]
+    structure_fix: bool,
+    /// Write structure fix plan JSON to this file instead of stdout
+    #[arg(long)]
+    structure_fix_json_out: Option<PathBuf>,
+    /// Apply structure fix (implies --structure_fix). Prints JSON summary.
+    #[arg(long)]
+    structure_fix_apply: bool,
 }
 
 fn main() {
     let args = Args::parse();
     let root = args.root.unwrap_or_else(|| std::env::current_dir().unwrap());
     let mut report = analyze_project(&root).expect("analyze");
+
+    // Structure fix planning/apply
+    if args.structure_fix || args.structure_fix_apply {
+        let plan = structure_fix::plan_structure_fix(&root);
+        if args.structure_fix_apply {
+            let sum = structure_fix::apply_structure_fix(&root, &plan).expect("apply structure fix");
+            println!("{}", serde_json::to_string_pretty(&sum).unwrap());
+        } else {
+            let s = serde_json::to_string_pretty(&plan).unwrap();
+            if let Some(p) = args.structure_fix_json_out.as_ref() {
+                std::fs::write(p, s).expect("write structure fix json");
+            } else {
+                println!("{}", s);
+            }
+        }
+        return;
+    }
 
     if args.validate_scenes {
         let mut opts = SceneCheckOptions::default();

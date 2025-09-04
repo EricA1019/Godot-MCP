@@ -18,3 +18,9 @@ Existing issues marked with a [help wanted tag](https://github.com/ninetailsrabb
 4. If you are capable of implementing said feature, include some code that demonstrates the finer details/nuances of said feature.
 
 ## Thanks you for contributing mindfully!
+
+<!-- AUTODOC:BEGIN main -->
+- Use small, reviewable PRs. Keep builds green and add tests when changing behavior.
+- Follow the CTS workflow: tiny hops, deterministic outcomes, and clear acceptance.
+- Run `cargo test` and `cargo clippy -D warnings` locally before pushing.
+<!-- AUTODOC:END main -->
