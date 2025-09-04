@@ -29,6 +29,19 @@ Outputs
 
 See also: docs/SCENE_VALIDATOR.md and docs/SIGNAL_VALIDATOR.md
 
+## Structure Auto-Fix (Hop 9)
+
+Reorganize scripts/scenes/assets to project conventions with a safe plan or apply mode.
+
+- VS Code tasks:
+	- "structure fix (dry-run)" → prints a JSON plan of proposed moves
+	- "structure fix (apply)" → moves files and updates references
+- CLI:
+	- Plan: `cargo run -p godot --bin godot-analyzer -- --root . --structure_fix`
+	- Apply: `cargo run -p godot --bin godot-analyzer -- --root . --structure_fix_apply`
+- Safety: apply mode creates backups under `.structure_fix/backup` and rewrites references in `.tscn/.tres` (ext_resource paths) and `.gd` (preload/load).
+- CI: GitHub Actions publishes the dry-run plan as `structure-fix-plan.json` artifact on pushes/PRs.
+
 # Hop 2 — Master Index overview
 
 The MCP server now integrates a Tantivy-based Master Index with endpoints to scan, query, and watch the project.
