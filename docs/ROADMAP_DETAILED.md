@@ -152,11 +152,15 @@ Living roadmap of tiny, runnable hops with crisp acceptance criteria. Each hop m
   - Deterministic, CI-friendly outputs; no panics on malformed scenes
   - Basic connection integrity validated; future trace planned
 
-### Hop 9: Structure Auto-Fix [PLANNED] (M)
+### Hop 9: Structure Auto-Fix [DONE] (M)
 - Goal: Propose+apply safe moves/renames to conventions
-- Deliverables: crates/godot/structure_fix.rs (dry-run + apply)
-- Tests: dry-run diff stable; apply reversible
-- Acceptance: rollback plan generated before apply
+- Deliverables:
+  - crates/godot/structure_fix.rs with dry-run planner and apply mode (moves + backups + reference rewrites for ext_resource and preload/load)
+  - CLI flags: --structure_fix (plan), --structure_fix_json_out, --structure_fix_apply
+  - VS Code tasks for dry-run/apply
+  - CI artifact: structure-fix-plan.json on all pushes/PRs (non-blocking)
+- Tests: dry-run plan stable; apply moves, creates backups, and updates references
+- Acceptance: backups created prior to moves; references updated; idempotent on clean re-run
 
 ### Hop 10: GDScript Lint [PLANNED] (M)
 - Goal: Lint with Godot best-practice ruleset

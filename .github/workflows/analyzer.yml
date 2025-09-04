@@ -38,6 +38,11 @@ jobs:
             --signal-dot-out godot-signals.dot \
             --json > godot-analyzer.json
 
+      - name: Structure fix dry-run plan (non-blocking)
+        run: |
+          cargo run -p godot --bin godot-analyzer -- --root . --structure_fix > structure-fix-plan.json || true
+        continue-on-error: true
+
       - name: Install Graphviz
         run: sudo apt-get update && sudo apt-get install -y graphviz
 
@@ -57,6 +62,7 @@ jobs:
             godot.junit.xml
             godot-signals.dot
             godot-signals.png
+            structure-fix-plan.json
 
       - name: Upload SARIF to Code Scanning
         uses: github/codeql-action/upload-sarif@v3
