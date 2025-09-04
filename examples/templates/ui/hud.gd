@@ -14,7 +14,6 @@ func _ready():
 func _sync_health_bar():
     var hb := $Root/VBox/Health/HealthBar
     if health and hb:
-        var p := health.get_health_percent()
         hb.max_value = float(health.max_health)
         hb.value = float(health.current_health)
 

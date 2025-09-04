@@ -1,5 +1,5 @@
 ; Disabled by default to avoid errors when native lib isn't built.
-; Rename this file back to rust.gdextension to enable, and ensure the library paths exist.
+; Rename this file to rust.gdextension to enable, and ensure the library paths exist.
 [configuration]
 entry_symbol = "gdext_rust_init"
 compatibility_minimum = 4.3
@@ -11,7 +11,7 @@ linux.release.x86_64 =   "res://.rust/target/release/librust_gdextension.so"
 windows.debug.x86_64 =   "res://.rust/target/debug/rust_gdextension.dll"
 windows.release.x86_64 = "res://.rust/target/release/rust_gdextension.dll"
 macos.debug =            "res://.rust/target/debug/librust_gdextension.dylib"
-macos.release =          "res://.rust/target/release/rust_gdextension.dylib"
+macos.release =          "res://.rust/target/release/librust_gdextension.dylib"
 macos.debug.arm64 =      "res://.rust/target/debug/librust_gdextension.dylib"
 macos.release.arm64 =    "res://.rust/target/release/librust_gdextension.dylib"
 
