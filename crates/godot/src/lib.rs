@@ -141,6 +141,22 @@ pub fn signal_issues_as_report(root: &Path) -> Vec<Issue> {
     out
 }
 
+/// Build a DOT graph of signal connections across all .tscn files under root.
+pub fn signal_graph_dot(root: &Path) -> String {
+    let mut edges: Vec<signal_validate::ConnectionEdge> = Vec::new();
+    for entry in WalkDir::new(root).into_iter().flatten() {
+        let path = entry.path();
+        if !entry.file_type().is_file() { continue; }
+        if matches!(path.extension().and_then(|s| s.to_str()), Some("tscn")) {
+            let rel = path.strip_prefix(root).unwrap_or(path);
+            edges.extend(signal_validate::extract_scene_connections(root, rel));
+        }
+    }
+    // Sort once more globally to ensure deterministic output across files
+    edges.sort();
+    signal_validate::connections_to_dot(&edges)
+}
+
 /// Run scene validation across .tscn files and convert to Issue entries.
 /// Skips generic ext_resource path issues to avoid duplication with scan_broken_ext_resources.
 pub fn scene_issues_as_report(root: &Path) -> Vec<Issue> {
@@ -324,6 +340,8 @@ fn classify_rule_id(i: &Issue) -> &'static str {
     } else if msg.starts_with("Unknown connection '")
         || msg.starts_with("Connection missing ")
         || msg.starts_with("Duplicate connection:")
+        || msg.starts_with("Invalid method name:")
+        || msg.starts_with("Target method not found:")
     {
         "signal-validator"
     } else {

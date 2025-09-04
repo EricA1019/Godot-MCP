@@ -132,15 +132,24 @@ Living roadmap of tiny, runnable hops with crisp acceptance criteria. Each hop m
   - No panics on malformed but parseable scenes; graceful degradation
 
 ### Hop 8: Signal Validator + Trace [IN-PROGRESS] (M)
-- Goal: Analyze signal definitions and connections
-- Deliverables:
+### Hop 8: Signal Validator + Trace [DONE] (M)
+ Goal: Analyze signal definitions and connections
+ Deliverables:
   - crates/godot/signal_validate.rs: parse [connection] entries; verify from/to nodes exist; require signal/method; detect duplicates
+  - Target method existence checks for GDScript receivers (regex on func definitions); invalid method names flagged; C#/native skipped
   - CLI: godot-analyzer --validate_signals; merged outputs with SARIF ruleId "signal-validator" and JUnit classname="signal-validator"
-  - Future: emit DOT graph and quick-fix suggestions
+  - DOT graph export across scenes via --signal-dot-out godot-signals.dot (rankdir=LR); CI renders PNG via Graphviz
+  - VS Code tasks: "signal validate (JSON)", "signal validate (SARIF+JUnit)", "signal graph (DOT)", and DOT→PNG
+  - Quick-fix hints embedded in messages
 - Tests:
+ Tests:
   - Flags unknown 'to' node and duplicate connection
-  - Future: orphaned and slow handlers
-- Acceptance:
+  - Generates DOT graph for simple two-node cycle
+  - Method existence: missing method flagged; present method passes; C# receiver skipped
+ 
+ Acceptance:
+  - Deterministic, CI-friendly outputs; no panics on malformed scenes
+  - Connection integrity validated plus GDScript method existence heuristics; DOT graph emitted; PNG rendered in CI
   - Deterministic, CI-friendly outputs; no panics on malformed scenes
   - Basic connection integrity validated; future trace planned
 

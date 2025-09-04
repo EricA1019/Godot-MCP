@@ -1,0 +1,64 @@
+name: analyzer-and-reports
+
+on:
+  push:
+    branches: [ "**" ]
+  pull_request:
+    branches: [ "**" ]
+
+permissions:
+  contents: read
+  actions: read
+  security-events: write
+
+jobs:
+  build-test-analyze:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Rust
+        uses: dtolnay/rust-toolchain@stable
+
+      - name: Build
+        run: cargo build --workspace --all-targets --locked
+
+      - name: Test
+        run: cargo test --workspace --locked
+
+      - name: Run Godot analyzer (JSON/SARIF/JUnit/DOT)
+        run: |
+          cargo run -p godot --bin godot-analyzer -- \
+            --root . \
+            --validate_scenes \
+            --validate_signals \
+            --sarif-out godot.sarif \
+            --junit-out godot.junit.xml \
+            --signal-dot-out godot-signals.dot \
+            --json > godot-analyzer.json
+
+      - name: Install Graphviz
+        run: sudo apt-get update && sudo apt-get install -y graphviz
+
+      - name: Render signal graph PNG
+        run: |
+          if [ -f godot-signals.dot ]; then
+            dot -Tpng godot-signals.dot -o godot-signals.png
+          fi
+
+      - name: Upload analyzer artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: godot-analyzer-artifacts
+          path: |
+            godot-analyzer.json
+            godot.sarif
+            godot.junit.xml
+            godot-signals.dot
+            godot-signals.png
+
+      - name: Upload SARIF to Code Scanning
+        uses: github/codeql-action/upload-sarif@v3
+        with:
+          sarif_file: godot.sarif

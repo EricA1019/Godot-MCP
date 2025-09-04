@@ -1,6 +1,8 @@
 use clap::Parser;
 use std::path::PathBuf;
-use godot_analyzer::{analyze_project, GodotProjectReport, Severity, to_junit, to_sarif, scene_issues_as_report_with, SceneCheckOptions, signal_issues_as_report};
+use godot_analyzer::{
+    analyze_project, scene_issues_as_report_with, signal_graph_dot, signal_issues_as_report, GodotProjectReport, SceneCheckOptions, Severity, to_junit, to_sarif,
+};
 
 #[derive(Parser, Debug)]
 #[command(name = "godot-analyzer", version, about = "Analyze a Godot project for configuration and addon health", long_about = None)]
@@ -33,6 +35,9 @@ struct Args {
     /// Select which scene checks to run (repeatable). Options: script,properties,subresource,preload,load.
     #[arg(long = "scene-check")] 
     scene_checks: Vec<String>,
+    /// Optionally write a DOT graph of signal connections across scenes
+    #[arg(long)]
+    signal_dot_out: Option<PathBuf>,
 }
 
 fn main() {
@@ -69,6 +74,12 @@ fn main() {
         let sig_issues = signal_issues_as_report(&root);
         report.issues.extend(sig_issues);
         report.issues.sort_by(|a, b| a.severity.cmp(&b.severity).then(a.message.cmp(&b.message)));
+    }
+
+    // Optional DOT graph export for signals
+    if let Some(p) = args.signal_dot_out.as_ref() {
+        let dot = signal_graph_dot(&root);
+        std::fs::write(p, dot).expect("write signal dot");
     }
 
     // Optional filtering by minimum severity for outputs

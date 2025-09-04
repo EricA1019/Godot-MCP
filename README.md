@@ -1,4 +1,4 @@
-# Godot MCP Server — Status and Quick Start (Hop 7 DONE)
+# Godot MCP Server — Status and Quick Start (Hop 7 DONE, Hop 8 DONE)
 
 This workspace provides a Rust-first MCP server plus Godot tooling. Hop 7 adds a Scene Validator to catch broken scripts/resources in .tscn files and emits CI-friendly outputs (JSON, SARIF, JUnit).
 
@@ -13,14 +13,21 @@ Quick start
 		- `--scene-check script` | `properties` | `subresource` | `preload` | `load`
 		- Example: `--scene-check preload --scene-check load`
 	- VS Code tasks: “scene validate (JSON)” and “scene validate (SARIF+JUnit)”
-		- Signals: add `--validate_signals` to include connection checks
+	  	- Signals: add `--validate_signals` to include connection checks (includes GDScript target method existence)
+	- Signal graph (DOT):
+	  	- Task: “signal graph (DOT)” → writes godot-signals.dot
+		- CLI: add `--signal-dot-out godot-signals.dot`
+
+	Reading the signal graph
+	- Nodes are labeled as "<scene>:<node>" to avoid collisions; edges are "signal:method".
+	- Use the VS Code task “signal graph -> PNG (Graphviz)” to render and preview.
 
 Outputs
 - SARIF ruleId: scene-validator for scene findings; godot-analyzer for others. Driver rules metadata included.
 - JUnit classname: scene-validator for scene findings.
 - Deterministic ordering for stable CI.
 
-See also: docs/SCENE_VALIDATOR.md
+See also: docs/SCENE_VALIDATOR.md and docs/SIGNAL_VALIDATOR.md
 
 # Hop 2 — Master Index overview
 
