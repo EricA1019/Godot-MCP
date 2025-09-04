@@ -55,6 +55,10 @@ Scan `.gd` files for common pitfalls and report alongside other analyzer finding
 	- missing `extends`
 	- missing files in `preload()`/`load()` calls
 - Output: included in JSON/SARIF/JUnit with deterministic ordering; severity defaults to warning.
+	- SARIF ruleId: gd-linter; JUnit classname: gd-linter.
+	- Suppress per-file:
+		- Disable all: add `# gd-lint: off`
+		- Disable specific: `# gd-lint: disable=debug-print,tab-indentation`
 
 # Hop 2 — Master Index overview
 

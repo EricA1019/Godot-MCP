@@ -326,7 +326,8 @@ pub fn to_sarif(report: &GodotProjectReport) -> serde_json::Value {
                 "rules": [
                     {"id": "godot-analyzer", "name": "godot-analyzer", "shortDescription": {"text": "Godot project configuration checks"}},
                     {"id": "scene-validator", "name": "scene-validator", "shortDescription": {"text": "Godot scene (.tscn) validation checks"}},
-                    {"id": "signal-validator", "name": "signal-validator", "shortDescription": {"text": "Godot scene signal connection checks"}}
+                    {"id": "signal-validator", "name": "signal-validator", "shortDescription": {"text": "Godot scene signal connection checks"}},
+                    {"id": "gd-linter", "name": "gd-linter", "shortDescription": {"text": "GDScript code style and safety checks"}}
                 ]
             }},
             "results": results
@@ -353,6 +354,15 @@ fn classify_rule_id(i: &Issue) -> &'static str {
         || msg.starts_with("Target method not found:")
     {
         "signal-validator"
+    } else if msg.starts_with("Class name mismatch:")
+        || msg == "Debug print found"
+        || msg == "Tab indentation used"
+        || msg == "Missing extends declaration"
+        || msg.starts_with("GDScript preload missing file:")
+        || msg.starts_with("GDScript load missing file:")
+        || msg.starts_with("GDScript ") && msg.contains(" missing file:")
+    {
+        "gd-linter"
     } else {
         // Default to the core analyzer
         "godot-analyzer"
@@ -365,7 +375,7 @@ pub fn to_junit(report: &GodotProjectReport) -> String {
     s.push_str(&format!("<testsuite name=\"godot-analyzer\" tests=\"{}\">\n", report.issues.len()));
     for i in &report.issues {
         let name = format!("{}", i.message);
-    let class_name = match classify_rule_id(i) { "scene-validator" => "scene-validator", "signal-validator" => "signal-validator", _ => "godot-analyzer" };
+    let class_name = match classify_rule_id(i) { "scene-validator" => "scene-validator", "signal-validator" => "signal-validator", "gd-linter" => "gd-linter", _ => "godot-analyzer" };
     s.push_str(&format!("  <testcase name=\"{}\" classname=\"{}\">\n", xml_escape(&name), class_name));
         s.push_str(&format!("    <failure message=\"{:?}\">{}</failure>\n", i.severity, xml_escape(&i.file.as_ref().map(|p| p.display().to_string()).unwrap_or_default())));
         s.push_str("  </testcase>\n");
