@@ -125,7 +125,11 @@ pub fn analyze_project(root: &Path) -> Result<GodotProjectReport> {
 /// Run GDScript lint and convert to Issue entries (warning severity by default)
 pub fn lint_gd(root: &Path) -> Vec<Issue> {
     script_lint::lint_gd_scripts(root).into_iter()
-        .map(|f| Issue::warn(f.message, Some(f.file)))
+        .map(|f| match f.severity {
+            Severity::Info => Issue::info(f.message, Some(f.file)),
+            Severity::Warn => Issue::warn(f.message, Some(f.file)),
+            Severity::Error => Issue::error(f.message, Some(f.file)),
+        })
         .collect()
 }
 

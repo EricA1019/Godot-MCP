@@ -59,6 +59,7 @@ Scan `.gd` files for common pitfalls and report alongside other analyzer finding
 	- Suppress per-file:
 		- Disable all: add `# gd-lint: off`
 		- Disable specific: `# gd-lint: disable=debug-print,tab-indentation`
+		- Severity override per-file: `# gd-lint: level=info|warn|error`
 
 # Hop 2 — Master Index overview
 

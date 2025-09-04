@@ -22,3 +22,8 @@ Notes
 Suppressing rules (optional)
 - Disable all rules for a file: add a top-level comment `# gd-lint: off`
 - Disable specific rules: `# gd-lint: disable=debug-print,tab-indentation`
+
+Severity (optional)
+- Default severity is `warn`. Override per file:
+  - `# gd-lint: level=info`
+  - `# gd-lint: level=error`
