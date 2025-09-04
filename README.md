@@ -42,6 +42,20 @@ Reorganize scripts/scenes/assets to project conventions with a safe plan or appl
 - Safety: apply mode creates backups under `.structure_fix/backup` and rewrites references in `.tscn/.tres` (ext_resource paths) and `.gd` (preload/load).
 - CI: GitHub Actions publishes the dry-run plan as `structure-fix-plan.json` artifact on pushes/PRs.
 
+## GDScript Lint (Hop 10 — in progress)
+
+Scan `.gd` files for common pitfalls and report alongside other analyzer findings.
+
+- CLI: add `--lint_gd` to any analyzer run, e.g. with scenes/signals:
+	- `cargo run -p godot --bin godot-analyzer -- --root . --validate_scenes --validate_signals --lint_gd --json`
+- What it checks (v1):
+	- class_name vs filename mismatch
+	- debug prints (print/prints/printt)
+	- tab indentation
+	- missing `extends`
+	- missing files in `preload()`/`load()` calls
+- Output: included in JSON/SARIF/JUnit with deterministic ordering; severity defaults to warning.
+
 # Hop 2 — Master Index overview
 
 The MCP server now integrates a Tantivy-based Master Index with endpoints to scan, query, and watch the project.

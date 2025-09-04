@@ -8,6 +8,7 @@ use walkdir::WalkDir;
 pub mod scene_validate;
 pub mod signal_validate;
 pub mod structure_fix;
+pub mod script_lint;
 
 #[derive(Debug, Clone, Serialize, Deserialize, PartialEq, Eq, Default)]
 pub struct GodotProjectReport {
@@ -119,6 +120,13 @@ pub fn analyze_project(root: &Path) -> Result<GodotProjectReport> {
     report.issues.sort_by(|a, b| a.severity.cmp(&b.severity).then(a.message.cmp(&b.message)));
 
     Ok(report)
+}
+
+/// Run GDScript lint and convert to Issue entries (warning severity by default)
+pub fn lint_gd(root: &Path) -> Vec<Issue> {
+    script_lint::lint_gd_scripts(root).into_iter()
+        .map(|f| Issue::warn(f.message, Some(f.file)))
+        .collect()
 }
 
 /// Run signal validation across .tscn files and convert to Issue entries.

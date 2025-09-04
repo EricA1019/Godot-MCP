@@ -59,8 +59,8 @@ jobs:
 
       - name: Run godot analyzer (non-blocking) incl. scene validation and save JSON + SARIF
         run: |
-          cargo run --locked -p godot --bin godot-analyzer -- --json --root . --validate-scenes --scene-json-out scene-findings.json > godot-analyzer-report.json || true
-          cargo run --locked -p godot --bin godot-analyzer -- --root . --validate-scenes --sarif-out godot-analyzer.sarif || true
+          cargo run --locked -p godot --bin godot-analyzer -- --json --root . --validate-scenes --lint-gd --scene-json-out scene-findings.json > godot-analyzer-report.json || true
+          cargo run --locked -p godot --bin godot-analyzer -- --root . --validate-scenes --lint-gd --sarif-out godot-analyzer.sarif || true
         continue-on-error: true
 
       - name: Upload godot analyzer reports

@@ -29,6 +29,9 @@ struct Args {
     /// Validate signal connections in scenes and include findings in outputs
     #[arg(long)]
     validate_signals: bool,
+    /// Lint GDScript files and include findings in outputs
+    #[arg(long)]
+    lint_gd: bool,
     /// Optionally write scene findings as a standalone JSON file
     #[arg(long)]
     scene_json_out: Option<PathBuf>,
@@ -99,6 +102,12 @@ fn main() {
     if args.validate_signals {
         let sig_issues = signal_issues_as_report(&root);
         report.issues.extend(sig_issues);
+        report.issues.sort_by(|a, b| a.severity.cmp(&b.severity).then(a.message.cmp(&b.message)));
+    }
+
+    if args.lint_gd {
+        let lint_issues = godot_analyzer::lint_gd(&root);
+        report.issues.extend(lint_issues);
         report.issues.sort_by(|a, b| a.severity.cmp(&b.severity).then(a.message.cmp(&b.message)));
     }
 

@@ -33,6 +33,7 @@ jobs:
             --root . \
             --validate_scenes \
             --validate_signals \
+            --lint_gd \
             --sarif-out godot.sarif \
             --junit-out godot.junit.xml \
             --signal-dot-out godot-signals.dot \

@@ -162,11 +162,11 @@ Living roadmap of tiny, runnable hops with crisp acceptance criteria. Each hop m
 - Tests: dry-run plan stable; apply moves, creates backups, and updates references
 - Acceptance: backups created prior to moves; references updated; idempotent on clean re-run
 
-### Hop 10: GDScript Lint [PLANNED] (M)
+### Hop 10: GDScript Lint [IN-PROGRESS] (M)
 - Goal: Lint with Godot best-practice ruleset
-- Deliverables: crates/godot/script_lint.rs
-- Tests: rule fixtures; suppression tags
-- Acceptance: severity levels; CI-friendly output
+- Deliverables: crates/godot/script_lint.rs; CLI flag `--lint_gd`; VS Code tasks; docs/GDSCRIPT_LINT.md; CI wiring (non-blocking) and SARIF upload via analyzer
+- Tests: rule fixtures for mismatch/debug prints/tabs/missing extends/missing preload path
+- Acceptance: severity levels (warnings by default); CI-friendly output; deterministic ordering
 
 ---
 
